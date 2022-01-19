@@ -82,16 +82,19 @@ def register(request):
 			accountsCheck_obj = accountsCheck.objects.create(user=user, auth_token = auth_token)
 			accountsCheck_obj.save()
 
-			verificationMain(user.email,auth_token)
-			return redirect('login')
+			verificationMain(user.email,auth_token,request)
+			msg = 'Varification link has send to your mail id. Kindly verify your account.'
+			context = {'form':form, 'msg':msg}
+			return render(request,'User/register.html', context)
+			
 		else:
 			msg = 'Error.'
 	context = {'form':form, 'msg':msg}
 	return render(request,'User/register.html', context)
 
-def verificationMain(email, auth_token):
+def verificationMain(email, auth_token,request):
     subject = 'Please verify your account'
-    message = f'Hi please click on the link to verify your account http://localhost:8000/user/verify/{auth_token}'
+    message = f'Hi please click on the link to verify your account {request.build_absolute_uri()}verify/{auth_token}'
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [email]
     send_mail(subject,message,email_from, recipient_list)
