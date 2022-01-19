@@ -31,9 +31,9 @@
 						<tr>
 							{% for field in table_form %}
 							{% if field.label  == 'Url' %}
-                			{% if display_url %}
-									<th> {{field.label}} </th>
-									{% endif %}
+                			
+							<th> {{field.label}} </th>
+									
 							{% else %}
 							<th> {{field.label}} </th>
 							{% endif %}
@@ -46,10 +46,14 @@
 								<tr>
 								{% for field, value in instance.fields.items %}
 										{% if field == 'url' %}
-										{% if display_url %}
-											<td> <a href="/media/{{value}}">{{ request.scheme }}://{{ request.get_host }}/{{value}}</a></td>
+										{% if display_url == False %}
+											<td> 
+												<a class="blurLinks" href="{% url 'payment' %}" onmouseover="hov(this)" onmouseout="hovOut(this)">https://www.itsatesingurl/test1/com/</a>
+											</td>
+										{% else %}
+												<td> <a  href="{{value}}"> {{value}}</a></td>
 										{% endif %}
-											{% elif field == 'Date' %}
+										{% elif field == 'Date' %}
 											<td> {{value|date:"m/d/Y" }} </td>
 										{% else %}
 											<td> {{value }} </td>
@@ -89,7 +93,13 @@
 								<tr>
 								{% for field, value in instance.fields.items %}
 										{% if field == 'url' %}
-											<td> <a href="/media/{{value}}">{{ request.scheme }}://{{ request.get_host }}/{{value}}</a></td>
+											{% if display_url == False %}
+											<td> 
+												<a class="blurLinks" href="{% url 'payment' %}" onmouseover="hov(this)" onmouseout="hovOut(this)">https://www.itsatesingurl/test1/com/</a>
+											</td>
+										{% else %}
+												<td> <a  href="{{value}}"> {{value}}</a></td>
+										{% endif %}
 										{% elif field == 'Date' %}
 											<td> {{value|date:"m/d/Y" }} </td>
 										{% else %}
