@@ -1,0 +1,9 @@
+.blurLinks{
+	filter: blur(2px); 
+	-webkit-filter: blur(2px);
+}
+
+.unblurLinks{
+	filter: blur(0px); 
+	-webkit-filter: blur(0px);
+}

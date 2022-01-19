@@ -1,0 +1,98 @@
+{% extends 'base/home.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+	<div class="width">
+		<ul class="nav nav-tabs ">
+		  <li class="nav-item">
+			<a class="nav-link" data-toggle="tab"  href="#systematic_trading">Systematic Trading</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" data-toggle="tab"  href="#stock_picker">Stock Picker</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" data-toggle="tab"  href="#market_mover">Market Mover</a>
+		  </li>		  
+		  <li class="nav-item">
+			<a class="nav-link" data-toggle="tab"  href="#company_prospecting">Company Prospecting</a>
+		  </li>
+		</ul>
+		<div class="tab-content" align="center">
+			<div id="systematic_trading" class="tab-pane fade in">
+			<br />
+				<table class="table table-bordered w-50">		
+					<tbody class="justify-content-center">     				
+							{% for instance in systematic_trading_data %}
+								<tr style="background-color:rgba(0,0,0,.05);">
+								{% for field, value in instance.fields.items %}
+									{% if field != 'language'  %}
+										<td>{{ value|linebreaks }}</td>
+									{% else %}
+										<td style="display:none">{{value}}</td>
+									{% endif %}
+								{% endfor %}
+								</tr>
+							{% endfor %}
+					</tbody>
+				</table>
+			</div>
+			<div id="stock_picker" class="tab-pane fade">			
+			<br />
+				<table class="table table-bordered w-50">		
+					<tbody class="justify-content-center">     				
+							{% for instance in stock_picker_data %}
+								<tr style="background-color:rgba(0,0,0,.05);">
+								{% for field, value in instance.fields.items %}
+									{% if field != 'language'  %}
+										<td>{{ value|linebreaks }}</td>
+									{% else %}
+										<td style="display:none">{{value}}</td>
+									{% endif %}
+								{% endfor %}
+								</tr>
+							{% endfor %}
+					</tbody>
+				</table>			
+			</div>
+			<div id="market_mover" class="tab-pane fade">			
+			<br />
+				<table class="table table-bordered w-50">		
+					<tbody class="justify-content-center">     				
+							{% for instance in market_mover_data %}
+								<tr style="background-color:rgba(0,0,0,.05);">
+								{% for field, value in instance.fields.items %}
+									{% if field != 'language'  %}
+										<td>{{ value|linebreaks }}</td>
+									{% else %}
+										<td style="display:none">{{value}}</td>
+									{% endif %}
+								{% endfor %}
+								</tr>
+							{% endfor %}
+					</tbody>
+				</table>			
+			</div>
+			  <div id="company_prospecting" class="tab-pane fade in">
+				<br />
+					<table class="table table-bordered w-50">		
+						<tbody class="justify-content-center">     				
+								{% for instance in company_prospecting_data %}
+									<tr style="background-color:rgba(0,0,0,.05);">
+									{% for field, value in instance.fields.items %}
+										{% if field != 'language'  %}
+											<td>{{ value|linebreaks }}</td>
+										{% else %}
+											<td style="display:none">{{value}}</td>
+										{% endif %}
+									{% endfor %}
+									</tr>
+								{% endfor %}
+						</tbody>
+					</table>
+				</div>			
+		</div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>
+        BuFinTech {% block title %}{% endblock %}
+    </title>    
+	<!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 11]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link rel="canonical" href="https://appseed.us/admin-dashboards/django-dashboard-gradientable">
+	
+	<meta name="description" content="" />
+	<meta name="keywords" content="">
+	<meta name="author" content="Codedthemes" />
+	<!-- Favicon icon -->
+	<!-- <link rel="icon" href="/static/assets/images/favicon.ico" type="image/x-icon"> -->
+
+	<!-- vendor css -->
+	<!-- <link rel="stylesheet" href="/static/assets/css/style.css"> -->
+
+	<link rel="stylesheet" href="{% static 'User/styleuser.css' %}">
+	<!-- sidebar stylesheets -->
+	<link type="text/css" rel="stylesheet" href="{% static 'sidebar/demo.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'sidebar/mmenu.css' %}" />
+    <!-- Specific CSS goes HERE -->
+    {% block stylesheets %}{% endblock stylesheets %}
+
+</head>
+<body>
+
+
+    <div id="page">
+        <div class="header">
+            <a class="bars d-block d-md-none" href="#menu"><span></span></a>
+
+			<div class="" >
+				<span class="float-left d-none d-md-inline">
+					<a href="{% url 'redirect_index' %}">  <img style="width: 116px;" src="{% static 'images/bufintech_logo1.PNG' %}"></a>
+				</span> 
+				<span class="float-left d-inline d-md-none" style="font-size: 13px; padding: 0 10px;">
+					<a href="{% url 'redirect_index' %}">  <img style="width: 42%;" src="{% static 'images/bufintech_logo1.PNG' %}"></a>
+				</span> 			
+					<ul class="list-style-none li-padding float-right d-none d-md-block">
+						<!-- <li><a class="a-effect" href="#" >EN</a> </li>
+						<li> <a class="a-effect" href="#" >ES</a></li>
+						<li> <a class="a-effect" href="#" >TK</a></li> -->
+						{% if request.user.is_authenticated %}
+						<li><a href="{% url 'profile' %}">Profile</a></li>
+						<li><a href="{% url 'logout' %}">Logout</a></li>
+						{% else %}
+						<li><a href="{% url 'login' %}">Login</a></li>
+						{% endif %}
+						
+					</ul>
+				
+				
+				
+			</div>
+        </div>
+		<!-- <div style=" margin: auto;" class="logo-wide" id="header-col2">
+					</div> -->
+		 <!-- [ auth-signin ] start -->
+        <div class="">
+               
+        {% block content %}{% endblock content %}
+
+        </div>
+		    <!-- [ auth-signin ] end -->
+        <nav id="menu">
+            <ul>
+				
+				{% if request.user.is_authenticated %}
+                <li><a href="{% url 'profile' %}">Profile</a></li>
+
+				<!-- <li>
+					<span>Languages</span>
+					<ul>
+						<li><a href="#">EN</a></li>
+						<li><a href="#">ES</a></li>
+						<li><a href="#">TK</a></li>
+					</ul>
+				</li> -->
+				
+				<li><a href="{% url 'logout' %}">Logout</a></li>
+				{% else %}
+				<!-- <li><a href="#">EN</a></li>
+                <li><a href="#">ES</a></li>
+				<li><a href="#">TK</a></li> -->
+				<li><a href="{% url 'login' %}">Login</a></li>
+				{% endif %}
+                
+            </ul>
+        </nav>
+    </div>
+
+	
+	 <!-- mmenu scripts -->
+	 <script src="{% static 'sidebar/mmenu.polyfills.js' %}"></script>
+	 <script src="{% static 'sidebar/mmenu.js' %}"></script>
+
+
+	 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	 <script>
+		 new Mmenu(document.querySelector('#menu'));
+ 
+		 document.addEventListener('click', function (evnt) {
+			 var anchor = evnt.target.closest('a[href^="#/"]');
+			 if (anchor) {
+				 alert("Thank you for clicking, but that's a demo link.");
+				 evnt.preventDefault();
+			 }
+		 });
+	 </script>
+
+    <!-- Specific Page JS goes HERE  -->
+    {% block javascripts %}{% endblock javascripts %} 
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+{% load static %}
+{% load current_url %}
+
+<link type="text/css" rel="stylesheet" href="{% static 'sidebar/demo.css' %}" />
+<link type="text/css" rel="stylesheet" href="{% static 'sidebar/mmenu.css' %}" />
+<div class="header">
+	<a class="bars d-block d-md-none" href="#menu"><span></span></a>
+
+	<div class="" >
+		<span class="float-left d-none d-md-inline">
+			<a href="{% url 'redirect_index' %}">  <img style="width: 116px;" src="{% static 'images/bufintech_logo1.PNG' %}"></a>
+		</span> 
+		<span class="float-left d-inline d-md-none" style="font-size: 13px; padding: 0 10px;">
+			<a href="{% url 'redirect_index' %}">  <img style="width: 42%;" src="{% static 'images/bufintech_logo1.PNG' %}"></a>
+		</span> 	
+		<form action="" method="post" id="LanguageForm" style="display:none;">
+		    {% csrf_token %}
+			<input type="text" value="" id="current_language" name="current_language"/>
+		</form>
+			<div class="d-none d-md-block float-right">
+				<a class="myBtn a-effect" href="{% url request.resolver_match.url_name Language='en'  %}" style="text-decoration: none;">EN</a>
+				<a class="myBtn a-effect" href="{% url request.resolver_match.url_name Language='es'  %}" style="text-decoration: none;">ES</a>
+				<a class="myBtn a-effect" href="{% url request.resolver_match.url_name Language='tr'  %}" style="text-decoration: none;">TR</a>
+				{% if request.user.is_authenticated %}
+				<a href="{% url 'profile' %}">Profile</a>
+				{% if not display_url %}
+				<a href="{% url 'payment' %}">Subscribe</a>
+				{% endif %}
+				<a class="myBtn a-effect" href="{% url 'logout'  %}" style="text-decoration: none;">Logout</a>
+				{% else %}
+				<a href="{% url 'login' %}">Login</a>
+				{% endif %}
+			</div>
+
+		
+		
+		
+	</div>
+</div>
+
+
+<nav id="menu">
+	<ul>
+		{% if request.user.is_authenticated %}
+		<li><a href="{% url 'index' Language=Language %}">Home</a></li>
+		<li><a href="{% url 'profile' %}">Profile</a></li>
+		<li>
+			<span>Menu</span>
+			<ul class="ul-flex">
+				{%for item in nav_items%}
+				{% if item.1|current_url:request.path  %}
+				<li><a href="{% url item.1 Language=Language %}" style="color: #1190cb;">{{item.0}}</a></li>
+				{% else %}
+				<li><a href="{% url item.1 Language=Language %}">{{item.0}}</a></li>
+		
+				{% endif %}
+			  
+				{% endfor %}
+			</ul>
+		</li>
+		<li>
+		<span>Languages</span>
+		<ul>
+		<li><a class="" href="{% url request.resolver_match.url_name Language='en'  %}" style="text-decoration: none;">EN</a></li>		
+		
+		<li><a class="" href="{% url request.resolver_match.url_name Language='es'  %}" style="text-decoration: none;">ES</a></li>
+		<li><a class="" href="{% url request.resolver_match.url_name Language='tr'  %}" style="text-decoration: none;">TR</a></li>
+		</ul>
+		</li>
+		{% if display_url %}
+		<li><a href="{% url 'payment' %}">Subscribe</a></li>
+		{% endif %}
+		<h1>
+		</h1>
+		
+		<li><a href="{% url 'logout' %}">Logout</a></li>
+		{% else %}
+		<li><a class="" href="{% url request.resolver_match.url_name Language='en'  %}" style="text-decoration: none;">EN</a></li>		
+		
+		<li><a class="" href="{% url request.resolver_match.url_name Language='es'  %}" style="text-decoration: none;">ES</a></li>
+		<li><a class="" href="{% url request.resolver_match.url_name Language='tr'  %}" style="text-decoration: none;">TR</a></li>
+
+		<li><a href="{% url 'login' %}">Login</a></li>
+		{% endif %}
+		
+	</ul>
+</nav>
+
+<div class=" d-none d-md-flex justify-content-center">
+    <ul class="ul-flex">
+		{%for item in nav_items%}
+		{% if item.1|current_url:request.path  %}
+		<li><a href="{% url item.1 Language=Language %}" style="color: #1190cb;">{{item.0}}</a></li>
+		{% else %}
+		<li><a href="{% url item.1 Language=Language %}">{{item.0}}</a></li>
+
+		{% endif %}
+      
+		{% endfor %}
+    </ul>
+</div>
+
+
+ <!-- mmenu scripts -->
+ <script src="{% static 'sidebar/mmenu.polyfills.js' %}"></script>
+ <script src="{% static 'sidebar/mmenu.js' %}"></script>
+ <script>
+	 new Mmenu(document.querySelector('#menu'));
+
+	 document.addEventListener('click', function (evnt) {
+		 var anchor = evnt.target.closest('a[href^="#/"]');
+		 if (anchor) {
+			 alert("Thank you for clicking, but that's a demo link.");
+			 evnt.preventDefault();
+		 }
+	 });
+ </script>
+
+
+
+
+
+

@@ -1,0 +1,30 @@
+{% extends 'base/home.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container" align="center">
+    <br>
+    <table id="example" class="table table-bordered w-50">		
+        <tbody class="justify-content-center">     				
+                {% for instance in data %}
+					<tr style="background-color:rgba(0,0,0,.05);">
+                    {% for field, value in instance.fields.items %}
+                        {% if field != 'language'  %}
+                            <td>{{ value|linebreaks }}</td>
+                        {% else %}
+							<td style="display:none">{{value}}</td>
+						{% endif %}
+                    {% endfor %}
+					</tr>
+                {% endfor %}
+        </tbody>
+    </table>
+	<ul>
+	{% for social in SocialMedia %}
+	<a href="{{social.link}}" style="padding-right:10px;">
+		<image src="{{social.image.url}}" width={{social.width}} height={{social.height}} style="margin-top:5px;" alt="{{social.name}}"/>
+	</a>
+	{% endfor %}
+</div>
+<br />
+{% endblock content %}

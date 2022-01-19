@@ -1,0 +1,45 @@
+{% extends 'base/home.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+	<br />
+    <div class="width">
+    <table id="example" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+				{% for field in table_form %}
+					{% if field.name != 'Language' %}
+						<th> {{field.name}} </th>
+					{% else %}
+						<th style="display:none">{{field.name}} </th>
+					{% endif %}
+				{% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            
+                {% for instance in data %}
+                    <tr>
+                    {% for field, value in instance.fields.items %}
+                        {% if field != 'Language' %}
+							{% if field == 'url' %}
+								<td> <a href="{{value}}">{{ request.scheme }}://{{ request.get_host }}/{{value}}</a></td>
+							{% else %}
+								<td> {{value}} </td>
+							{% endif %}
+						{% else %}
+                            <td style="display:none">{{ value  }}</td>						
+                        {% endif %}
+                    {% endfor %}
+                    </tr>
+                {% endfor %}     
+            </tr>     
+        </tbody>
+
+
+    </table>
+    </div>
+</div>
+
+{% endblock content %}

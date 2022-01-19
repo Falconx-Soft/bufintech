@@ -1,0 +1,237 @@
+{% extends "User/base-fullscreen.html" %}
+
+{% block title %} Register {% endblock %}
+
+{% block content %} 
+
+<div class="row" style="justify-content:center; width: 100%;">
+  <div class="card card-bleed mr-4  mb-4 ">
+    <div class="card-header border-0">
+      <div class="row align-items-center">
+        <div class="col" style="text-align: center;">
+          <h2 class="mb-0 Mont-Bold  font-size-xm">
+          Monthly Subscription
+          </h2>
+        </div>
+        <div class="col-auto">
+          
+        </div>
+      </div>
+      <hr class="border-gray-800  border-width-one border-color-lightest-grey my-1 my-lg-2"  style="border-color: #f1f4f8;"/>
+    </div>
+    <div class="card-body overflow-auto  scroll py-2" style="  text-align: center;  min-height: 130px;">
+      <h3>10$/month</h3>   
+      <a>
+            <button onclick="$('#card').show(); $('#monthly').prop('checked', true); $('#yearly').prop('checked', false);" class="btn btn-outline-primary"  data-toggle="modal" data-target="#exampleModalPayment">
+              Monthly subscription</i>
+            </button>
+            </a>
+    </div>
+    
+  </div>
+  <div class="card card-bleed  mb-4 ">
+    <div class="card-header border-0">
+      <div class="row align-items-center">
+        <div class="col" style="text-align: center;">
+          <h2 class="mb-0 Mont-Bold  font-size-xm">
+          Yearly Subscription
+          </h2>
+        </div>
+        <div class="col-auto">
+          
+        </div>
+      </div>
+      <hr class="border-gray-800  border-width-one border-color-lightest-grey my-1 my-lg-2"  style="border-color: #f1f4f8;"/>
+    </div>
+    <div class="card-body overflow-auto  scroll py-2" style="  text-align: center;  min-height: 130px;">
+      <h3>100$/Year</h3>  
+      <a >
+            <button onclick="$('#card').show(); $('#monthly').prop('checked', false); $('#yearly').prop('checked', true);" class="btn btn-outline-primary"  data-toggle="modal" data-target="#exampleModalPayment">
+              Yearly Subscription</i>
+            </button>
+            </a>
+    </div>
+    
+  </div>
+</div>
+
+<div id  = "card" style="display: none;" class="container">
+  <div class="card card-bleed  mb-4 ">
+    <div class="card-header border-0">
+      <div class="row align-items-center">
+        <div class="col">
+          <h2 class="mb-0 Mont-Bold  font-size-xm">
+            Payment Methods
+          </h2>
+          <!-- <h3>name</h3> -->
+        </div>
+        <div class="col-auto">
+         
+        </div>
+
+      </div>
+      <hr class="border-gray-800  border-width-one border-color-lightest-grey my-1 my-lg-2"  style="border-color: #f1f4f8;"/>
+    </div>
+    <div class="card-body overflow-auto  scroll py-2" style="    min-height: 130px;">
+      <form id="payment-form" >
+          <div id="payment-element">
+            <!-- Elements will create form elements here -->
+          </div>
+          <div class="row mt-4">
+              <div class="col-12 my-4 my-md-0">
+                <div class="custom-control custom-checkbox" style="display: none;">
+                  <input type="checkbox" class="custom-control-input" id="monthly">
+                  <label class="custom-control-label"  for="monthly">Monthly Subscription</label>
+                </div>
+                <div class="custom-control custom-checkbox" style="display: none;">
+                  <input type="checkbox" class="custom-control-input" id="yearly">
+                  <label class="custom-control-label"  for="yearly">Yearly Subscription</label>
+                </div>
+              </div>
+            </div>
+          <button id="submit" class="btn btn-outline-primary">Submit</button>
+          <div id="error-message">
+            <!-- Display error message to your customers here -->
+          </div>
+        </form>
+    </div>
+    </div>
+</div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+	<script src="/static/assets/js/waves.min.js"></script>
+    <script src="https://js.stripe.com/v3/"></script> 
+<!-- 
+    <script>
+        
+
+        const stripe = Stripe('pk_test_51K5DcCJeg7RB83958CWvJc1wzFqsPMxunydFsVLohJVTjLkXcfUsXL48obxIBzSYPXNQnbgceiE32MeoXrNjRHgx0085YCpXqn');
+        const options = {
+            clientSecret: '{{CLIENT_SECRET}}',
+            // Fully customizable with appearance API.
+            appearance: {/*...*/},
+          };
+         
+          // Set up Stripe.js and Elements to use in checkout form, passing the client secret obtained in step 2
+          const elements = stripe.elements(options);
+          
+          // Create and mount the Payment Element
+          const paymentElement = elements.create('payment');
+          paymentElement.mount('#payment-element');
+    </script> -->
+    
+
+    <script>
+        const stripe = Stripe('pk_test_51K5DcCJeg7RB83958CWvJc1wzFqsPMxunydFsVLohJVTjLkXcfUsXL48obxIBzSYPXNQnbgceiE32MeoXrNjRHgx0085YCpXqn');
+
+        // !  Create Stripe Elements...
+        var elements = stripe.elements();
+        card = elements.create("card", {
+            iconStyle: "solid",
+            style: {
+              base: {
+                iconColor: "black",
+                color: "black",
+                fontWeight: 400,
+                fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                fontSize: "16px",
+                fontSmoothing: "antialiased",
+                "::placeholder": {
+                  color: "black"
+                },
+                ":-webkit-autofill": {
+                  color: "#fff"
+                }
+              },
+              invalid: {
+                iconColor: "#FFC7EE",
+                color: "#FFC7EE"
+              }
+            }
+          });
+          card.mount("#payment-element");
+    </script>
+    <script>
+        var form = document.getElementById('payment-form')
+        form.addEventListener('submit', function(event) {
+            console.log('payment form')
+
+            // To strop browser default behaviour
+            event.preventDefault();
+            event.stopPropagation();
+ 
+          
+          
+          
+                stripe.createPaymentMethod({
+                  type: 'card',
+                  card:card,
+                  billing_details: {
+                    email:'{{request.user.email}}',
+                    name:"{{request.user.get_full_name}}",
+                   
+              
+                  },
+                }).then(stripePaymentMethodHandler);
+                
+                });
+          
+          function stripePaymentMethodHandler(result, email) {
+            const fd = new FormData();
+
+
+        
+            fd.append('payment_method', result.paymentMethod.id);
+            fd.append('monthly', document.getElementById("monthly").checked)
+            fd.append('yearly', document.getElementById("yearly").checked)
+            fetch("{% url 'complete' %}", {
+                method: 'post',
+                credentials: "same-origin",
+                headers: {
+                  'Idempotent-Replayed': true
+                },
+          
+          
+                body : fd,
+          
+              }).then(function(result) {
+                  console.log('result', result.status)
+                  if (result.status == 200){
+                      window.location.reload()
+                  }
+              }).then(function(data){
+                  console.log(data)
+              })
+          }
+        
+    </script>
+   
+    <!-- <script>
+        console.log('stripe')
+        // Get Stripe publishable key
+        fetch("/config/")
+        .then((result) => { return result.json(); })
+        .then((data) => {
+        // Initialize Stripe.js
+        const stripe = Stripe(data.publicKey);
+        console.log('stripe',stripe)
+        document.querySelector("#submitBtn").addEventListener("click", () => {
+            // Get Checkout Session ID
+            fetch("/create-checkout-session/")
+            .then((result) => { return result.json(); })
+            .then((data) => {
+              console.log(data);
+              // Redirect to Stripe Checkout
+              return stripe.redirectToCheckout({sessionId: data.sessionId})
+            })
+            .then((res) => {
+              console.log(res);
+            });
+          });
+        });
+        
+    </script> -->
+{% endblock javascripts %} 

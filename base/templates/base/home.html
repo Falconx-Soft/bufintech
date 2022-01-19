@@ -1,0 +1,31 @@
+ {% load static %}
+ <!DOCTYPE html>
+<html>
+
+<head>
+    {% include 'base/head.html' %}
+</head>
+
+<body  style="overflow-x:hidden;">
+
+<div class="container-fluid" id="page"  style="overflow-x:hidden;">
+    
+    {% include 'base/navbar.html' %}
+
+    {% block content %}{% endblock content %}
+
+<!-- JavaScripts placed at the end of the document so the pages load faster --> 
+    <script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script> 
+	{% if hidden %}
+		{{ hidden|json_script:"hidden" }}
+	{% endif %}	
+	{% if hidden1 %}
+		{{ hidden1|json_script:"hidden1" }}
+	{% endif %}	
+	
+	<script src=" {% static 'base/main.js' %} "></script>
+
+	<script src=" {% static 'base/url.js' %} "></script>
+</div>
+</body>
+</html> 

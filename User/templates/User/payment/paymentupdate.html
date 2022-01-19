@@ -1,0 +1,138 @@
+{% extends "User/base-fullscreen.html" %}
+{% block title %} Register {% endblock %}
+
+{% block content %} 
+<style>
+    .show{
+        display: block !important;
+    }
+</style>
+<div class="container">
+ 
+      <div class="card card-bleed  mb-4 ">
+      <div class="card-header border-0">
+        <div class="row align-items-center">
+          <div class="col">
+            <h2 class="mb-0 Mont-Bold  font-size-xm">
+              Payment Methods
+            </h2>
+          </div>
+          <div class="col-auto">
+           
+          </div>
+
+        </div>
+        <hr class="border-gray-800  border-width-one border-color-lightest-grey my-1 my-lg-2"  style="border-color: #f1f4f8;"/>
+      </div>
+      <div class="card-body overflow-auto  scroll py-2" style="    min-height: 130px;">
+        <form id="payment-form" >
+            <div id="payment-element">
+              <!-- Elements will create form elements here -->
+            </div>
+            <div class="row ">
+                <div class="col-12 my-4 my-md-0">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1Payment">
+                    <label class="custom-control-label"  for="customCheck1Payment">Make this your default card</label>
+                  </div>
+                </div>
+              </div>
+            <button id="submit" class="btn btn-secondary">Submit</button>
+            <div id="error-message">
+              <!-- Display error message to your customers here -->
+            </div>
+          </form>
+      </div>
+      </div>
+</div>
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+	<script src="/static/assets/js/waves.min.js"></script>
+    <script src="https://js.stripe.com/v3/"></script> 
+    <script>
+        const stripe = Stripe('pk_test_51K5DcCJeg7RB83958CWvJc1wzFqsPMxunydFsVLohJVTjLkXcfUsXL48obxIBzSYPXNQnbgceiE32MeoXrNjRHgx0085YCpXqn');
+
+            document.getElementById('payment-form').classList.add('show')
+                        // !  Create Stripe Elements...
+            var elements = stripe.elements();
+            var style = {
+                base: {
+                  color: '#32325d',
+                  fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                  fontSmoothing: 'antialiased',
+                  fontSize: '16px',
+                  '::placeholder': {
+                    color: '#aab7c4',
+                  },
+                },
+                invalid: {
+                  color: '#fa755a',
+                  iconColor: '#fa755a',
+                },
+              };
+              var cardElement = elements.create('card', { style: style });
+              
+              cardElement.mount("#payment-element");
+
+              var form = document.getElementById('payment-form')
+              form.addEventListener('submit', function(event) {
+                  console.log('payment form')
+      
+                  // To strop browser default behaviour
+                  event.preventDefault();
+                  event.stopPropagation();
+       
+                
+                
+                
+                      stripe.createPaymentMethod({
+                        type: 'card',
+                        card:cardElement,
+                        billing_details: {
+                          email:'{{request.user.email}}',
+                          name:"{{request.user.get_full_name}}",
+                         
+                    
+                        },
+                      }).then(change);
+                      
+                      });
+                
+                function change(result, email) {
+      
+                  if (result.error) {
+                      console.log('error', error)
+                  }else{
+      
+                  fetch('/add_card', {
+                      method: 'post',
+                      credentials: "same-origin",
+                      headers: {'Content-Type': 'application/json'},
+                
+                      body: JSON.stringify({
+                       
+                        payment_method: result.paymentMethod.id,
+                        card: result.paymentMethod.card,
+                        details: result.paymentMethod.billing_details,
+                        brand:result.paymentMethod.card.brand,
+                        default : document.getElementById("customCheck1Payment").checked
+                      }),
+                   
+                    }).then(function(result) {
+                      window.location.replace('/profile')
+                
+                      return result.json();
+                    }).then(function(customer) {
+                      
+                    });
+                    }
+                }
+
+    </script>
+
+{% endblock javascripts %} 
