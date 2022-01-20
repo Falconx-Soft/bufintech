@@ -143,6 +143,8 @@ a:hover{
 .logo-wide{
     width: 70%;
 }
+
+
 @media (min-width:760px){
     .logo-wide{
         width: 500px;
@@ -150,5 +152,11 @@ a:hover{
     }
     .logo-wide a img{
         margin-top: -120px;
+    }
+}
+
+@media (max-width:760px){
+    #middleLogo{
+        display: none;
     }
 }
