@@ -112,9 +112,3 @@ ul.li-padding li{
 	color: #0056b3 !important;
     text-decoration: underline !important;
 }
-
-@media (max-width: 768px) {
-    #middleLogo{
-		display: none;
-	}
-}

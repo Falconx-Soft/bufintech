@@ -11,10 +11,7 @@
 			<a class="myBtn a-effect" href="{% url request.resolver_match.url_name Language='en'  %}" style="text-decoration: none;">EN</a>
 			<a class="myBtn a-effect" href="{% url request.resolver_match.url_name Language='es'  %}" style="text-decoration: none;">ES</a>
 			<a class="myBtn a-effect" href="{% url request.resolver_match.url_name Language='tr'  %}" style="text-decoration: none;">TR</a>
-		</span> 
-		<span class="float-left d-inline d-md-none" style="font-size: 13px; padding: 0 10px;">
-			<a href="{% url 'redirect_index' %}">  <img style="width: 42%;" src="{% static 'images/bufintech_logo1.png' %}"></a>
-		</span> 	
+		</span>	
 		<form action="" method="post" id="LanguageForm" style="display:none;">
 		    {% csrf_token %}
 			<input type="text" value="" id="current_language" name="current_language"/>
