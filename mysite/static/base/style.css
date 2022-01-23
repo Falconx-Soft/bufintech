@@ -160,3 +160,22 @@ a:hover{
         display: none;
     }
 }
+
+@media (max-width:766px){
+    #analytics_tabs{
+        display: block;
+        width: 100%;
+    }
+
+    #analytics_container{
+        margin: 0px;
+    }
+
+}
+
+@media (max-width:990px){
+
+    #example{
+        width: 100% !important;
+    }
+}
