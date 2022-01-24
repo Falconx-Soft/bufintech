@@ -115,6 +115,7 @@ def equityView(request, Language):
     except Exception as e:
         return render (request,'base/equity.html',{'display_url':display_url, 'message':"No data found!",'nav_items':nav_items[1:],'Language':Language})
 
+
 def money_making(request, Language):
     display_url = True
     try:
@@ -146,6 +147,7 @@ def money_making(request, Language):
                                                            })
     except Exception as e:
         return render (request,'base/money_making.html',{'display_url':display_url, 'message':"No data found!","nav_items":nav_items[1:],'sub_items':sub_items,'Language':Language})
+
 
 def learn(request, Language):
     display_url = True
@@ -190,6 +192,7 @@ def list_of_pages(request, Language):
         return render (request,'base/list_of_pages.html',{'display_url':display_url, 'obj':obj,'table_form':List_of_pagesForm(),'data':data,"nav_items":nav_items[1:],'Language':Language})
     except:
         return render (request,'base/list_of_pages.html',{'display_url':display_url, 'message':"No data found!","nav_items":nav_items[1:],'Language':Language})
+
 
 def analytic_apps(request, Language):
     display_url = True

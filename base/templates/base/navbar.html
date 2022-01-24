@@ -37,10 +37,19 @@
 <nav id="menu">
 	<ul>
 		{% if request.user.is_authenticated %}
-		<li><a href="{% url 'index' Language=Language %}">Home</a></li>
-		<li><a href="{% url 'profile' %}">Profile</a></li>
 		<li>
-			<span>Menu</span>
+			<span>Languages</span>
+			<ul>
+			<li><a class="" href="{% url request.resolver_match.url_name Language='en'  %}" style="text-decoration: none;">EN</a></li>		
+			
+			<li><a class="" href="{% url request.resolver_match.url_name Language='es'  %}" style="text-decoration: none;">ES</a></li>
+			<li><a class="" href="{% url request.resolver_match.url_name Language='tr'  %}" style="text-decoration: none;">TR</a></li>
+			</ul>
+		</li>
+		<li><a href="{% url 'index' Language=Language %}">Home</a></li>
+		<!-- <li><a href="{% url 'profile' %}">Profile</a></li> -->
+		<li>
+			<span>Items</span>
 			<ul class="ul-flex">
 				{%for item in nav_items%}
 				{% if item.1|current_url:request.path  %}
@@ -53,15 +62,6 @@
 				{% endfor %}
 			</ul>
 		</li>
-		<li>
-		<span>Languages</span>
-		<ul>
-		<li><a class="" href="{% url request.resolver_match.url_name Language='en'  %}" style="text-decoration: none;">EN</a></li>		
-		
-		<li><a class="" href="{% url request.resolver_match.url_name Language='es'  %}" style="text-decoration: none;">ES</a></li>
-		<li><a class="" href="{% url request.resolver_match.url_name Language='tr'  %}" style="text-decoration: none;">TR</a></li>
-		</ul>
-		</li>
 		{% if display_url %}
 		<li><a href="{% url 'payment' %}">Subscribe</a></li>
 		{% endif %}
@@ -70,18 +70,42 @@
 		
 		<li><a href="{% url 'logout' %}">Logout</a></li>
 		{% else %}
-		<li><a class="" href="{% url request.resolver_match.url_name Language='en'  %}" style="text-decoration: none;">EN</a></li>		
+		<li>
+			<span>Items</span>
+			<ul class="ul-flex">
+				{%for item in nav_items%}
+				{% if item.1|current_url:request.path  %}
+				<li><a href="{% url item.1 Language=Language %}" style="color: #1190cb;">{{item.0}}</a></li>
+				{% else %}
+				<li><a href="{% url item.1 Language=Language %}">{{item.0}}</a></li>
+		
+				{% endif %}
+			  
+				{% endfor %}
+			</ul>
+		</li>
+		<!-- <li><a class="" href="{% url request.resolver_match.url_name Language='en'  %}" style="text-decoration: none;">EN</a></li>		
 		
 		<li><a class="" href="{% url request.resolver_match.url_name Language='es'  %}" style="text-decoration: none;">ES</a></li>
-		<li><a class="" href="{% url request.resolver_match.url_name Language='tr'  %}" style="text-decoration: none;">TR</a></li>
+		<li><a class="" href="{% url request.resolver_match.url_name Language='tr'  %}" style="text-decoration: none;">TR</a></li> -->
 
+		<li>
+			<span>Languages</span>
+			<ul>
+			<li><a class="" href="{% url request.resolver_match.url_name Language='en'  %}" style="text-decoration: none;">EN</a></li>		
+			
+			<li><a class="" href="{% url request.resolver_match.url_name Language='es'  %}" style="text-decoration: none;">ES</a></li>
+			<li><a class="" href="{% url request.resolver_match.url_name Language='tr'  %}" style="text-decoration: none;">TR</a></li>
+			</ul>
+		</li>
 		<li><a href="{% url 'login' %}">Login</a></li>
+		<li><a href="{% url 'register' %}" >Register</a></li>
 		{% endif %}
 		
 	</ul>
 </nav>
 
-<div class=" d-none d-md-flex justify-content-center">
+<div class=" d-none d-md-flex justify-content-center" style="margin-top: 3%;">
     <ul class="ul-flex">
 		{%for item in nav_items%}
 		{% if item.1|current_url:request.path  %}
