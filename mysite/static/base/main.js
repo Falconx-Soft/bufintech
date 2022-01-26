@@ -12,7 +12,7 @@ $(document).ready(function(){
 			   "columnDefs": [
 				{
 					"targets":  JSON.parse(document.getElementById('hidden').textContent),
-					"visible": false
+					"visible": true
 				},
 			],
     responsive: true
@@ -22,7 +22,7 @@ $(document).ready(function(){
 				   "columnDefs": [
 					{
 						"targets":  JSON.parse(document.getElementById('hidden1').textContent),
-						"visible": false
+						"visible": true
 					}		  
 			  ],
       responsive: true
@@ -34,48 +34,105 @@ $(document).ready(function(){
 		}
 	  }
 
+    function getMonth(m){
+      if(m == "01"){
+        return "Jan."
+      }else if (m == "02"){
+        return "Feb."
+      }else if (m == "03"){
+        return "Mar."
+      }else if (m == "04"){
+        return "Apr."
+      }else if (m == "05"){
+        return "May."
+      }else if (m == "06"){
+        return "Jun."
+      }else if (m == "07"){
+        return "July."
+      }else if (m == "08"){
+        return "Aug."
+      }else if (m == "09"){
+        return "Sept."
+      }else if (m == "10"){
+        return "Oct."
+      }else if (m == "11"){
+        return "Nov."
+      }else if (m == "12"){
+        return "Dec."
+      }
+    }
+
+    function getDate(s_date){
+      console.log(s_date);
+      var n_date = s_date.split("/");
+      var mon = getMonth(n_date[0]);
+      var day = "";
+      if(n_date[1][0] !== "0"){
+        day = n_date[1]+",";
+      }else{
+        day = n_date[1][1]+",";
+      }
+      var year = n_date[2];
+
+      console.log(mon+" "+day+" "+year);
+      return mon+" "+day+" "+year
+    }
+
     // #market_search is a <input type="text"> element
     $('#market_search').on( 'change', function () {
+        d = getDate(this.value)
         table
-            .columns( 1 )
-            .search( this.value )
+            .columns( 2 )
+            .search( d )
             .draw();
+            console
     } );
 
     $('#investing_search_date').on( 'change', function () {
+      d = getDate(this.value)
         table1
-            .columns( 2 )
-            .search( this.value )
+            .columns( 4 )
+            .search( d )
             .draw();
     } );
 
     $('#trading_search_date').on( 'change', function () {
+      d = getDate(this.value)
         table
             .columns( 2 )
-            .search( this.value )
+            .search( d )
             .draw();
     } );
 
     // #epublic_search_ticker is a <input type="text"> element
     $('#epublic_search_ticker').on( 'change', function () {
       table
-          .columns( 2 )
+          .columns( 3 )
             .search( this.value )
             .draw();
     } );
     // #epublic_search is a <input type="text"> element
     $('#epublic_search_date').on( 'change', function () {
+      d = getDate(this.value)
       table
-          .columns( 3 )
-            .search( this.value )
+          .columns( 2 )
+            .search( d )
             .draw();
     } );
 
     // #learning_search is a <input type="text"> element
     $('#learning_search').on( 'change', function () {
       table
-          .columns( 3 )
+          .columns( 1 )
             .search( this.value )
+            .draw();
+    } );
+
+    $('#learning_search_date').on( 'change', function () {
+      d = getDate(this.value)
+      table
+          .columns( 3 )
+            .search( d )
             .draw();
     } );
 

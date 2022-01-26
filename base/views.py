@@ -84,7 +84,7 @@ def market_outlook(request, Language):
         display_url = False
     setCurrentLanguage(request, Language)
     nav_items = ListPage.objects.filter(Language=request.session['current_language']).values_list("Menu_Name","url").distinct()    
-    hidden = [0,9]
+    hidden = [0,6]
     try:
         obj = market.objects.filter(Language = request.session['current_language'])
         data = serializers.serialize("python",market.objects.filter(Language = request.session['current_language']) )
@@ -162,15 +162,25 @@ def learn(request, Language):
         display_url = False
     hidden = [0,1]
     setCurrentLanguage(request, Language)
-    nav_items = ListPage.objects.filter(Language=request.session['current_language']).values_list("Menu_Name","url").distinct()    
+    nav_items = ListPage.objects.filter(Language=request.session['current_language']).values_list("Menu_Name","url").distinct() 
 
-    try:
-        obj = learning.objects.filter(Language=request.session['current_language'])
-        data = serializers.serialize("python",learning.objects.filter(Language=request.session['current_language']) )
-        categories = obj.values("via").distinct()
-        return render (request,'base/learning.html',{'display_url':display_url, 'obj':obj,'table_form':LearningForm(),'data':data, 'hidden':hidden,"nav_items":nav_items[1:],'Language':Language, 'categories':categories})
-    except Exception as e:
-        return render (request,'base/learning.html',{'display_url':display_url, 'message':"No data found!","nav_items":nav_items[1:],'Language':Language})
+    obj = learning.objects.filter(Language=request.session['current_language'])
+    data = serializers.serialize("python",learning.objects.filter(Language=request.session['current_language']) )
+    categories = obj.values("Topic").distinct()
+    print("******************************")
+    print(categories)
+    return render (request,'base/learning.html',{'display_url':display_url, 'obj':obj,'table_form':LearningForm(),'data':data, 'hidden':hidden,"nav_items":nav_items[1:],'Language':Language, 'categories':categories})   
+
+    # try:
+    #     obj = learning.objects.filter(Language=request.session['current_language'])
+    #     data = serializers.serialize("python",learning.objects.filter(Language=request.session['current_language']) )
+    #     categories = obj.values("via").distinct()
+    #     print("******************************")
+    #     print(obj)
+    #     print(data)
+    #     return render (request,'base/learning.html',{'display_url':display_url, 'obj':obj,'table_form':LearningForm(),'data':data, 'hidden':hidden,"nav_items":nav_items[1:],'Language':Language, 'categories':categories})
+    # except Exception as e:
+    #     return render (request,'base/learning.html',{'display_url':display_url, 'message':"No data found!","nav_items":nav_items[1:],'Language':Language})
 
 def list_of_pages(request, Language):
     display_url = True
@@ -233,4 +243,7 @@ def analytic_apps(request, Language):
     except:
         return render (request,'base/analytics_apps.html',{ 'display_url':display_url, 'message':"No data found!",'nav_items':nav_items[1:],'Language':Language})
 
-    
+def social_network(request,Language):
+    setCurrentLanguage(request, Language)
+    nav_items = ListPage.objects.filter(Language=request.session['current_language']).values_list("Menu_Name","url").distinct()  
+    return render (request,'base/social_network.html',{'message':"No data found!",'nav_items':nav_items[1:],'Language':Language})

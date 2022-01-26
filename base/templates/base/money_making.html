@@ -16,19 +16,18 @@
 			<div id="public" class="tab-pane fade in">
 			<br />
 			<div class=" d-block d-md-flex">
-				<input type="text" placeholder="Search by Date ..." id="trading_search_date" class="form-control col-12 col-md-5 mt-2 mt-md-0 datepicker mr-5">
-				<select class="form-control col-12 col-md-5 mt-2 mt-md-0 " id="company_search" title="Search By Play">
+				<input type="text" placeholder="Search by Date ..." id="trading_search_date" class="form-control col-12 col-md-5 mt-2 mt-md-0 datepicker  mr-5">
+				<!-- <select class="form-control col-12 col-md-5 mt-2 mt-md-0 " id="company_search" title="Search By Play">
 					<option value="">Search By Play</option>
 				{% for play in plays %}
 					<option value="{{play.Play}}">{{play.Play}}</option>
 				{% endfor %}
-				</select>
-
+				</select> -->
 			</div>
 			<br />
 				<table id="example" class="table table-striped table-bordered" style="width:100%">
 					<thead>
-						<tr>
+						<!-- <tr>
 							{% for field in table_form %}
 							{% if field.label  == 'Url' %}
                 			
@@ -38,11 +37,39 @@
 							<th> {{field.label}} </th>
 							{% endif %}
 							{% endfor %}
+						</tr> -->
+						<tr>
+							<th>Product</th>
+							<th>Class</th>
+							<th>Trade Date</th>
+							<th>Expiration Date</th>
+							<th>Identifier</th>
+							<th>Outcome</th>
+							<th>Initial Inv</th>
+							<th>ROI</th>
+							<th>ReCap</th>
+							<th>YouTube</th>
+							<th>PodCast</th>
 						</tr>
 					</thead>
 					<tbody>
+						{% for instance in data %}
+							<tr>
+								<td>N/A</td>
+								<td>N/A</td>
+								<td>{{instance.fields.Date}}</td>
+								<td>N/A</td>
+								<td>N/A</td>
+								<td>{{instance.fields.Outcome}}</td>
+								<td>N/A</td>
+								<td>N/A</td>
+								<td>N/A</td>
+								<td>{{instance.fields.Youtube}}</td>
+								<td>{{instance.fields.Podcast}}</td>
+							</tr>
+						{% endfor %}
 						
-							{% for instance in data %}
+							<!-- {% for instance in data %}
 								<tr>
 								{% for field, value in instance.fields.items %}
 										{% if field == 'url' %}
@@ -61,7 +88,7 @@
 								{% endfor %}
 								</tr>
 							{% endfor %}     
-						</tr>     
+						</tr>      -->
 					</tbody>
 				</table>
 			</div>
@@ -69,27 +96,59 @@
 			<br />
 
 			<div class="d-flex">
-				<input type="text" placeholder="Search by Date ..." id="investing_search_date" class="form-control col-12 col-md-5 mt-2 mt-md-0 datepicker mr-5">
+				<input type="text" placeholder="Search by Entry Date ..." id="investing_search_date" class="form-control col-12 col-md-5 mt-2 mt-md-0 datepicker mr-5">
 
-				<select class="form-control col-12 col-md-5 mt-2 mt-md-0 " id="company_search1" title="Search By Company">
+				<!-- <select class="form-control col-12 col-md-5 mt-2 mt-md-0 " id="company_search1" title="Search By Company">
 					<option value="">Search By Company</option>
 				{% for company in companies %}
 					<option value="{{company.Short_Name}}">{{company.Short_Name}}</option>
 				{% endfor %}
-				</select>
+				</select> -->
 			</div>
 			<br />
 				<table id="example1" class="table table-striped table-bordered" style="width:100%">
 					<thead>
-						<tr>
+						<!-- <tr>
 							{% for field in table_form1 %}
 									<th> {{field.label}} </th>
 							{% endfor %}
+						</tr> -->
+						<tr>
+							<th>Product</th>
+							<th>Market</th>
+							<th>Ticker</th>
+							<th>Name</th>
+							<th>Entry Date</th>
+							<th>Exit Date</th>
+							<th>Position</th>
+							<th>Outcome</th>
+							<th>Initial Investment</th>
+							<th>ROI</th>
+							<th>ReCap</th>
+							<th>YouTube</th>
+							<th>Product</th>
 						</tr>
 					</thead>
 					<tbody>
+						{% for data in data1 %}
+							<tr>
+								<td>N/A</td>
+								<td>N/A</td>
+								<td>N/A</td>
+								<td>{{data.fields.Short_Name}}</td>
+								<td>{{data.fields.Entry}}</td>
+								<td>{{data.fields.Exit}}</td>
+								<td>{{data.fields.Position}}</td>
+								<td>N/A</td>
+								<td>N/A</td>
+								<td>N/A</td>
+								<td>N/A</td>
+								<td>{{data.fields.Youtube}}</td>
+								<td>{{data.fields.Podcast}}</td>
+							</tr>
+						{% endfor %}
 						
-							{% for instance in data1 %}
+							<!-- {% for instance in data1 %}
 								<tr>
 								{% for field, value in instance.fields.items %}
 										{% if field == 'url' %}
@@ -108,7 +167,7 @@
 								{% endfor %}
 								</tr>
 							{% endfor %}     
-						</tr>     
+						</tr>      -->
 					</tbody>
 				</table>
 			</div>			

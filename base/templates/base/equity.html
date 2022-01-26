@@ -7,23 +7,24 @@
 	<div class="width">		
 			<br />
 		<div class="d-block d-md-flex">
-			<select class="form-control col-12 col-md-6 mr-5" id="epublic_search_ticker" title="Search By Ticker">
+			<input type="text" placeholder="Search by Date ..." id="epublic_search_date" class="form-control my-2 my-md-0 col-12 col-md-5 datepicker mr-5">
+			<select class="form-control col-12 col-md-5 mr-5" id="epublic_search_ticker" title="Search By Ticker">
 				<option value="">Search By Ticker</option>
 			{% for ticker in tickers %}
 				<option value="{{ticker.Ticker}}">{{ticker.Ticker}}</option>
 			{% endfor %}
 			</select>
-			<input type="text" placeholder="Search by Date ..." id="epublic_search_date" class="form-control my-2 my-md-0 col-12 col-md-6 datepicker mr-5">
-			<select class="form-control col-12 col-md-6" id="equity_type" title="Choose Equity Type">
+			<!-- <select class="form-control col-12 col-md-6" id="equity_type" title="Choose Equity Type">
 				<option value="">Search By Equity Type</option>
 				<option value="public">Public</option>
 				<option value="private">Private</option>
-			</select>
+			</select> -->
 		</div>
 		<br />
+			
 			<table id="example" class="table table-striped table-bordered" style="width:100%">
 				<thead>
-					<tr>
+					<!-- <tr>
 						{% for field in table_form %}
 						{% if field.label  == 'Url' %}					
 						<th> {{field.label}} </th>
@@ -31,14 +32,42 @@
 						<th> {{field.label}} </th>
 						{% endif %}
 						{% endfor %}
+					</tr> -->
+					<tr>
+						<th>Product</th>
+						<th>Market</th>
+						<th>Date</th>
+						<th>Ticker</th>
+						<th>Description</th>
+						<th>Research</th>
+						<th>YouTube</th>
+						<th>PodCast</th>
 					</tr>
 				</thead>
 				<tbody>
+					{% for data in obj %}
+						<tr>
+							<td>N/A</td>
+							<td>{{data.Market}}</td>
+							<td>{{data.Date}}</td>
+							<td>{{data.Ticker}}</td>
+							<td>N/A</td>
+							{% if display_url == False %}
+								<td> 
+									<a class="blurLinks" href="{% url 'payment' %}" onmouseover="hov(this)" onmouseout="hovOut(this)">https://www.itsatesingurl/test1/com/</a>
+								</td>
+							{% else %}
+								<td>{{data.Research}}</td>
+							{% endif %}
+							<td>{{data.Youtube}}</td>
+							<td>{{data.Podcast}}</td>
+						</tr>
+					{% endfor %}
 					
-						{% for instance in data %}
+						<!-- {% for instance in data %}
 							<tr>
 							{% for field, value in instance.fields.items %}
-									{% if field == 'url' and value != '' %}
+									{% if field == 'Research' and value != '' %}
 									{% if display_url == False %}
 										<td> 
 											<a class="blurLinks" href="{% url 'payment' %}" onmouseover="hov(this)" onmouseout="hovOut(this)">https://www.itsatesingurl/test1/com/</a>
@@ -57,7 +86,7 @@
 							{% endfor %}
 							</tr>
 						{% endfor %}     
-					</tr>     
+					</tr>      -->
 				</tbody>
 			</table>
 			<br />

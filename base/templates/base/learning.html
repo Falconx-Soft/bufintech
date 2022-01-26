@@ -3,17 +3,20 @@
 
 {% block content %}
 <div class="container">
-	<select class="form-control col-12 col-md-6 mr-5" id="learning_search" title="Search By Category">
-		<option value="">Search By Category</option>
-	{% for category in categories %}
-		<option value="{{category.via}}">{{category.via}}</option>
-	{% endfor %}
-	</select>
+    <div class=" d-block d-md-flex">
+        <input type="text" placeholder="Search by Date ..." id="learning_search_date" class="form-control col-12 col-md-5 mt-2 mt-md-0 datepicker mr-5">
+        <select class="form-control col-12 col-md-6 mr-5" id="learning_search" title="Search By Category">
+            <option value="">Search By Category</option>
+        {% for category in categories %}
+            <option value="{{category.Topic}}">{{category.Topic}}</option>
+        {% endfor %}
+        </select>
+    </div>
 	<br />
     <div class="width">
     <table id="example" class="table table-striped table-bordered" style="width:101%">
         <thead>
-            <tr>
+            <!-- <tr>
 				{% for field in table_form %}
                 {% if field.label  == 'Url' %}
                 
@@ -23,11 +26,39 @@
                 <th> {{field.label}} </th>
                 {% endif %}
 				{% endfor %}
+            </tr> -->
+            <tr>
+                <th>Product</th>
+                <th>Topic</th>
+                <th>Class</th>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Research</th>
+                <th>YouTube</th>
+                <th>PodCast</th>
             </tr>
         </thead>
         <tbody>
+            {% for data in obj %}
+                <tr>
+                    <td>N/A</td>
+                    <td>{{data.Topic}}</td>
+                    <td>N/A</td>
+                    <td>{{data.Date}}</td>
+                    <td>N/A</td>
+                    {% if display_url == False %}
+                        <td> 
+                            <a class="blurLinks" href="{% url 'payment' %}" onmouseover="hov(this)" onmouseout="hovOut(this)">https://www.itsatesingurl/test1/com/</a>
+                        </td>
+                    {% else %}
+                        <td>{{data.Research}}</td>
+                    {% endif %}
+                    <td>{{data.YouTube}}</td>
+                    <td>{{data.PodCast}}</td>
+                </tr>
+            {% endfor %}
             
-                {% for instance in data %}
+                <!-- {% for instance in data %}
                     <tr>
                     {% for field, value in instance.fields.items %}
 								{% if field == 'url' %}
@@ -44,7 +75,7 @@
                     {% endfor %}
                     </tr>
                 {% endfor %}     
-            </tr>     
+            </tr>      -->
         </tbody>
     </table>
     </div>

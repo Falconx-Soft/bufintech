@@ -1,8 +1,8 @@
 from django.db import models
 
 class table(models.Model):
-    Name = models.CharField(verbose_name='name',max_length=50,blank=True)
-    Brand = models.CharField(max_length=50,blank=True)
+    Platform = models.CharField(verbose_name='name',max_length=50,blank=True)
+    Clickable = models.CharField(max_length=50,blank=True)
     url = models.URLField()
     language = models.CharField(max_length=50,blank=True)
 
@@ -88,12 +88,12 @@ def market_path(instance, filename):
 class market(models.Model):
     Date_Language = models.CharField(max_length=50,blank=True)
     Date = models.DateField()
-    Category = models.CharField(max_length=50,blank=True)
-    SubCategory = models.CharField(max_length=50,blank=True)
+    Product = models.CharField(max_length=50,blank=True)
+    Region = models.CharField(max_length=50,blank=True)
     FileName = models.CharField(max_length=50,blank=True)
     Description = models.CharField(max_length=500,blank=True)
-    url = models.FileField(upload_to=market_path)
-    Youtube = models.CharField(max_length=50,blank=True)
+    Research = models.FileField(upload_to=market_path)
+    YouTube = models.CharField(max_length=50,blank=True)
     Podcast = models.CharField(max_length=50,blank=True)
     Language = models.CharField(max_length=50,blank=True)
 
@@ -117,7 +117,7 @@ class equity(models.Model):
         ('public', 'Public'),
         ('private', 'Private')
     ]
-    Equity_Type = models.CharField(max_length=10, choices=EQUITY_TYPES, default='public')
+    Market = models.CharField(max_length=10, choices=EQUITY_TYPES, default='public')
     Industry = models.CharField(max_length=50,blank=True)
     Founded = models.IntegerField(blank=True)
     Website = models.CharField(max_length=255,blank=True)
@@ -131,7 +131,7 @@ class equity(models.Model):
     ADV_10d = models.IntegerField(blank=True)
     Insider_Shares = models.IntegerField(blank=True)
     Institutional_Shares = models.IntegerField(blank=True)
-    url = models.FileField(upload_to=path_equity )
+    Research = models.FileField(upload_to=path_equity )
     Youtube = models.CharField(max_length=50,blank=True)
     Podcast = models.CharField(max_length=50,blank=True)
 
@@ -149,9 +149,9 @@ class learning(models.Model):
     Date_Category_Language = models.CharField(max_length=50,blank=True)
     Language = models.CharField(max_length=50,blank=True)
     Date = models.DateField(blank=True)
-    via = models.CharField(max_length=50,blank=True)
+    Topic = models.CharField(max_length=50,blank=True)
     FileName = models.CharField(max_length=50,blank=True)
-    url = models.FileField(upload_to=path_learning )
+    Research = models.FileField(upload_to=path_learning )
     Youtube = models.CharField(max_length=50,blank=True)
     Podcast = models.CharField(max_length=50,blank=True)
 
