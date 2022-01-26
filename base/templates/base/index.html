@@ -48,14 +48,7 @@
                         {% if field != 'language'  %}
                         
                             {% if field == 'url' %}
-                                {% if display_url == False %}
-                                    
-                                    <td class="px-5">
-                                        <a class="blurLinks" href="{% url 'payment' %}" onmouseover="hov(this)" onmouseout="hovOut(this)">https://www.itsatesingurl/test1/com/</a>
-                                    </td> 
-                                    {% else %}
-                                    <td> <a  href="{{value}}"> {{value}}</a></td>
-                                {% endif %}
+                                <td> <a  href="{{value}}"> {{value}}</a></td>
                             {% else %}
                                 <td> {{value}} </td>
                             {%endif%}
