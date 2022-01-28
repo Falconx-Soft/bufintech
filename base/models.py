@@ -26,6 +26,7 @@ class newsletter(models.Model):
 
 class aboutus(models.Model):
     Sentence = models.TextField(blank=True)
+    Sentence2 = models.TextField(blank=True)
     language = models.CharField(max_length=50,blank=True)
 
     def __str__(self):
@@ -96,6 +97,7 @@ class market(models.Model):
     YouTube = models.CharField(max_length=50,blank=True)
     Podcast = models.CharField(max_length=50,blank=True)
     Language = models.CharField(max_length=50,blank=True)
+    Country = models.CharField(max_length=50,blank=True,null=True)
 
     def __str__(self):
         return self.FileName
@@ -134,6 +136,8 @@ class equity(models.Model):
     Research = models.FileField(upload_to=path_equity )
     Youtube = models.CharField(max_length=50,blank=True)
     Podcast = models.CharField(max_length=50,blank=True)
+    Product = models.CharField(max_length=50,blank=True,default="none")
+    Description = models.CharField(max_length=50,blank=True,default="none")
 
     def __str__(self):
         return self.Name
@@ -154,6 +158,9 @@ class learning(models.Model):
     Research = models.FileField(upload_to=path_learning )
     Youtube = models.CharField(max_length=50,blank=True)
     Podcast = models.CharField(max_length=50,blank=True)
+    Class = models.CharField(max_length=50,blank=True, default="N/A")
+    Product = models.CharField(max_length=50,blank=True, default="N/A")
+    
 
     def __str__(self):
         return self.FileName
@@ -174,7 +181,14 @@ class money_making_trading(models.Model):
     Outcome = models.CharField(max_length=50,blank=True)
     url = models.FileField(upload_to=path_money_making_trading)
     Youtube = models.CharField(max_length=50,blank=True)
-    Podcast = models.CharField(max_length=50,blank=True)
+    Podcast = models.CharField(max_length=50,blank=True, default="none")
+    Product = models.CharField(max_length=50,blank=True, default="none")
+    Class = models.CharField(max_length=50,blank=True, default="none")
+    Expiration_Date = models.CharField(max_length=50,blank=True, default="none")
+    Identifier = models.CharField(max_length=50,blank=True, default="none")
+    Initial_Inv = models.CharField(max_length=50,blank=True, default="none")
+    ROI = models.CharField(max_length=50,blank=True, default="none")
+    ReCap = models.CharField(max_length=50,blank=True, default="none")
     
     def __str__(self):
         return self.Play
@@ -200,6 +214,13 @@ class money_making_investing(models.Model):
     url = models.FileField(upload_to=path_money_making_investing)
     Youtube = models.CharField(max_length=50,blank=True)
     Podcast = models.CharField(max_length=50,blank=True)
+    Product = models.CharField(max_length=50,blank=True, default="none")
+    Market = models.CharField(max_length=50,blank=True, default="none")
+    Ticker = models.CharField(max_length=50,blank=True, default="none")
+    Outcome = models.CharField(max_length=50,blank=True, default="none")
+    Initial_Inv = models.CharField(max_length=50,blank=True, default="none")
+    ROI = models.CharField(max_length=50,blank=True, default="none")
+    ReCap = models.CharField(max_length=50,blank=True, default="none")
 
     def __str__(self):
         return self.Full_Name
@@ -247,3 +268,15 @@ class NewsLetterSubscribe(models.Model):
     class Meta:
         verbose_name = "NewsLetter Subscribe"
         verbose_name_plural = "NewsLetter Subscribe"
+
+
+class social_network(models.Model):
+    Sentence = models.TextField(blank=True)
+    language = models.CharField(max_length=50,blank=True)
+
+    def __str__(self):
+        return self.language
+
+    class Meta:
+        verbose_name = "Social Networks"
+        verbose_name_plural = "Social Networks"

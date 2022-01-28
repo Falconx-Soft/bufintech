@@ -80,27 +80,66 @@ $(document).ready(function(){
 
     // #market_search is a <input type="text"> element
     $('#market_search').on( 'change', function () {
-        d = getDate(this.value)
+        if(this.value != ""){
+          d = getDate(this.value)
+        }else{
+          d=""
+        }
         table
             .columns( 2 )
             .search( d )
             .draw();
-            console
     } );
+    
+    $('#market_search_country').on( 'change', function () {
+      table
+          .columns( 1 )
+          .search( this.value )
+          .draw();
+  } );
 
     $('#investing_search_date').on( 'change', function () {
-      d = getDate(this.value)
+      if(this.value != ""){
+          d = getDate(this.value)
+        }else{
+          d=""
+        }
         table1
             .columns( 4 )
             .search( d )
             .draw();
     } );
 
+    $('#investing_search_market').on( 'change', function () {
+        table1
+            .columns( 1 )
+            .search( this.value )
+            .draw();
+    } );
+
+    $('#investing_search_ticker').on( 'change', function () {
+      table1
+          .columns( 2 )
+          .search( this.value )
+          .draw();
+  } );
+
     $('#trading_search_date').on( 'change', function () {
-      d = getDate(this.value)
+      if(this.value != ""){
+          d = getDate(this.value)
+        }else{
+          d=""
+        }
         table
             .columns( 2 )
             .search( d )
+            .draw();
+    } );
+
+    $('#trading_search_identifier').on( 'change', function () {
+        table
+            .columns( 4 )
+            .search( this.value )
             .draw();
     } );
 
@@ -113,10 +152,21 @@ $(document).ready(function(){
     } );
     // #epublic_search is a <input type="text"> element
     $('#epublic_search_date').on( 'change', function () {
-      d = getDate(this.value)
+      if(this.value != ""){
+          d = getDate(this.value)
+        }else{
+          d=""
+        }
       table
           .columns( 2 )
             .search( d )
+            .draw();
+    } );
+
+    $('#epublic_search_market').on( 'change', function () {
+      table
+          .columns( 1 )
+            .search( this.value )
             .draw();
     } );
 
@@ -128,8 +178,19 @@ $(document).ready(function(){
             .draw();
     } );
 
+    $('#learning_search_class').on( 'change', function () {
+      table
+          .columns( 2 )
+            .search( this.value )
+            .draw();
+    } );
+
     $('#learning_search_date').on( 'change', function () {
-      d = getDate(this.value)
+      if(this.value != ""){
+          d = getDate(this.value)
+        }else{
+          d=""
+        }
       table
           .columns( 3 )
             .search( d )

@@ -7,8 +7,9 @@
 	<div class="width">		
 			<br />
 		<div class="d-block d-md-flex">
-			<input type="text" placeholder="Search by Date ..." id="epublic_search_date" class="form-control my-2 my-md-0 col-12 col-md-5 datepicker mr-5">
-			<select class="form-control col-12 col-md-5 mr-5" id="epublic_search_ticker" title="Search By Ticker">
+			<input style="margin-right: 0px !important;" type="text" placeholder="Search by Date ..." id="epublic_search_date" class="form-control my-2 my-md-0 col-12 col-md-4 datepicker mr-5">
+			<input style="margin-right: 0px !important;" type="text" placeholder="Search by market ..." id="epublic_search_market" class="form-control my-2 my-md-0 col-12 col-md-4 mr-5">
+			<select style="margin-right: 0px !important;" class="form-control col-12 col-md-4 mr-5" id="epublic_search_ticker" title="Search By Ticker">
 				<option value="">Search By Ticker</option>
 			{% for ticker in tickers %}
 				<option value="{{ticker.Ticker}}">{{ticker.Ticker}}</option>
@@ -47,11 +48,11 @@
 				<tbody>
 					{% for data in obj %}
 						<tr>
-							<td>N/A</td>
+							<td>{{data.Product}}</td>
 							<td>{{data.Market}}</td>
 							<td>{{data.Date}}</td>
 							<td>{{data.Ticker}}</td>
-							<td>N/A</td>
+							<td>{{data.Description}}</td>
 							{% if display_url == False %}
 								<td> 
 									<a class="blurLinks" href="{% url 'payment' %}" onmouseover="hov(this)" onmouseout="hovOut(this)">https://www.itsatesingurl/test1/com/</a>

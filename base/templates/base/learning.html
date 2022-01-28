@@ -4,9 +4,12 @@
 {% block content %}
 <div class="container">
     <div class=" d-block d-md-flex">
-        <input type="text" placeholder="Search by Date ..." id="learning_search_date" class="form-control col-12 col-md-5 mt-2 mt-md-0 datepicker mr-5">
+        <div class=" d-block d-md-flex">
+            <input style="margin-right: 0px;" type="text" placeholder="Search by Date ..." id="learning_search_date" class="form-control col-12 col-md-5 mt-2 mt-md-0 datepicker mr-5">
+            <input type="text" style="margin-right: 0px;" placeholder="Search by Class ..." id="learning_search_class" class="form-control col-12 col-md-5 mt-2 mt-md-0 mr-5">
+        </div>
         <select class="form-control col-12 col-md-6 mr-5" id="learning_search" title="Search By Category">
-            <option value="">Search By Category</option>
+            <option value="">Search By Topic</option>
         {% for category in categories %}
             <option value="{{category.Topic}}">{{category.Topic}}</option>
         {% endfor %}
@@ -43,7 +46,7 @@
                 <tr>
                     <td>N/A</td>
                     <td>{{data.Topic}}</td>
-                    <td>N/A</td>
+                    <td>{{data.Class}}</td>
                     <td>{{data.Date}}</td>
                     <td>N/A</td>
                     {% if display_url == False %}

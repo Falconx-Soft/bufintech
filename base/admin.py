@@ -155,5 +155,6 @@ admin.site.register(analytics_apps_market_mover, AnalyticsAppsMarketMoverAdmin)
 admin.site.register(analytics_apps_stock_picker, AnalyticsAppsStockPickerAdmin)
 admin.site.register(analytics_apps_systematic_trad, AnalyticsAppsSystematicTradAdmin)
 admin.site.register(analytics_apps_company_prospecting, AnalyticsAppsCompanyProspectingAdmin)
+admin.site.register(social_network)
 
 

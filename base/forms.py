@@ -41,3 +41,8 @@ class List_of_pagesForm(ModelForm):
     class Meta:
         model = ListPage
         fields = '__all__'
+
+class social_networkForm(ModelForm):
+    class Meta:
+        model = social_network
+        fields = '__all__'

@@ -7,15 +7,15 @@
     <table id="example" class="table table-bordered w-50">		
         <tbody class="justify-content-center">     				
                 {% for instance in data %}
-					<tr style="background-color:rgba(0,0,0,.05);">
                     {% for field, value in instance.fields.items %}
+                    <tr style="background-color:rgba(0,0,0,.05);"></tr>
                         {% if field != 'language'  %}
                             <td>{{ value|linebreaks }}</td>
                         {% else %}
 							<td style="display:none">{{value}}</td>
 						{% endif %}
+                    </tr>
                     {% endfor %}
-					</tr>
                 {% endfor %}
         </tbody>
     </table>

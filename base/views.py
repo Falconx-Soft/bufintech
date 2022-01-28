@@ -243,7 +243,12 @@ def analytic_apps(request, Language):
     except:
         return render (request,'base/analytics_apps.html',{ 'display_url':display_url, 'message':"No data found!",'nav_items':nav_items[1:],'Language':Language})
 
-def social_network(request,Language):
+def social_networks(request,Language):
     setCurrentLanguage(request, Language)
-    nav_items = ListPage.objects.filter(Language=request.session['current_language']).values_list("Menu_Name","url").distinct()  
-    return render (request,'base/social_network.html',{'message':"No data found!",'nav_items':nav_items[1:],'Language':Language})
+    nav_items = ListPage.objects.filter(Language=request.session['current_language']).values_list("Menu_Name","url").distinct()    
+    try:
+        obj = social_network.objects.filter(language = request.session['current_language'])
+        data = serializers.serialize("python",social_network.objects.filter(language= request.session['current_language']) )
+        return render (request,'base/social_network.html',{'values':obj,'table_form':social_networkForm(),'data':data, 'nav_items':nav_items[1:],'Language':Language})
+    except:
+        return render (request,'base/social_network.html',{'message':"No data found!",'nav_items':nav_items[1:],'Language':Language})
