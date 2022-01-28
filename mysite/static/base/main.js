@@ -91,6 +91,20 @@ $(document).ready(function(){
             .draw();
     } );
     
+    $('#market_search_month').on( 'change', function () {
+        table
+            .columns( 2 )
+            .search( this.value )
+            .draw();
+    } );
+
+    $('#market_search_year').on( 'change', function () {
+        table
+            .columns( 2 )
+            .search( this.value )
+            .draw();
+    } );
+
     $('#market_search_country').on( 'change', function () {
       table
           .columns( 1 )
@@ -107,6 +121,20 @@ $(document).ready(function(){
         table1
             .columns( 4 )
             .search( d )
+            .draw();
+    } );
+
+    $('#investing_search_month').on( 'change', function () {
+        table1
+            .columns( 4 )
+            .search( this.value )
+            .draw();
+    } );
+
+    $('#investing_search_year').on( 'change', function () {
+        table1
+            .columns( 4 )
+            .search( this.value )
             .draw();
     } );
 
@@ -136,6 +164,13 @@ $(document).ready(function(){
             .draw();
     } );
 
+    $('#trading_search_month').on( 'change', function () {
+        table
+            .columns( 2 )
+            .search( this.value )
+            .draw();
+    } );
+
     $('#trading_search_identifier').on( 'change', function () {
         table
             .columns( 4 )
@@ -160,6 +195,27 @@ $(document).ready(function(){
       table
           .columns( 2 )
             .search( d )
+            .draw();
+    } );
+
+    $('#epublic_search_month').on( 'change', function () {
+        table
+            .columns( 2 )
+              .search( this.value )
+              .draw();
+      } );
+
+      $('#trading_search_year').on( 'change', function () {
+        table
+            .columns( 2 )
+              .search( this.value )
+              .draw();
+      } );
+
+    $('#epublic_search_year').on( 'change', function () {
+      table
+          .columns( 2 )
+            .search( this.value )
             .draw();
     } );
 
@@ -194,6 +250,13 @@ $(document).ready(function(){
       table
           .columns( 3 )
             .search( d )
+            .draw();
+    } );
+
+    $('#learning_search_month').on( 'change', function () {
+      table
+          .columns( 3 )
+            .search( this.value )
             .draw();
     } );
 

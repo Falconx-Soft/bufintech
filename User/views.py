@@ -68,7 +68,7 @@ def loginUser(request):
 	}
 	return render(request,'User/login.html',context)
 
-def register(request):
+def Sign_Up(request):
 	msg = None
 	form = CutomUserCreationForm
 	if request.method == 'POST':
@@ -85,12 +85,12 @@ def register(request):
 			verificationMain(user.email,auth_token,request)
 			msg = 'Varification link has send to your mail id. Kindly verify your account.'
 			context = {'form':form, 'msg':msg}
-			return render(request,'User/register.html', context)
+			return render(request,'User/SignUp.html', context)
 			
 		else:
 			msg = 'Error.'
 	context = {'form':form, 'msg':msg}
-	return render(request,'User/register.html', context)
+	return render(request,'User/SignUp.html', context)
 
 def verificationMain(email, auth_token,request):
     subject = 'Please verify your account'

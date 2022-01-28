@@ -8,18 +8,36 @@
 			<br />
 		<div class="d-block d-md-flex">
 			<input style="margin-right: 0px !important;" type="text" placeholder="Search by Date ..." id="epublic_search_date" class="form-control my-2 my-md-0 col-12 col-md-4 datepicker mr-5">
-			<input style="margin-right: 0px !important;" type="text" placeholder="Search by market ..." id="epublic_search_market" class="form-control my-2 my-md-0 col-12 col-md-4 mr-5">
-			<select style="margin-right: 0px !important;" class="form-control col-12 col-md-4 mr-5" id="epublic_search_ticker" title="Search By Ticker">
+
+			<select style="margin-right: 0px !important;" class="form-control col-12 col-md-4 mr-5" id="epublic_search_month" title="Search By Month">
+				<option value="">Search By Month</option>
+				<option value="Jan">Jan</option>
+				<option value="Feb">Feb</option>
+				<option value="Mar">March</option>
+				<option value="Apr">April</option>
+				<option value="May">May</option>
+				<option value="June">June</option>
+				<option value="Jul">July</option>
+				<option value="Aug">Aug</option>
+				<option value="Sept">Sept</option>
+				<option value="Oct">Oct</option>
+				<option value="Nov">Nov</option>
+				<option value="Dec">Dec</option>
+			</select>
+			<input style="margin-right: 0px !important;" type="number" placeholder="Search by Year ..." id="epublic_search_year" class="form-control col-12 col-md-4 mt-2 mt-md-0 mr-5">
+		</div>
+		<div class="d-block d-md-flex">	
+			<select style="margin-right: 0px !important;" class="form-control col-12 col-md-6 mr-5" id="epublic_search_market" title="Search By Market">
+				<option value="">Search By Market</option>
+				<option value="public">public</option>
+				<option value="private">private</option>
+			</select>
+			<select style="margin-right: 0px !important;" class="form-control col-12 col-md-6 mr-5" id="epublic_search_ticker" title="Search By Ticker">
 				<option value="">Search By Ticker</option>
 			{% for ticker in tickers %}
 				<option value="{{ticker.Ticker}}">{{ticker.Ticker}}</option>
 			{% endfor %}
 			</select>
-			<!-- <select class="form-control col-12 col-md-6" id="equity_type" title="Choose Equity Type">
-				<option value="">Search By Equity Type</option>
-				<option value="public">Public</option>
-				<option value="private">Private</option>
-			</select> -->
 		</div>
 		<br />
 			

@@ -4,11 +4,11 @@
 {% block content %}
 <div class="container" align="center">
     <br>
-    <table id="example" class="table table-bordered w-50">		
+    <table id="example" class="table table-bordered w-50" style="background-color:rgba(0,0,0,.05);">		
         <tbody class="justify-content-center">     				
                 {% for instance in data %}
                     {% for field, value in instance.fields.items %}
-                    <tr style="background-color:rgba(0,0,0,.05);"></tr>
+                    <tr></tr>
                         {% if field != 'language'  %}
                             <td>{{ value|linebreaks }}</td>
                         {% else %}

@@ -1,6 +1,6 @@
 {% extends "User/base-fullscreen.html" %}
 
-{% block title %} Register {% endblock %}
+{% block title %} SignUp {% endblock %}
 
 {% block content %} 
 
@@ -29,7 +29,7 @@
 							
 							<!-- Hide the form on success -->
 							{% if not success %}
-								<form method="POST" action="{% url 'register' %}">
+								<form method="POST" action="{% url 'SignUp' %}">
 
 									{% csrf_token %}  
 															

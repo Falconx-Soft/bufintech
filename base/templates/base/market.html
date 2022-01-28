@@ -4,8 +4,26 @@
 {% block content %}
 <div class="container">
     <div class=" d-block d-md-flex">
-        <input type="text" placeholder="Search by Entry Date ..." id="market_search" class="form-control col-12 col-md-5 mt-2 mt-md-0 datepicker mr-5">
-        <input type="text" placeholder="Search by Counry ..." id="market_search_country" class="form-control col-12 col-md-5 mt-2 mt-md-0 mr-5">
+        <input style="margin-right: 0px !important;" type="text" placeholder="Search by Entry Date ..." id="market_search" class="form-control col-12 col-md-4 mt-2 mt-md-0 datepicker mr-5">
+        <select style="margin-right: 0px !important;" class="form-control col-12 col-md-4 mr-5" id="market_search_month" title="Search By Month">
+            <option value="">Search By Month</option>
+            <option value="Jan">Jan</option>
+            <option value="Feb">Feb</option>
+            <option value="Mar">March</option>
+            <option value="Apr">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="Jul">July</option>
+            <option value="Aug">Aug</option>
+            <option value="Sept">Sept</option>
+            <option value="Oct">Oct</option>
+            <option value="Nov">Nov</option>
+            <option value="Dec">Dec</option>
+        </select>
+        <input style="margin-right: 0px !important;" type="number" placeholder="Search by Year ..." id="market_search_year" class="form-control col-12 col-md-4 mt-2 mt-md-0 mr-5">
+    </div>
+    <div class=" d-block d-md-flex">
+        <input type="text" placeholder="Search by Counry ..." id="market_search_country" class="form-control col-12 col-md-12 mt-2 mt-md-0 mr-5">
     </div>
 	<br />
     <div class="width">
