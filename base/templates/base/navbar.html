@@ -22,7 +22,7 @@
 			{% if request.user.is_authenticated %}
 			<a href="{% url 'profile' %}">Profile</a>
 			{% if not display_url %}
-			<a href="{% url 'payment' %}">Subscribe</a>
+			<a style="margin-left: 10px;" href="{% url 'payment' %}">Subscribe</a>
 			{% endif %}
 			<a class="myBtn a-effect" href="{% url 'logout'  %}" style="text-decoration: none;">Logout</a>
 			{% else %}

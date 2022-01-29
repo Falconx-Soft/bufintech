@@ -7,9 +7,9 @@
 	<div class="width">		
 			<br />
 		<div class="d-block d-md-flex">
-			<input style="margin-right: 0px !important;" type="text" placeholder="Search by Date ..." id="epublic_search_date" class="form-control my-2 my-md-0 col-12 col-md-4 datepicker mr-5">
+			<input  type="text" placeholder="Search by Date ..." id="epublic_search_date" class="form-control my-2 my-md-0 col-12 col-md-3 datepicker mr-5">
 
-			<select style="margin-right: 0px !important;" class="form-control col-12 col-md-4 mr-5" id="epublic_search_month" title="Search By Month">
+			<select  class="form-control col-12 col-md-3 mr-5" id="epublic_search_month" title="Search By Month">
 				<option value="">Search By Month</option>
 				<option value="Jan">Jan</option>
 				<option value="Feb">Feb</option>
@@ -24,15 +24,16 @@
 				<option value="Nov">Nov</option>
 				<option value="Dec">Dec</option>
 			</select>
-			<input style="margin-right: 0px !important;" type="number" placeholder="Search by Year ..." id="epublic_search_year" class="form-control col-12 col-md-4 mt-2 mt-md-0 mr-5">
+			<input  type="number" placeholder="Search by Year ..." id="epublic_search_year" class="form-control col-12 col-md-3 mt-2 mt-md-0 mr-5">
 		</div>
+		<br>
 		<div class="d-block d-md-flex">	
-			<select style="margin-right: 0px !important;" class="form-control col-12 col-md-6 mr-5" id="epublic_search_market" title="Search By Market">
+			<select  class="form-control col-12 col-md-5 mr-5" id="epublic_search_market" title="Search By Market">
 				<option value="">Search By Market</option>
 				<option value="public">public</option>
 				<option value="private">private</option>
 			</select>
-			<select style="margin-right: 0px !important;" class="form-control col-12 col-md-6 mr-5" id="epublic_search_ticker" title="Search By Ticker">
+			<select  class="form-control col-12 col-md-5 mr-5" id="epublic_search_ticker" title="Search By Ticker">
 				<option value="">Search By Ticker</option>
 			{% for ticker in tickers %}
 				<option value="{{ticker.Ticker}}">{{ticker.Ticker}}</option>
