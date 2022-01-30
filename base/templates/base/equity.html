@@ -7,10 +7,10 @@
 	<div class="width">		
 			<br />
 		<div class="d-block d-md-flex">
-			<input  type="text" placeholder="Search by Date ..." id="epublic_search_date" class="form-control my-2 my-md-0 col-12 col-md-3 datepicker mr-5">
+			<input  type="text" placeholder="Search by Date ..." id="epublic_search_date" class="form-control my-2 my-md-0 col-12 col-md-2 datepicker mr-5">
 
-			<select  class="form-control col-12 col-md-3 mr-5" id="epublic_search_month" title="Search By Month">
-				<option value="">Search By Month</option>
+			<select  class="form-control col-12 col-md-2 mr-5" id="epublic_search_month" title="Search By Month">
+				<option value="">Search by Month</option>
 				<option value="Jan">Jan</option>
 				<option value="Feb">Feb</option>
 				<option value="Mar">March</option>
@@ -24,22 +24,20 @@
 				<option value="Nov">Nov</option>
 				<option value="Dec">Dec</option>
 			</select>
-			<input  type="number" placeholder="Search by Year ..." id="epublic_search_year" class="form-control col-12 col-md-3 mt-2 mt-md-0 mr-5">
-		</div>
-		<br>
-		<div class="d-block d-md-flex">	
-			<select  class="form-control col-12 col-md-5 mr-5" id="epublic_search_market" title="Search By Market">
-				<option value="">Search By Market</option>
+			<input  type="number" placeholder="Search by Year ..." id="epublic_search_year" class="form-control col-12 col-md-2 mt-2 mt-md-0 mr-5">
+			<select  class="form-control col-12 col-md-2 mr-5" id="epublic_search_market" title="Search By Market">
+				<option value="">Search by Market</option>
 				<option value="public">public</option>
 				<option value="private">private</option>
 			</select>
-			<select  class="form-control col-12 col-md-5 mr-5" id="epublic_search_ticker" title="Search By Ticker">
-				<option value="">Search By Ticker</option>
+			<select  class="form-control col-12 col-md-2 mr-5" id="epublic_search_ticker" title="Search By Ticker">
+				<option value="">Search by Ticker</option>
 			{% for ticker in tickers %}
 				<option value="{{ticker.Ticker}}">{{ticker.Ticker}}</option>
 			{% endfor %}
 			</select>
 		</div>
+		<br>
 		<br />
 			
 			<table id="example" class="table table-striped table-bordered" style="width:100%">
