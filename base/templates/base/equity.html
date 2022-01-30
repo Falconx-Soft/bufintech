@@ -7,9 +7,9 @@
 	<div class="width">		
 			<br />
 		<div class="d-block d-md-flex">
-			<input  type="text" placeholder="Search by Date ..." id="epublic_search_date" class="form-control my-2 my-md-0 col-12 col-md-2 datepicker mr-5">
+			<input style="height: 25px; font-size: 10px;" type="text" placeholder="Search by Date ..." id="epublic_search_date" class="form-control my-2 my-md-0 col-12 col-md-2 datepicker mr-2">
 
-			<select  class="form-control col-12 col-md-2 mr-5" id="epublic_search_month" title="Search By Month">
+			<select style="height: 25px; font-size: 10px;" class="form-control col-12 col-md-2 mr-2" id="epublic_search_month" title="Search By Month">
 				<option value="">Search by Month</option>
 				<option value="Jan">Jan</option>
 				<option value="Feb">Feb</option>
@@ -24,13 +24,13 @@
 				<option value="Nov">Nov</option>
 				<option value="Dec">Dec</option>
 			</select>
-			<input  type="number" placeholder="Search by Year ..." id="epublic_search_year" class="form-control col-12 col-md-2 mt-2 mt-md-0 mr-5">
-			<select  class="form-control col-12 col-md-2 mr-5" id="epublic_search_market" title="Search By Market">
+			<input style="height: 25px; font-size: 10px;" type="number" placeholder="Search by Year ..." id="epublic_search_year" class="form-control col-12 col-md-2 mt-2 mt-md-0 mr-2">
+			<select style="height: 25px; font-size: 10px;" class="form-control col-12 col-md-2 mr-2" id="epublic_search_market" title="Search By Market">
 				<option value="">Search by Market</option>
 				<option value="public">public</option>
 				<option value="private">private</option>
 			</select>
-			<select  class="form-control col-12 col-md-2 mr-5" id="epublic_search_ticker" title="Search By Ticker">
+			<select style="height: 25px; font-size: 10px;" class="form-control col-12 col-md-2 mr-2" id="epublic_search_ticker" title="Search By Ticker">
 				<option value="">Search by Ticker</option>
 			{% for ticker in tickers %}
 				<option value="{{ticker.Ticker}}">{{ticker.Ticker}}</option>
