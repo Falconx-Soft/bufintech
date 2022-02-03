@@ -158,7 +158,6 @@ $(document).ready(function(){
         }else{
           d=""
         }
-        print(d)
         table
             .columns( 2 )
             .search( d )

@@ -79,7 +79,7 @@ class LearningResource(resources.ModelResource):
         model = learning
 
 class LearningAdmin(admin.ModelAdmin):
-    list_display = ('Product', 'Language', 'Topic','Class','Date', 'Research', 'Youtube', 'Podcast')
+    list_display = ('Product', 'Language', 'Topic','Class','Date', 'Description', 'Research', 'Youtube', 'Podcast')
 
 #Market
 class MarketResource(admin.ModelAdmin):
@@ -97,7 +97,7 @@ class MoneyInvestingResource(resources.ModelResource):
 
 
 class MoneyInvestingAdmin(admin.ModelAdmin):
-    list_display = ('Product', 'Language', 'Market','Entry', 'Ticker', 'Full_Name','Exit','Position','Outcome','Initial_Inv','ROI' ,'ReCap', 'Youtube', 'Podcast')
+    list_display = ('Product', 'Language', 'Market','Entry_Date', 'Ticker', 'Name','Exit_Date','Position','Outcome','Initial_Inv','ROI' ,'ReCap', 'Youtube', 'Podcast')
 
 #Market
 class MoneyTradingResource(resources.ModelResource):
@@ -106,7 +106,7 @@ class MoneyTradingResource(resources.ModelResource):
         model = money_making_trading
 
 class MoneyTradingAdmin(admin.ModelAdmin):
-    list_display = ('Product', 'Language', 'Class','Date', 'Identifier', 'Outcome','Initial_Inv','ROI','ReCap', 'Youtube', 'Podcast')
+    list_display = ('Product', 'Language', 'Class','Trade_Date', 'Identifier', 'Outcome','Initial_Inv','ROI','ReCap', 'Youtube', 'Podcast')
 #Market
 class AboutResource(resources.ModelResource):
 

@@ -7,7 +7,7 @@ class table(models.Model):
     language = models.CharField(max_length=50,blank=True)
 
     def __str__(self):
-        return self.Name
+        return self.Username
     class Meta:
         verbose_name = "Home"
         verbose_name_plural = "Home"
@@ -160,6 +160,7 @@ class learning(models.Model):
     Podcast = models.CharField(max_length=50,blank=True)
     Class = models.CharField(max_length=50,blank=True, default="N/A")
     Product = models.CharField(max_length=50,blank=True, default="N/A")
+    Description = models.CharField(max_length=50,blank=True,default="none")
     
 
     def __str__(self):
@@ -175,7 +176,7 @@ def path_money_making_trading(instance, filename):
 class money_making_trading(models.Model):
     Date_Play = models.CharField(max_length=50,blank=True)
     Language = models.CharField(max_length=50,blank=True,  default="en")
-    Date = models.DateField(blank=True)
+    Trade_Date = models.DateField(blank=True)
     Play = models.CharField(max_length=50,blank=True)
     Plan = models.CharField(max_length=50,blank=True)
     Outcome = models.CharField(max_length=50,blank=True)
@@ -205,11 +206,11 @@ class money_making_investing(models.Model):
     Language = models.CharField(max_length=50,blank=True, default="en")
     Date = models.DateField(blank=True,default=None)
     Short_Name = models.CharField(max_length=50,blank=True)
-    Full_Name = models.CharField(max_length=50,blank=True)
+    Name = models.CharField(max_length=50,blank=True)
     Equity_Type = models.CharField(max_length=50,blank=True)
-    Entry = models.DateField(blank=True)
+    Entry_Date = models.DateField(blank=True)
     Position = models.IntegerField(blank=True)
-    Exit = models.DateField(blank=True)
+    Exit_Date = models.DateField(blank=True)
     Strategy = models.CharField(max_length=50,blank=True)
     url = models.FileField(upload_to=path_money_making_investing)
     Youtube = models.CharField(max_length=50,blank=True)
@@ -278,5 +279,5 @@ class social_network(models.Model):
         return self.language
 
     class Meta:
-        verbose_name = "Social Networks"
-        verbose_name_plural = "Social Networks"
+        verbose_name = "Social Network"
+        verbose_name_plural = "Social Network"

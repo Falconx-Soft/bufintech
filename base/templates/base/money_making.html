@@ -17,7 +17,7 @@
 			<div id="public" class="tab-pane fade in">
 			<br />
 			<div class="d-block d-md-flex">
-				<input style="height: 25px; font-size: 10px; padding: 4px;" type="text" placeholder="Search by Date ..." id="trading_search_date" class="form-control col-12 col-md-2 mt-2 mt-md-0 datepicker mr-2">
+				<input style="height: 25px; font-size: 10px; padding: 4px;" type="text" placeholder="Search by Trade date ..." id="trading_search_date" class="form-control col-12 col-md-2 mt-2 mt-md-0 datepicker mr-2">
 
 				<select style="height: 25px; font-size: 10px; padding: 4px;" class="form-control col-12 col-md-2 mt-2 mt-md-0 mr-2" id="trading_search_month" title="Search By Month">
 					<option value="">Search by Month</option>
@@ -58,7 +58,7 @@
 							<tr>
 								<td>{{instance.fields.Product}}</td>
 								<td>{{instance.fields.Class}}</td>
-								<td>{{instance.fields.Date}}</td>
+								<td>{{instance.fields.Trade_Date}}</td>
 								<td>{{instance.fields.Identifier}}</td>
 								<td>{{instance.fields.Outcome}}</td>
 								<td>{{instance.fields.Initial_Inv}}</td>
@@ -75,7 +75,7 @@
 			<br />
 
 			<div class="d-block d-md-flex">
-				<input style="height: 25px; font-size: 10px; padding: 4px;" type="text" placeholder="Search by Date ..." id="investing_search_date" class="form-control col-12 col-md-2 mt-2 mt-md-0 datepicker mr-2">
+				<input style="height: 25px; font-size: 10px; padding: 4px;" type="text" placeholder="Search by Entry date ..." id="investing_search_date" class="form-control col-12 col-md-2 mt-2 mt-md-0 datepicker mr-2">
 
 				<select style="height: 25px; font-size: 10px; padding: 4px;" class="form-control col-12 col-md-2 mt-2 mt-md-0 mr-2" id="investing_search_month" title="Search By Month">
 					<option value="">Search by Month</option>
@@ -120,10 +120,10 @@
 							<tr>
 								<td>{{data.fields.Product}}</td>
 								<td>{{data.fields.Market}}</td>
-								<td>{{data.fields.Entry}}</td>
+								<td>{{data.fields.Entry_Date}}</td>
 								<td>{{data.fields.Ticker}}</td>
-								<td>{{data.fields.Short_Name}}</td>
-								<td>{{data.fields.Exit}}</td>
+								<td>{{data.fields.Name}}</td>
+								<td>{{data.fields.Exit_Date}}</td>
 								<td>{{data.fields.Position}}</td>
 								<td>{{data.fields.Outcome}}</td>
 								<td>{{data.fields.Initial_Inv}}</td>
