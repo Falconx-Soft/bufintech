@@ -23,14 +23,7 @@ class TableResource(resources.ModelResource):
 class TableAdmin(ImportExportModelAdmin):
     resource_class = TableResource
 
-#Market
-class MarketResource(resources.ModelResource):
 
-    class Meta:
-        model = market
-
-class MarketAdmin(ImportExportModelAdmin):
-    resource_class = MarketResource
 
 #Analytics Apps Systematic Trading
 class AnalyticsAppsSystematicTradResource(resources.ModelResource):
@@ -76,8 +69,8 @@ class EquityResource(resources.ModelResource):
     class Meta:
         model = equity
 
-class EquityAdmin(ImportExportModelAdmin):
-    resource_class = EquityResource
+class EquityAdmin(admin.ModelAdmin):
+    list_display = ('Product', 'Language', 'Market','Date','Ticker' ,'Description', 'Research', 'Youtube', 'Podcast')
 
 #Learning
 class LearningResource(resources.ModelResource):
@@ -85,17 +78,16 @@ class LearningResource(resources.ModelResource):
     class Meta:
         model = learning
 
-class LearningAdmin(ImportExportModelAdmin):
-    resource_class = LearningResource
+class LearningAdmin(admin.ModelAdmin):
+    list_display = ('Product', 'Language', 'Topic','Class','Date', 'Research', 'Youtube', 'Podcast')
 
 #Market
-class MarketResource(resources.ModelResource):
+class MarketResource(admin.ModelAdmin):
+    list_display = ('Product', 'Language', 'Country','Date', 'Description', 'Research', 'YouTube', 'Podcast')
+        
 
-    class Meta:
-        model = market
-
-class MarketAdmin(ImportExportModelAdmin):
-    resource_class = MarketResource
+# class MarketAdmin(ImportExportModelAdmin):
+#     resource_class = MarketResource
 
 #Market
 class MoneyInvestingResource(resources.ModelResource):
@@ -103,8 +95,9 @@ class MoneyInvestingResource(resources.ModelResource):
     class Meta:
         model = money_making_investing
 
-class MoneyInvestingAdmin(ImportExportModelAdmin):
-    resource_class = MoneyInvestingResource
+
+class MoneyInvestingAdmin(admin.ModelAdmin):
+    list_display = ('Product', 'Language', 'Market','Entry', 'Ticker', 'Full_Name','Exit','Position','Outcome','Initial_Inv','ROI' ,'ReCap', 'Youtube', 'Podcast')
 
 #Market
 class MoneyTradingResource(resources.ModelResource):
@@ -112,9 +105,8 @@ class MoneyTradingResource(resources.ModelResource):
     class Meta:
         model = money_making_trading
 
-class MoneyTradingAdmin(ImportExportModelAdmin):
-    resource_class = MoneyTradingResource
-
+class MoneyTradingAdmin(admin.ModelAdmin):
+    list_display = ('Product', 'Language', 'Class','Date', 'Identifier', 'Outcome','Initial_Inv','ROI','ReCap', 'Youtube', 'Podcast')
 #Market
 class AboutResource(resources.ModelResource):
 
@@ -142,7 +134,7 @@ class SocialMediaAdmin(ImportExportModelAdmin):
 
 admin.site.register(table, TableAdmin)
 admin.site.register(newsletter)
-admin.site.register(market,MarketAdmin)
+admin.site.register(market,MarketResource)
 admin.site.register(equity, EquityAdmin)
 admin.site.register(learning,LearningAdmin)
 admin.site.register(money_making_investing,MoneyInvestingAdmin)

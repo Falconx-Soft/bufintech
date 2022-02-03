@@ -2,7 +2,7 @@ from django.db import models
 
 class table(models.Model):
     Platform = models.CharField(verbose_name='name',max_length=50,blank=True)
-    Clickable = models.CharField(max_length=50,blank=True)
+    Username = models.CharField(max_length=50,blank=True)
     url = models.URLField()
     language = models.CharField(max_length=50,blank=True)
 
@@ -84,7 +84,7 @@ class analytics_apps_market_mover(models.Model):
       
 
 def market_path(instance, filename):
-    return '{0}/market-outlook/{1}/{2}/{3}'.format(instance.Language,instance.SubCategory.lower(), instance.Date.strftime('%Y%m%d'), filename)
+    return '{0}/market-outlook/{1}/{2}'.format(instance.Language, instance.Date.strftime('%Y%m%d'), filename)
 
 class market(models.Model):
     Date_Language = models.CharField(max_length=50,blank=True)
@@ -107,7 +107,7 @@ class market(models.Model):
         verbose_name_plural = "Market Outlook"
 
 def path_equity(instance, filename):
-    return '{0}/equity-research/{1}/{2}/{3}'.format(instance.Language, instance.equity_type, instance.Ticker.lower(), filename)
+    return '{0}/equity-research/{1}/{2}/{3}'.format(instance.Language, instance.Market, instance.Ticker.lower(), filename)
 
 class equity(models.Model):
     Ticker_Date_Language = models.CharField(max_length=50,blank=True)

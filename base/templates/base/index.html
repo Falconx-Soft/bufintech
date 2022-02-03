@@ -25,19 +25,10 @@
     <table id="example" class="table table-striped table-bordered display" style="width: 100%; overflow-y: auto;display: block;">
         <thead>
             <tr>
-                {% for t in values  %}
-                    {% if forloop.first %}
-                        {% for field in table_form %}
-                            {% if field.name != 'language' %}
-                        <th> {{field.name}} </th>
-							{% else %}
-                            <th style="display:none">{{field.name}} </th>
-
-                            {% endif %}
-                        {% endfor %}
-                    {%endif%}
-                {% endfor %}
-            </tr>
+                <td>Platform</td>
+                <td>Username</td>
+                <td>Url</td>
+            </tr> 
         </thead>
         <tbody>
             

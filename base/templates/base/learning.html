@@ -3,10 +3,11 @@
 
 {% block content %}
 <div class="container">
+    <p id="pageName" style="text-align:center">Learning Center</p>
         <div class=" d-block d-md-flex searcbox">
-            <input style="height: 25px; font-size: 12px;" type="text" placeholder="Search by Date ..." id="learning_search_date" class="form-control col-12 col-md-2 mt-2 mt-md-0 datepicker mr-2">
+            <input style="height: 25px; font-size: 10px; padding: 4px;" type="text" placeholder="Search by Date ..." id="learning_search_date" class="form-control col-12 col-md-2 mt-2 mt-md-0 datepicker mr-2">
 
-            <select style="height: 25px; font-size: 10px;" class="form-control col-12 col-md-2 mr-2 searcbox" id="learning_search_month" title="Search By Month">
+            <select style="height: 25px; font-size: 10px; padding: 4px;" class="form-control col-12 col-md-2 mt-2 mt-md-0 mr-2" id="learning_search_month" title="Search By Month">
 				<option value="">Search by Month</option>
 				<option value="Jan">Jan</option>
 				<option value="Feb">Feb</option>
@@ -21,14 +22,14 @@
 				<option value="Nov">Nov</option>
 				<option value="Dec">Dec</option>
 			</select>
-			<input style="height: 25px; font-size: 12px;"  type="number" placeholder="Search by Year ..." id="learning_search_year" class="form-control col-12 col-md-2 mt-2 mt-md-0 mr-2">
-            <select style="height: 25px; font-size: 10px;" class="form-control col-12 col-md-2 mr-2 searcbox" id="learning_search" title="Search By Category">
+			<input style="height: 25px; font-size: 10px; padding: 4px;"  type="number" placeholder="Search by Year ..." id="learning_search_year" class="form-control col-12 col-md-2 mt-2 mt-md-0 mr-2">
+            <select style="height: 25px; font-size: 10px; padding: 4px;" class="form-control col-12 col-md-2 mt-2 mt-md-0 mr-2" id="learning_search" title="Search By Category">
                 <option value="">Search by Topic</option>
                 {% for category in categories %}
                     <option value="{{category.Topic}}">{{category.Topic}}</option>
                 {% endfor %}
             </select>
-            <input style="height: 25px; font-size: 12px;" type="text"  placeholder="Search by Class ..." id="learning_search_class" class="form-control col-12 col-md-2 mt-2 mt-md-0 mr-2">
+            <input style="height: 25px; font-size: 10px; padding: 4px;" type="text"  placeholder="Search by Class ..." id="learning_search_class" class="form-control col-12 col-md-2 mt-2 mt-md-0 mr-2">
         </div>
 	<br />
     <div class="width">

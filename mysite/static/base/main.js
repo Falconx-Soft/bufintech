@@ -119,21 +119,21 @@ $(document).ready(function(){
           d=""
         }
         table1
-            .columns( 4 )
+            .columns( 2 )
             .search( d )
             .draw();
     } );
 
     $('#investing_search_month').on( 'change', function () {
         table1
-            .columns( 4 )
+            .columns( 2 )
             .search( this.value )
             .draw();
     } );
 
     $('#investing_search_year').on( 'change', function () {
         table1
-            .columns( 4 )
+            .columns( 2 )
             .search( this.value )
             .draw();
     } );
@@ -147,7 +147,7 @@ $(document).ready(function(){
 
     $('#investing_search_ticker').on( 'change', function () {
       table1
-          .columns( 2 )
+          .columns( 3 )
           .search( this.value )
           .draw();
   } );
@@ -174,7 +174,7 @@ $(document).ready(function(){
 
     $('#trading_search_identifier').on( 'change', function () {
         table
-            .columns( 4 )
+            .columns( 3 )
             .search( this.value )
             .draw();
     } );
