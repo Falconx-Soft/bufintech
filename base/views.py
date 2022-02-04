@@ -135,10 +135,10 @@ def money_making(request, Language):
     try:
         obj = money_making_trading.objects.filter(Language=request.session['current_language'])
         data = serializers.serialize("python",money_making_trading.objects.filter(Language=request.session['current_language'] ) )
-        plays = obj.values('Play').distinct()
+        plays = obj.values('ReCap').distinct()
         obj1 = money_making_investing.objects.filter(Language=request.session['current_language'] )
         data1 = serializers.serialize("python",money_making_investing.objects.filter(Language=request.session['current_language'] ) )
-        companies = obj1.values("Short_Name").distinct()
+        companies = obj1.values("Name").distinct()
         return render (request,'base/money_making.html',{'display_url':display_url, 'obj1':obj1,'table_form1':Money_making_investingForm(),'data1':data1,
                                                            'obj':obj,'table_form':Money_making_tradingForm(),'data':data,
                                                            'hidden':hidden, 'hidden1':hidden1, 'nav_items':nav_items[1:],

@@ -87,11 +87,8 @@ def market_path(instance, filename):
     return '{0}/market-outlook/{1}/{2}'.format(instance.Language, instance.Date.strftime('%Y%m%d'), filename)
 
 class market(models.Model):
-    Date_Language = models.CharField(max_length=50,blank=True)
     Date = models.DateField()
     Product = models.CharField(max_length=50,blank=True)
-    Region = models.CharField(max_length=50,blank=True)
-    FileName = models.CharField(max_length=50,blank=True)
     Description = models.CharField(max_length=500,blank=True)
     Research = models.FileField(upload_to=market_path)
     YouTube = models.CharField(max_length=50,blank=True)
@@ -100,7 +97,7 @@ class market(models.Model):
     Country = models.CharField(max_length=50,blank=True,null=True)
 
     def __str__(self):
-        return self.FileName
+        return self.Product
 
     class Meta:
         verbose_name = "Market Outlook"
@@ -110,28 +107,14 @@ def path_equity(instance, filename):
     return '{0}/equity-research/{1}/{2}/{3}'.format(instance.Language, instance.Market, instance.Ticker.lower(), filename)
 
 class equity(models.Model):
-    Ticker_Date_Language = models.CharField(max_length=50,blank=True)
     Language = models.CharField(max_length=50,blank=True)
     Ticker = models.CharField(max_length=50,blank=True)
     Date = models.DateField()
-    Name = models.CharField(max_length=50,blank=True)
     EQUITY_TYPES = [
         ('public', 'Public'),
         ('private', 'Private')
     ]
     Market = models.CharField(max_length=10, choices=EQUITY_TYPES, default='public')
-    Industry = models.CharField(max_length=50,blank=True)
-    Founded = models.IntegerField(blank=True)
-    Website = models.CharField(max_length=255,blank=True)
-    Total_Assets = models.IntegerField(blank=True)
-    Net_income = models.IntegerField(blank=True)
-    ClosePrice= models.IntegerField(verbose_name="Close Price",blank=True)
-    Beta = models.IntegerField(blank=True)
-    Market_Cap = models.IntegerField(blank=True)
-    Float = models.IntegerField(blank=True)
-    Outstanding_Shares = models.IntegerField(blank=True)
-    ADV_10d = models.IntegerField(blank=True)
-    Insider_Shares = models.IntegerField(blank=True)
     Institutional_Shares = models.IntegerField(blank=True)
     Research = models.FileField(upload_to=path_equity )
     Youtube = models.CharField(max_length=50,blank=True)
@@ -140,21 +123,19 @@ class equity(models.Model):
     Description = models.CharField(max_length=50,blank=True,default="none")
 
     def __str__(self):
-        return self.Name
+        return self.Product
 
     class Meta:
         verbose_name = "Equity Research"
         verbose_name_plural = "Equity Research"
 
 def path_learning(instance, filename):
-    return '{0}/how-to/make-green-money-via/{1}/{2}'.format(instance.Language,instance.via.lower(), filename)
+    return '{0}/how-to/make-green-money-via/{1}'.format(instance.Language,filename)
 
 class learning(models.Model):
-    Date_Category_Language = models.CharField(max_length=50,blank=True)
     Language = models.CharField(max_length=50,blank=True)
     Date = models.DateField(blank=True)
     Topic = models.CharField(max_length=50,blank=True)
-    FileName = models.CharField(max_length=50,blank=True)
     Research = models.FileField(upload_to=path_learning )
     Youtube = models.CharField(max_length=50,blank=True)
     Podcast = models.CharField(max_length=50,blank=True)
@@ -164,48 +145,41 @@ class learning(models.Model):
     
 
     def __str__(self):
-        return self.FileName
+        return self.Podcast
         
     class Meta:
         verbose_name = "Learning Center"
         verbose_name_plural = "Learning Center"
 
 def path_money_making_trading(instance, filename):
-    return '{0}/money-making/trading/{1}/{2}/{3}'.format(instance.Language, instance.Play, instance.Date.strftime('%Y%m%d'), filename)
+    return '{0}/money-making/trading/{1}/{2}/{3}'.format(instance.Language,instance.ReCap, instance.Trade_Date.strftime('%Y%m%d'), filename)
 
 class money_making_trading(models.Model):
-    Date_Play = models.CharField(max_length=50,blank=True)
     Language = models.CharField(max_length=50,blank=True,  default="en")
     Trade_Date = models.DateField(blank=True)
-    Play = models.CharField(max_length=50,blank=True)
-    Plan = models.CharField(max_length=50,blank=True)
     Outcome = models.CharField(max_length=50,blank=True)
     url = models.FileField(upload_to=path_money_making_trading)
     Youtube = models.CharField(max_length=50,blank=True)
     Podcast = models.CharField(max_length=50,blank=True, default="none")
     Product = models.CharField(max_length=50,blank=True, default="none")
     Class = models.CharField(max_length=50,blank=True, default="none")
-    Expiration_Date = models.CharField(max_length=50,blank=True, default="none")
     Identifier = models.CharField(max_length=50,blank=True, default="none")
     Initial_Inv = models.CharField(max_length=50,blank=True, default="none")
     ROI = models.CharField(max_length=50,blank=True, default="none")
     ReCap = models.CharField(max_length=50,blank=True, default="none")
     
     def __str__(self):
-        return self.Play
+        return self.Product
 
     class Meta:
         verbose_name = "Money Making Trading"
         verbose_name_plural = "Money Making Trading"
 
 def path_money_making_investing(instance, filename):
-    return '{0}/money-making/investing/{1}/{2}/{3}'.format(instance.Language, instance.Short_Name, instance.Date.strftime('%Y%m%d'), filename)
+    return '{0}/money-making/investing/{1}/{2}/{3}'.format(instance.Language,instance.ReCap, instance.Entry_Date.strftime('%Y%m%d'), filename)
 
 class money_making_investing(models.Model):
-    Date_Company = models.CharField(max_length=50,blank=True)
     Language = models.CharField(max_length=50,blank=True, default="en")
-    Date = models.DateField(blank=True,default=None)
-    Short_Name = models.CharField(max_length=50,blank=True)
     Name = models.CharField(max_length=50,blank=True)
     Equity_Type = models.CharField(max_length=50,blank=True)
     Entry_Date = models.DateField(blank=True)
@@ -224,7 +198,7 @@ class money_making_investing(models.Model):
     ReCap = models.CharField(max_length=50,blank=True, default="none")
 
     def __str__(self):
-        return self.Full_Name
+        return self.Name
 
     class Meta:
         verbose_name = "Money Making Investing"
