@@ -122,8 +122,9 @@ class ListPageResource(resources.ModelResource):
 
     class Meta:
         model = ListPage
-class ListPageAdmin(ImportExportModelAdmin):
-    resource_class = ListPageResource
+
+class ListPageAdmin(admin.ModelAdmin):
+    list_display = ('Menu_Name', 'Child_Name', 'Main_Child','url', 'Language')
     
 class SocialMediaResource(resources.ModelResource):
 

@@ -87,12 +87,34 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 #         }
 #     }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': 'db.sqlite3',
+#     }
+# }
+
+
 DATABASES = {
+
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db.sqlite3',
+
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+
+        'NAME': 'dbmaster',
+
+        'USER': 'dbmasteruser',
+
+        'PASSWORD': '<95CkEj0yv5.9!UY7,(f10pY9ANnx]Dk',
+
+        'HOST': 'ls-6516235cdb92acee512cbf1c06d7ddb97e072643.cqjxvwosu26o.us-east-1.rds.amazonaws.com',
+
+        'PORT': '5432',
+
     }
+
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

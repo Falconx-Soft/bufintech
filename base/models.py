@@ -152,13 +152,13 @@ class learning(models.Model):
         verbose_name_plural = "Learning Center"
 
 def path_money_making_trading(instance, filename):
-    return '{0}/money-making/trading/{1}/{2}/{3}'.format(instance.Language,instance.ReCap, instance.Trade_Date.strftime('%Y%m%d'), filename)
+    return '{0}/money-making/trading/{1}/{2}'.format(instance.Language, instance.Trade_Date.strftime('%Y%m%d'), filename)
 
 class money_making_trading(models.Model):
     Language = models.CharField(max_length=50,blank=True,  default="en")
     Trade_Date = models.DateField(blank=True)
     Outcome = models.CharField(max_length=50,blank=True)
-    url = models.FileField(upload_to=path_money_making_trading)
+    ReCap = models.FileField(upload_to=path_money_making_trading)
     Youtube = models.CharField(max_length=50,blank=True)
     Podcast = models.CharField(max_length=50,blank=True, default="none")
     Product = models.CharField(max_length=50,blank=True, default="none")
@@ -166,7 +166,6 @@ class money_making_trading(models.Model):
     Identifier = models.CharField(max_length=50,blank=True, default="none")
     Initial_Inv = models.CharField(max_length=50,blank=True, default="none")
     ROI = models.CharField(max_length=50,blank=True, default="none")
-    ReCap = models.CharField(max_length=50,blank=True, default="none")
     
     def __str__(self):
         return self.Product
@@ -176,17 +175,15 @@ class money_making_trading(models.Model):
         verbose_name_plural = "Money Making Trading"
 
 def path_money_making_investing(instance, filename):
-    return '{0}/money-making/investing/{1}/{2}/{3}'.format(instance.Language,instance.ReCap, instance.Entry_Date.strftime('%Y%m%d'), filename)
+    return '{0}/money-making/investing/{1}/{2}'.format(instance.Language, instance.Entry_Date.strftime('%Y%m%d'), filename)
 
 class money_making_investing(models.Model):
     Language = models.CharField(max_length=50,blank=True, default="en")
     Name = models.CharField(max_length=50,blank=True)
-    Equity_Type = models.CharField(max_length=50,blank=True)
     Entry_Date = models.DateField(blank=True)
     Position = models.IntegerField(blank=True)
     Exit_Date = models.DateField(blank=True)
-    Strategy = models.CharField(max_length=50,blank=True)
-    url = models.FileField(upload_to=path_money_making_investing)
+    ReCap = models.FileField(upload_to=path_money_making_investing)
     Youtube = models.CharField(max_length=50,blank=True)
     Podcast = models.CharField(max_length=50,blank=True)
     Product = models.CharField(max_length=50,blank=True, default="none")
@@ -195,7 +192,6 @@ class money_making_investing(models.Model):
     Outcome = models.CharField(max_length=50,blank=True, default="none")
     Initial_Inv = models.CharField(max_length=50,blank=True, default="none")
     ROI = models.CharField(max_length=50,blank=True, default="none")
-    ReCap = models.CharField(max_length=50,blank=True, default="none")
 
     def __str__(self):
         return self.Name
@@ -215,8 +211,8 @@ class ListPage(models.Model):
         return self.Menu_Name
 
     class Meta:
-        verbose_name = "List Main Pages"
-        verbose_name_plural = "List Main Pages"
+        verbose_name = "Page List"
+        verbose_name_plural = "Page List"
 
 class SocialMedia(models.Model):
     link = models.CharField(max_length=255)
