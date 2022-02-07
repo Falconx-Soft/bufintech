@@ -87,33 +87,33 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 #         }
 #     }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': 'db.sqlite3',
-#     }
-# }
-
-
 DATABASES = {
-
     'default': {
-
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-
-        'NAME': 'dbmaster',
-
-        'USER': 'dbmasteruser',
-
-        'PASSWORD': '<95CkEj0yv5.9!UY7,(f10pY9ANnx]Dk',
-
-        'HOST': 'ls-6516235cdb92acee512cbf1c06d7ddb97e072643.cqjxvwosu26o.us-east-1.rds.amazonaws.com',
-
-        'PORT': '5432',
-
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db.sqlite3',
     }
-
 }
+
+
+# DATABASES = {
+
+#     'default': {
+
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+
+#         'NAME': 'dbmaster',
+
+#         'USER': 'dbmasteruser',
+
+#         'PASSWORD': "}`X~6OoLZA{X9[3p6[*&C7S695f&%#.+",
+
+#         'HOST': 'ls-84083da534b971c4586ee4498710d4f92844cd0b.cqjxvwosu26o.us-east-1.rds.amazonaws.com',
+
+#         'PORT': '5432',
+
+#     }
+
+# }
 
 
 # Password validation

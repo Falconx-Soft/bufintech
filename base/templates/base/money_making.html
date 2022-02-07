@@ -63,7 +63,13 @@
 								<td>{{instance.fields.Outcome}}</td>
 								<td>{{instance.fields.Initial_Inv}}</td>
 								<td>{{instance.fields.ROI}}</td>
-								<td>{{instance.fields.ReCap}}</td>
+								{% if display_url == False %}
+									<td> 
+										<a class="blurLinks" href="{% url 'payment' %}" onmouseover="hov(this)" onmouseout="hovOut(this)">https://www.itsatesingurl/test1/com/</a>
+									</td>
+								{% else %}
+									<td>{{instance.fields.ReCap}}</td>
+								{% endif %}
 								<td>{{instance.fields.Youtube}}</td>
 								<td>{{instance.fields.Podcast}}</td>
 							</tr>
@@ -128,7 +134,13 @@
 								<td>{{data.fields.Outcome}}</td>
 								<td>{{data.fields.Initial_Inv}}</td>
 								<td>{{data.fields.ROI}}</td>
-								<td>{{data.fields.ReCap}}</td>
+								{% if display_url == False %}
+									<td> 
+										<a class="blurLinks" href="{% url 'payment' %}" onmouseover="hov(this)" onmouseout="hovOut(this)">https://www.itsatesingurl/test1/com/</a>
+									</td>
+								{% else %}
+									<td>{{data.fields.ReCap}}</td>
+								{% endif %}
 								<td>{{data.fields.Youtube}}</td>
 								<td>{{data.fields.Podcast}}</td>
 							</tr>
