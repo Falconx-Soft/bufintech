@@ -27,7 +27,7 @@ def index(request, Language):
     context = {}
     context['display_url'] = display_url
     nav_items = ListPage.objects.filter(Language=request.session['current_language']).values_list("Menu_Name","url").distinct()
-    context['nav_items'] = nav_items[1:]
+    context['nav_items'] = nav_items
     context['values'] = table.objects.filter(language=request.session['current_language'])
     context['table_form'] = TableForm()
     context['Language'] = request.session['current_language']
@@ -66,9 +66,9 @@ def about(request, Language):
         obj = aboutus.objects.filter(language = request.session['current_language'])
         data = serializers.serialize("python",aboutus.objects.filter(language= request.session['current_language']) )
         socialmedia = SocialMedia.objects.all()
-        return render (request,'base/aboutus.html',{'values':obj,'table_form':AboutusForm(),'data':data, 'SocialMedia': socialmedia, 'nav_items':nav_items[1:],'Language':Language})
+        return render (request,'base/aboutus.html',{'values':obj,'table_form':AboutusForm(),'data':data, 'SocialMedia': socialmedia, 'nav_items':nav_items,'Language':Language})
     except:
-        return render (request,'base/aboutus.html',{'message':"No data found!",'nav_items':nav_items[1:],'Language':Language})
+        return render (request,'base/aboutus.html',{'message':"No data found!",'nav_items':nav_items,'Language':Language})
 
 
 def market_outlook(request, Language):
@@ -88,9 +88,9 @@ def market_outlook(request, Language):
     try:
         obj = market.objects.filter(Language = request.session['current_language'])
         data = serializers.serialize("python",market.objects.filter(Language = request.session['current_language']) )
-        return render (request,'base/market.html',{'display_url':display_url, 'values':obj,'table_form':MarketForm(),'data':data , 'hidden': hidden, 'nav_items':nav_items[1:],'Language':Language})
+        return render (request,'base/market.html',{'display_url':display_url, 'values':obj,'table_form':MarketForm(),'data':data , 'hidden': hidden, 'nav_items':nav_items,'Language':Language})
     except Exception as e:
-        return render (request,'base/market.html',{'display_url':display_url,'message':"No data found!",'nav_items':nav_items[1:],'Language':Language})
+        return render (request,'base/market.html',{'display_url':display_url,'message':"No data found!",'nav_items':nav_items,'Language':Language})
 
 
 def equityView(request, Language):
@@ -111,9 +111,9 @@ def equityView(request, Language):
         obj = equity.objects.filter(Language=request.session['current_language'])
         data = serializers.serialize("python",equity.objects.filter(Language=request.session['current_language']) )
         tickers = obj.values('Ticker').distinct()
-        return render (request,'base/equity.html',{'display_url':display_url, 'obj':obj,'table_form':EquityForm(),'data':data, 'hidden':hidden,'nav_items':nav_items[1:],'Language':Language, 'tickers': tickers})
+        return render (request,'base/equity.html',{'display_url':display_url, 'obj':obj,'table_form':EquityForm(),'data':data, 'hidden':hidden,'nav_items':nav_items,'Language':Language, 'tickers': tickers})
     except Exception as e:
-        return render (request,'base/equity.html',{'display_url':display_url, 'message':"No data found!",'nav_items':nav_items[1:],'Language':Language})
+        return render (request,'base/equity.html',{'display_url':display_url, 'message':"No data found!",'nav_items':nav_items,'Language':Language})
 
 
 def money_making(request, Language):
@@ -141,12 +141,12 @@ def money_making(request, Language):
         companies = obj1.values("Name").distinct()
         return render (request,'base/money_making.html',{'display_url':display_url, 'obj1':obj1,'table_form1':Money_making_investingForm(),'data1':data1,
                                                            'obj':obj,'table_form':Money_making_tradingForm(),'data':data,
-                                                           'hidden':hidden, 'hidden1':hidden1, 'nav_items':nav_items[1:],
+                                                           'hidden':hidden, 'hidden1':hidden1, 'nav_items':nav_items,
                                                            'sub_items':sub_items,'Language':Language,
                                                            'companies':companies, 'plays':plays
                                                            })
     except Exception as e:
-        return render (request,'base/money_making.html',{'display_url':display_url, 'message':"No data found!","nav_items":nav_items[1:],'sub_items':sub_items,'Language':Language})
+        return render (request,'base/money_making.html',{'display_url':display_url, 'message':"No data found!","nav_items":nav_items,'sub_items':sub_items,'Language':Language})
 
 
 def learn(request, Language):
@@ -169,7 +169,7 @@ def learn(request, Language):
     categories = obj.values("Topic").distinct()
     print("******************************")
     print(categories)
-    return render (request,'base/learning.html',{'display_url':display_url, 'obj':obj,'table_form':LearningForm(),'data':data, 'hidden':hidden,"nav_items":nav_items[1:],'Language':Language, 'categories':categories})   
+    return render (request,'base/learning.html',{'display_url':display_url, 'obj':obj,'table_form':LearningForm(),'data':data, 'hidden':hidden,"nav_items":nav_items,'Language':Language, 'categories':categories})   
 
     # try:
     #     obj = learning.objects.filter(Language=request.session['current_language'])
@@ -178,9 +178,9 @@ def learn(request, Language):
     #     print("******************************")
     #     print(obj)
     #     print(data)
-    #     return render (request,'base/learning.html',{'display_url':display_url, 'obj':obj,'table_form':LearningForm(),'data':data, 'hidden':hidden,"nav_items":nav_items[1:],'Language':Language, 'categories':categories})
+    #     return render (request,'base/learning.html',{'display_url':display_url, 'obj':obj,'table_form':LearningForm(),'data':data, 'hidden':hidden,"nav_items":nav_items,'Language':Language, 'categories':categories})
     # except Exception as e:
-    #     return render (request,'base/learning.html',{'display_url':display_url, 'message':"No data found!","nav_items":nav_items[1:],'Language':Language})
+    #     return render (request,'base/learning.html',{'display_url':display_url, 'message':"No data found!","nav_items":nav_items,'Language':Language})
 
 def list_of_pages(request, Language):
     display_url = True
@@ -199,9 +199,9 @@ def list_of_pages(request, Language):
     try:
         obj = ListPage.objects.filter(Language=request.session['current_language'])
         data = serializers.serialize("python",ListPage.objects.filter(Language=request.session['current_language']) )
-        return render (request,'base/list_of_pages.html',{'display_url':display_url, 'obj':obj,'table_form':List_of_pagesForm(),'data':data,"nav_items":nav_items[1:],'Language':Language})
+        return render (request,'base/list_of_pages.html',{'display_url':display_url, 'obj':obj,'table_form':List_of_pagesForm(),'data':data,"nav_items":nav_items,'Language':Language})
     except:
-        return render (request,'base/list_of_pages.html',{'display_url':display_url, 'message':"No data found!","nav_items":nav_items[1:],'Language':Language})
+        return render (request,'base/list_of_pages.html',{'display_url':display_url, 'message':"No data found!","nav_items":nav_items,'Language':Language})
 
 
 def analytic_apps(request, Language):
@@ -237,11 +237,11 @@ def analytic_apps(request, Language):
                                                     'stock_picker_data':stock_picker_data,
                                                     'market_mover_data':market_mover_data,
                                                     'company_prospecting_data':company_prospecting_data,
-                                                    'nav_items':nav_items[1:],
+                                                    'nav_items':nav_items,
                                                     'Language': Language
                                                    })
     except:
-        return render (request,'base/analytics_apps.html',{ 'display_url':display_url, 'message':"No data found!",'nav_items':nav_items[1:],'Language':Language})
+        return render (request,'base/analytics_apps.html',{ 'display_url':display_url, 'message':"No data found!",'nav_items':nav_items,'Language':Language})
 
 def social_networks(request,Language):
     setCurrentLanguage(request, Language)
@@ -249,6 +249,6 @@ def social_networks(request,Language):
     try:
         obj = social_network.objects.filter(language = request.session['current_language'])
         data = serializers.serialize("python",social_network.objects.filter(language= request.session['current_language']) )
-        return render (request,'base/social_network.html',{'values':obj,'table_form':social_networkForm(),'data':data, 'nav_items':nav_items[1:],'Language':Language})
+        return render (request,'base/social_network.html',{'values':obj,'table_form':social_networkForm(),'data':data, 'nav_items':nav_items,'Language':Language})
     except:
-        return render (request,'base/social_network.html',{'message':"No data found!",'nav_items':nav_items[1:],'Language':Language})
+        return render (request,'base/social_network.html',{'message':"No data found!",'nav_items':nav_items,'Language':Language})
