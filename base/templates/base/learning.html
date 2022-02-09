@@ -60,11 +60,11 @@
         <tbody>
             {% for data in obj %}
                 <tr>
-                    <td>N/A</td>
+                    <td>{{data.Product}}</td>
                     <td>{{data.Topic}}</td>
                     <td>{{data.Class}}</td>
                     <td>{{data.Date}}</td>
-                    <td>N/A</td>
+                    <td>{{data.Description}}</td>
                     {% if display_url == False %}
                         <td style="min-width: 203px;"> 
                             <a class="blurLinks" href="{% url 'payment' %}" onmouseover="hov(this)" onmouseout="hovOut(this)">https://www.itsatesingurl/test1/com/</a>
