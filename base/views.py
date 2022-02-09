@@ -40,11 +40,11 @@ def index(request, Language):
         email = request.POST['email']
         phone = request.POST['phone']
         try:
-            subscriber = NewsLetterSubscribe.objects.filter(email=email)
+            subscriber = NewsLetterSubscribers.objects.filter(email=email)
             if subscriber:
                 context['error'] = "You have already subscribed"
             else:
-                NewsLetterSubscribe.objects.create(name=name,email=email,phone=phone)
+                NewsLetterSubscribers.objects.create(name=name,email=email,phone=phone)
                 context['success'] = True
         except Exception as e:
             context['error'] = str(e)

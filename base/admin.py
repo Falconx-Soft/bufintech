@@ -5,13 +5,13 @@ from import_export.admin import ImportExportModelAdmin
 from import_export import resources
 
 #NewLetterSubscribe
-class NewsLetterSubscribeResource(resources.ModelResource):
+class NewsLetterSubscribersResource(resources.ModelResource):
 
     class Meta:
-        model = NewsLetterSubscribe
+        model = NewsLetterSubscribers
 
-class NewsLetterSubscribeAdmin(ImportExportModelAdmin):
-    resource_class = NewsLetterSubscribeResource
+class NewsLetterSubscribersAdmin(ImportExportModelAdmin):
+    resource_class = NewsLetterSubscribersResource
 
 
 #Table
@@ -143,7 +143,7 @@ admin.site.register(money_making_trading,MoneyTradingAdmin)
 admin.site.register(aboutus, AboutAdmin)
 admin.site.register(ListPage, ListPageAdmin)
 admin.site.register(SocialMedia, SocialMediaAdmin)
-admin.site.register(NewsLetterSubscribe, NewsLetterSubscribeAdmin)
+admin.site.register(NewsLetterSubscribers, NewsLetterSubscribersAdmin)
 admin.site.register(analytical_apps_market_mover, AnalyticsAppsMarketMoverAdmin)
 admin.site.register(analytical_apps_trade_ideas, AnalyticsAppsStockPickerAdmin)
 admin.site.register(analytical_apps_Algo_trader, AnalyticsAppsSystematicTradAdmin)

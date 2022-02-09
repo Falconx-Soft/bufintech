@@ -12,7 +12,7 @@ class table(models.Model):
         verbose_name = "Home"
         verbose_name_plural = "Home"
 
-class NewsLetterSubscribe(models.Model):
+class NewsLetterSubscribers(models.Model):
     name = models.CharField(max_length=255,blank=True)
     email = models.CharField(max_length=255,unique=True,default="")
     phone = models.CharField(max_length=50)
@@ -21,8 +21,8 @@ class NewsLetterSubscribe(models.Model):
         return self.email
 
     class Meta:
-        verbose_name = "NewsLetter Subscribe"
-        verbose_name_plural = "NewsLetter Subscribe"
+        verbose_name = "NewsLetter Subscribers"
+        verbose_name_plural = "NewsLetter Subscribers"
 
 class aboutus(models.Model):
     Sentence = models.TextField(blank=True)
