@@ -12,17 +12,17 @@ class table(models.Model):
         verbose_name = "Home"
         verbose_name_plural = "Home"
 
-class newsletter(models.Model):
+class NewsLetterSubscribe(models.Model):
     name = models.CharField(max_length=255,blank=True)
-    email = models.CharField(max_length=255,unique=True)
+    email = models.CharField(max_length=255,unique=True,default="")
     phone = models.CharField(max_length=50)
 
     def __str__(self):
         return self.email
 
     class Meta:
-        verbose_name = "Subscribers List"
-        verbose_name_plural = "Subscribers List"
+        verbose_name = "News Letter Subscribe"
+        verbose_name_plural = "News Letter Subscribe"
 
 class aboutus(models.Model):
     Sentence = models.TextField(blank=True)
@@ -115,7 +115,6 @@ class equity(models.Model):
         ('private', 'Private')
     ]
     Market = models.CharField(max_length=10, choices=EQUITY_TYPES, default='public')
-    Institutional_Shares = models.IntegerField(blank=True)
     Research = models.FileField(upload_to=path_equity )
     Youtube = models.CharField(max_length=50,blank=True)
     Podcast = models.CharField(max_length=50,blank=True)
@@ -182,7 +181,7 @@ class money_making_investing(models.Model):
     Name = models.CharField(max_length=50,blank=True)
     Entry_Date = models.DateField(blank=True)
     Position = models.IntegerField(blank=True)
-    Exit_Date = models.DateField(blank=True)
+    Exit_Date = models.DateField(blank=True,null=True)
     ReCap = models.FileField(upload_to=path_money_making_investing)
     Youtube = models.CharField(max_length=50,blank=True)
     Podcast = models.CharField(max_length=50,blank=True)
@@ -229,7 +228,7 @@ class SocialMedia(models.Model):
         verbose_name = "Social Media"
         verbose_name_plural = "Social Media"
 
-class NewsLetterSubscribe(models.Model):
+class NewsLetter(models.Model):
     Sentence = models.TextField(blank=True)
     language = models.CharField(max_length=50)
 
@@ -238,8 +237,8 @@ class NewsLetterSubscribe(models.Model):
 
 
     class Meta:
-        verbose_name = "NewsLetter Subscribe"
-        verbose_name_plural = "NewsLetter Subscribe"
+        verbose_name = "NewsLetter"
+        verbose_name_plural = "NewsLetter"
 
 
 class social_network(models.Model):

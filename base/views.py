@@ -33,18 +33,18 @@ def index(request, Language):
     context['Language'] = request.session['current_language']
     data = serializers.serialize("python",table.objects.filter(language=request.session['current_language']) )
     context['data'] = data
-    context['NewsLetterText'] = NewsLetterSubscribe.objects.filter(language=request.session['current_language']).values('Sentence')
+    context['NewsLetterText'] = NewsLetter.objects.filter(language=request.session['current_language']).values('Sentence')
     print(context['NewsLetterText'])
     if request.method == "POST":
         name = request.POST['name']
         email = request.POST['email']
         phone = request.POST['phone']
         try:
-            subscriber = newsletter.objects.filter(email=email)
+            subscriber = NewsLetterSubscribe.objects.filter(email=email)
             if subscriber:
                 context['error'] = "You have already subscribed"
             else:
-                newsletter.objects.create(name=name,email=email,phone=phone)
+                NewsLetterSubscribe.objects.create(name=name,email=email,phone=phone)
                 context['success'] = True
         except Exception as e:
             context['error'] = str(e)

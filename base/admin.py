@@ -134,7 +134,7 @@ class SocialMediaAdmin(ImportExportModelAdmin):
     resource_class = SocialMediaResource
 
 admin.site.register(table, TableAdmin)
-admin.site.register(newsletter)
+admin.site.register(NewsLetter)
 admin.site.register(market,MarketResource)
 admin.site.register(equity, EquityAdmin)
 admin.site.register(learning,LearningAdmin)
