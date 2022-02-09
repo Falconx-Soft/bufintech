@@ -8,7 +8,7 @@ def current_url(value, url):
     url = url[4:]
     value = value.replace("_","-")
     if value == "analytic-apps":
-        value = "analytical-applications"
+        value = "analytical-apps"
     print(value, url)
     result = re.search(value , url)
     # print(value, type(value),url, type(url))

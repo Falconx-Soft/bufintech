@@ -213,6 +213,7 @@ class ListPage(models.Model):
     class Meta:
         verbose_name = "Page List"
         verbose_name_plural = "Page List"
+        
 
 class SocialMedia(models.Model):
     link = models.CharField(max_length=255)

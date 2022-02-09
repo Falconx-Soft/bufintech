@@ -128,8 +128,10 @@ def money_making(request, Language):
     else:
         display_url = False
     setCurrentLanguage(request, Language)
-    nav_items = ListPage.objects.filter(Language=request.session['current_language']).values_list("Menu_Name","url").distinct()    
-    sub_items = ListPage.objects.filter(Language=request.session['current_language'], url="money_making").values_list("Child_Name").distinct()
+    nav_items = ListPage.objects.filter(Language=request.session['current_language']).order_by('-id').values_list("Menu_Name","url").distinct() 
+    sub_items = ListPage.objects.filter(Language=request.session['current_language'], url="money_making").order_by('-id').values_list("Child_Name").distinct()
+    print("############################")
+    print(nav_items)
     hidden = [0,1]
     hidden1 = [0,1]
     try:
@@ -141,12 +143,12 @@ def money_making(request, Language):
         companies = obj1.values("Name").distinct()
         return render (request,'base/money_making.html',{'display_url':display_url, 'obj1':obj1,'table_form1':Money_making_investingForm(),'data1':data1,
                                                            'obj':obj,'table_form':Money_making_tradingForm(),'data':data,
-                                                           'hidden':hidden, 'hidden1':hidden1, 'nav_items':nav_items,
+                                                           'hidden':hidden, 'hidden1':hidden1, 'nav_items':list(dict.fromkeys(nav_items)),
                                                            'sub_items':sub_items,'Language':Language,
                                                            'companies':companies, 'plays':plays
                                                            })
     except Exception as e:
-        return render (request,'base/money_making.html',{'display_url':display_url, 'message':"No data found!","nav_items":nav_items,'sub_items':sub_items,'Language':Language})
+        return render (request,'base/money_making.html',{'display_url':display_url, 'message':"No data found!","nav_items":list(dict.fromkeys(nav_items)),'sub_items':sub_items,'Language':Language})
 
 
 def learn(request, Language):
