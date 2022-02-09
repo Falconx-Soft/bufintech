@@ -4,7 +4,7 @@ class table(models.Model):
     Platform = models.CharField(verbose_name='name',max_length=50,blank=True)
     Username = models.CharField(max_length=50,blank=True)
     url = models.URLField()
-    language = models.CharField(max_length=50,blank=True)
+    language = models.CharField(max_length=50)
 
     def __str__(self):
         return self.Username
@@ -15,7 +15,7 @@ class table(models.Model):
 class newsletter(models.Model):
     name = models.CharField(max_length=255,blank=True)
     email = models.CharField(max_length=255,unique=True)
-    phone = models.CharField(max_length=50,blank=True)
+    phone = models.CharField(max_length=50)
 
     def __str__(self):
         return self.email
@@ -27,7 +27,7 @@ class newsletter(models.Model):
 class aboutus(models.Model):
     Sentence = models.TextField(blank=True)
     Sentence2 = models.TextField(blank=True)
-    language = models.CharField(max_length=50,blank=True)
+    language = models.CharField(max_length=50)
 
     def __str__(self):
         return self.language
@@ -36,50 +36,50 @@ class aboutus(models.Model):
         verbose_name = "About Us"
         verbose_name_plural = "About Us"
 
-class analytics_apps_systematic_trad(models.Model):
+class analytical_apps_Algo_trader(models.Model):
     Sentence = models.TextField(blank=True)
-    language = models.CharField(max_length=50,blank=True)
+    language = models.CharField(max_length=50)
 
     def __str__(self):
         return self.language
 
     class Meta:
-        verbose_name = "Analytics Apps Systematic Trader"
-        verbose_name_plural = "Analytics Apps Systematic Trader"
+        verbose_name = "Analytical Apps Algo Trader"
+        verbose_name_plural = "Analytical Apps Algo Trader"
 
-class analytics_apps_company_prospecting(models.Model):
+class analytical_apps_prospecting(models.Model):
     Sentence = models.TextField(blank=True)
-    language = models.CharField(max_length=50,blank=True)
+    language = models.CharField(max_length=50)
 
     def __str__(self):
         return self.language
 
     class Meta:
-        verbose_name = "Analytics Apps Company Prospecting"
-        verbose_name_plural = "Analytics Apps Company Prospecting"
+        verbose_name = "Analytical Apps Prospecting"
+        verbose_name_plural = "Analytical Apps Prospecting"
 
 
-class analytics_apps_stock_picker(models.Model):
+class analytical_apps_trade_ideas(models.Model):
     Sentence = models.TextField(blank=True)
-    language = models.CharField(max_length=50,blank=True)
+    language = models.CharField(max_length=50)
 
     def __str__(self):
         return self.language
 
     class Meta:
-        verbose_name = "Analytics Apps Stock Picker"
-        verbose_name_plural = "Analytics Apps Stock Picker"
+        verbose_name = "Analytical Apps Trade Ideas"
+        verbose_name_plural = "Analytical Apps Trade Ideas"
 
-class analytics_apps_market_mover(models.Model):
+class analytical_apps_market_mover(models.Model):
     Sentence = models.TextField(blank=True)
-    language = models.CharField(max_length=50,blank=True)
+    language = models.CharField(max_length=50)
 
     def __str__(self):
         return self.language
 
     class Meta:
-        verbose_name = "Analytics Apps Market Mover"
-        verbose_name_plural = "Analytics Apps Market Mover"
+        verbose_name = "Analytical Apps Market Mover"
+        verbose_name_plural = "Analytical Apps Market Mover"
 
       
 
@@ -93,7 +93,7 @@ class market(models.Model):
     Research = models.FileField(upload_to=market_path)
     YouTube = models.CharField(max_length=50,blank=True)
     Podcast = models.CharField(max_length=50,blank=True)
-    Language = models.CharField(max_length=50,blank=True)
+    Language = models.CharField(max_length=50)
     Country = models.CharField(max_length=50,blank=True,null=True)
 
     def __str__(self):
@@ -107,7 +107,7 @@ def path_equity(instance, filename):
     return '{0}/equity-research/{1}/{2}/{3}'.format(instance.Language, instance.Market, instance.Ticker.lower(), filename)
 
 class equity(models.Model):
-    Language = models.CharField(max_length=50,blank=True)
+    Language = models.CharField(max_length=50)
     Ticker = models.CharField(max_length=50,blank=True)
     Date = models.DateField()
     EQUITY_TYPES = [
@@ -133,7 +133,7 @@ def path_learning(instance, filename):
     return '{0}/how-to/make-green-money-via/{1}'.format(instance.Language,filename)
 
 class learning(models.Model):
-    Language = models.CharField(max_length=50,blank=True)
+    Language = models.CharField(max_length=50)
     Date = models.DateField(blank=True)
     Topic = models.CharField(max_length=50,blank=True)
     Research = models.FileField(upload_to=path_learning )
@@ -155,7 +155,7 @@ def path_money_making_trading(instance, filename):
     return '{0}/money-making/trading/{1}/{2}'.format(instance.Language, instance.Trade_Date.strftime('%Y%m%d'), filename)
 
 class money_making_trading(models.Model):
-    Language = models.CharField(max_length=50,blank=True,  default="en")
+    Language = models.CharField(max_length=50,default="en")
     Trade_Date = models.DateField(blank=True)
     Outcome = models.CharField(max_length=50,blank=True)
     ReCap = models.FileField(upload_to=path_money_making_trading)
@@ -178,7 +178,7 @@ def path_money_making_investing(instance, filename):
     return '{0}/money-making/investing/{1}/{2}'.format(instance.Language, instance.Entry_Date.strftime('%Y%m%d'), filename)
 
 class money_making_investing(models.Model):
-    Language = models.CharField(max_length=50,blank=True, default="en")
+    Language = models.CharField(max_length=50,default="en")
     Name = models.CharField(max_length=50,blank=True)
     Entry_Date = models.DateField(blank=True)
     Position = models.IntegerField(blank=True)
@@ -205,7 +205,7 @@ class ListPage(models.Model):
     Child_Name = models.CharField(max_length=100, blank=True)
     Main_Child = models.CharField(max_length=100, blank=True)
     url = models.CharField(max_length=100)
-    Language = models.CharField(max_length=50, blank=True)
+    Language = models.CharField(max_length=50)
 
     def __str__(self):
         return self.Menu_Name
@@ -231,7 +231,7 @@ class SocialMedia(models.Model):
 
 class NewsLetterSubscribe(models.Model):
     Sentence = models.TextField(blank=True)
-    language = models.CharField(max_length=50,blank=True)
+    language = models.CharField(max_length=50)
 
     def __str__(self):
         return self.language
@@ -244,7 +244,7 @@ class NewsLetterSubscribe(models.Model):
 
 class social_network(models.Model):
     Sentence = models.TextField(blank=True)
-    language = models.CharField(max_length=50,blank=True)
+    language = models.CharField(max_length=50)
 
     def __str__(self):
         return self.language

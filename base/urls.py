@@ -11,6 +11,6 @@ urlpatterns = [
     re_path(r'^(?P<Language>[a-z]{2})/learning-center$', views.learn, name='learn'),
     re_path(r'^(?P<Language>[a-z]{2})/money-making$', views.money_making, name='money_making'),
     re_path(r'^(?P<Language>[a-z]{2})/list-of-pages$', views.list_of_pages, name='list_of_pages'),
-    re_path(r'^(?P<Language>[a-z]{2})/analytical-applications$', views.analytic_apps, name='analytic_apps'),
+    re_path(r'^(?P<Language>[a-z]{2})/analytical-apps$', views.analytic_apps, name='analytic_apps'),
     re_path(r'^(?P<Language>[a-z]{2})/social_network$', views.social_networks, name='social_network'),
 ]

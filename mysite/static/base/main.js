@@ -7,7 +7,7 @@ $(document).ready(function(){
 
       // DataTable
 	  
-	if(!window.location.pathname.includes("analytical-applications") && !window.location.pathname.includes("aboutus") ){
+	if(!window.location.pathname.includes("analytical-apps") && !window.location.pathname.includes("aboutus") ){
 		  var table = $('#example').DataTable({ "paging": false , 
 			   "columnDefs": [
 				{

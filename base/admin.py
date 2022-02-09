@@ -20,8 +20,8 @@ class TableResource(resources.ModelResource):
     class Meta:
         model = table
 
-class TableAdmin(ImportExportModelAdmin):
-    resource_class = TableResource
+class TableAdmin(admin.ModelAdmin):
+    list_display = ('Platform', 'Username', 'url','language')
 
 
 
@@ -29,7 +29,7 @@ class TableAdmin(ImportExportModelAdmin):
 class AnalyticsAppsSystematicTradResource(resources.ModelResource):
 
     class Meta:
-        model = analytics_apps_systematic_trad
+        model = analytical_apps_Algo_trader
 
 class AnalyticsAppsSystematicTradAdmin(ImportExportModelAdmin):
     resource_class = AnalyticsAppsSystematicTradResource
@@ -38,7 +38,7 @@ class AnalyticsAppsSystematicTradAdmin(ImportExportModelAdmin):
 class AnalyticsAppsCompanyProspecting(resources.ModelResource):
 
     class Meta:
-        model = analytics_apps_company_prospecting
+        model = analytical_apps_prospecting
 
 class AnalyticsAppsCompanyProspectingAdmin(ImportExportModelAdmin):
     resource_class = AnalyticsAppsCompanyProspecting
@@ -48,7 +48,7 @@ class AnalyticsAppsCompanyProspectingAdmin(ImportExportModelAdmin):
 class AnalyticsAppsStockPickerResource(resources.ModelResource):
 
     class Meta:
-        model = analytics_apps_stock_picker
+        model = analytical_apps_trade_ideas
 
 class AnalyticsAppsStockPickerAdmin(ImportExportModelAdmin):
     resource_class = AnalyticsAppsStockPickerResource
@@ -58,7 +58,7 @@ class AnalyticsAppsStockPickerAdmin(ImportExportModelAdmin):
 class AnalyticsAppsMarketMoverResource(resources.ModelResource):
 
     class Meta:
-        model = analytics_apps_market_mover
+        model = analytical_apps_market_mover
 
 class AnalyticsAppsMarketMoverAdmin(ImportExportModelAdmin):
     resource_class = AnalyticsAppsMarketMoverResource    
@@ -144,10 +144,10 @@ admin.site.register(aboutus, AboutAdmin)
 admin.site.register(ListPage, ListPageAdmin)
 admin.site.register(SocialMedia, SocialMediaAdmin)
 admin.site.register(NewsLetterSubscribe, NewsLetterSubscribeAdmin)
-admin.site.register(analytics_apps_market_mover, AnalyticsAppsMarketMoverAdmin)
-admin.site.register(analytics_apps_stock_picker, AnalyticsAppsStockPickerAdmin)
-admin.site.register(analytics_apps_systematic_trad, AnalyticsAppsSystematicTradAdmin)
-admin.site.register(analytics_apps_company_prospecting, AnalyticsAppsCompanyProspectingAdmin)
+admin.site.register(analytical_apps_market_mover, AnalyticsAppsMarketMoverAdmin)
+admin.site.register(analytical_apps_trade_ideas, AnalyticsAppsStockPickerAdmin)
+admin.site.register(analytical_apps_Algo_trader, AnalyticsAppsSystematicTradAdmin)
+admin.site.register(analytical_apps_prospecting, AnalyticsAppsCompanyProspectingAdmin)
 admin.site.register(social_network)
 
 
