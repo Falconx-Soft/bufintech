@@ -120,6 +120,7 @@ class equity(models.Model):
     Podcast = models.CharField(max_length=50,blank=True)
     Product = models.CharField(max_length=50,blank=True,default="none")
     Description = models.CharField(max_length=50,blank=True,default="none")
+    # chk_field_name = models.FilePathField(path ="C:/Users/SHAN/Desktop/Working",null=True)
 
     def __str__(self):
         return self.Product
@@ -205,6 +206,7 @@ class ListPage(models.Model):
     Main_Child = models.CharField(max_length=100, blank=True)
     url = models.CharField(max_length=100)
     Language = models.CharField(max_length=50)
+    Priority = models.IntegerField(default=0)
 
     def __str__(self):
         return self.Menu_Name

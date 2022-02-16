@@ -4,7 +4,7 @@
 <link type="text/css" rel="stylesheet" href="{% static 'sidebar/demo.css' %}" />
 <link type="text/css" rel="stylesheet" href="{% static 'sidebar/mmenu.css' %}" />
 <div class="header">
-	<a class="bars d-block d-md-none" href="#menu"><span></span></a>
+	<a class="bars d-block d-md-none" id="hideNav" href="#menu"><span></span></a>
 
 	<div class="" >
 		<span class="float-left d-none d-md-inline">
@@ -50,10 +50,23 @@
 		<!-- <li><a href="{% url 'profile' %}">Profile</a></li> -->
 		<li>
 			<span>Items</span>
-			<ul class="ul-flex">
+			<ul>
 				{%for item in nav_items%}
 				{% if item.1|current_url:request.path  %}
+				{% if item.0 == "Analytical Apps" %}
+				<!-- <li><a href="{% url item.1 Language=Language %}" style="color: green;">{{item.0}}</a></li> -->
+					<li>
+						<span>Analytical Apps</span>
+						<ul>
+							<li><a style="cursor: pointer;" id="algoTradeNav">Algo Trader</a></li>
+							<li><a style="cursor: pointer;" id="tradeIdeasNav">Trade Ideas</a></li>
+							<li><a style="cursor: pointer;" id="marketMoverNav">Market Mover</a></li>
+							<li><a style="cursor: pointer;" id="prospectingNav">Prospecting</a></li>
+						</ul>
+					</li>
+				{% else %}
 				<li><a href="{% url item.1 Language=Language %}" style="color: #1190cb;">{{item.0}}</a></li>
+				{% endif %}
 				{% else %}
 				<li><a href="{% url item.1 Language=Language %}">{{item.0}}</a></li>
 		
@@ -75,7 +88,20 @@
 			<ul class="ul-flex">
 				{%for item in nav_items%}
 				{% if item.1|current_url:request.path  %}
+				{% if item.0 == "Analytical Apps" %}
+				<!-- <li><a href="{% url item.1 Language=Language %}" style="color: green;">{{item.0}}</a></li> -->
+					<li>
+						<span>Analytical Apps</span>
+						<ul class="ul-flex">
+							<li><a style="cursor: pointer;" id="algoTradeNav">Algo Trader</a></li>
+							<li><a style="cursor: pointer;" id="tradeIdeasNav">Trade Ideas</a></li>
+							<li><a style="cursor: pointer;" id="marketMoverNav">Market Mover</a></li>
+							<li><a style="cursor: pointer;" id="prospectingNav">Prospecting</a></li>
+						</ul>
+					</li>
+				{% else %}
 				<li><a href="{% url item.1 Language=Language %}" style="color: #1190cb;">{{item.0}}</a></li>
+				{% endif %}
 				{% else %}
 				<li><a href="{% url item.1 Language=Language %}">{{item.0}}</a></li>
 		

@@ -160,7 +160,7 @@ a:hover{
 
 @media (max-width:766px){
     #analytics_tabs{
-        display: block;
+        display: none;
         width: 100%;
     }
 
