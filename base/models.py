@@ -87,14 +87,14 @@ def market_path(instance, filename):
     return '{0}/market-outlook/{1}/{2}'.format(instance.Language, instance.Date.strftime('%Y%m%d'), filename)
 
 class market(models.Model):
-    Date = models.DateField()
     Product = models.CharField(max_length=50,blank=True)
+    Country = models.CharField(max_length=50,blank=True,null=True)
+    Date = models.DateField()
     Description = models.CharField(max_length=500,blank=True)
     Research = models.FileField(upload_to=market_path)
     YouTube = models.CharField(max_length=50,blank=True)
     Podcast = models.CharField(max_length=50,blank=True)
     Language = models.CharField(max_length=50)
-    Country = models.CharField(max_length=50,blank=True,null=True)
 
     def __str__(self):
         return self.Product
@@ -108,18 +108,19 @@ def path_equity(instance, filename):
 
 class equity(models.Model):
     Language = models.CharField(max_length=50)
-    Ticker = models.CharField(max_length=50,blank=True)
-    Date = models.DateField()
+
+    Product = models.CharField(max_length=50,blank=True,default="none")
     EQUITY_TYPES = [
         ('public', 'Public'),
         ('private', 'Private')
     ]
     Market = models.CharField(max_length=10, choices=EQUITY_TYPES, default='public')
+    Date = models.DateField()
+    Ticker = models.CharField(max_length=50,blank=True)
+    Description = models.CharField(max_length=50,blank=True,default="none")
     Research = models.FileField(upload_to=path_equity )
     Youtube = models.CharField(max_length=50,blank=True)
     Podcast = models.CharField(max_length=50,blank=True)
-    Product = models.CharField(max_length=50,blank=True,default="none")
-    Description = models.CharField(max_length=50,blank=True,default="none")
     # chk_field_name = models.FilePathField(path ="C:/Users/SHAN/Desktop/Working",null=True)
 
     def __str__(self):
@@ -134,16 +135,14 @@ def path_learning(instance, filename):
 
 class learning(models.Model):
     Language = models.CharField(max_length=50)
-    Date = models.DateField(blank=True)
+    Product = models.CharField(max_length=50,blank=True, default="N/A")
     Topic = models.CharField(max_length=50,blank=True)
+    Class = models.CharField(max_length=50,blank=True, default="N/A")
+    Date = models.DateField(blank=True)
+    Description = models.CharField(max_length=50,blank=True,default="none")
     Research = models.FileField(upload_to=path_learning )
     Youtube = models.CharField(max_length=50,blank=True)
     Podcast = models.CharField(max_length=50,blank=True)
-    Class = models.CharField(max_length=50,blank=True, default="N/A")
-    Product = models.CharField(max_length=50,blank=True, default="N/A")
-    Description = models.CharField(max_length=50,blank=True,default="none")
-    
-
     def __str__(self):
         return self.Podcast
         
@@ -156,16 +155,16 @@ def path_money_making_trading(instance, filename):
 
 class money_making_trading(models.Model):
     Language = models.CharField(max_length=50,default="en")
+    Product = models.CharField(max_length=50,blank=True, default="none")
+    Class = models.CharField(max_length=50,blank=True, default="none")
     Trade_Date = models.DateField(blank=True)
+    Identifier = models.CharField(max_length=50,blank=True, default="none")
     Outcome = models.CharField(max_length=50,blank=True)
+    Initial_Inv = models.CharField(max_length=50,blank=True, default="none")
+    ROI = models.CharField(max_length=50,blank=True, default="none")
     ReCap = models.FileField(upload_to=path_money_making_trading)
     Youtube = models.CharField(max_length=50,blank=True)
     Podcast = models.CharField(max_length=50,blank=True, default="none")
-    Product = models.CharField(max_length=50,blank=True, default="none")
-    Class = models.CharField(max_length=50,blank=True, default="none")
-    Identifier = models.CharField(max_length=50,blank=True, default="none")
-    Initial_Inv = models.CharField(max_length=50,blank=True, default="none")
-    ROI = models.CharField(max_length=50,blank=True, default="none")
     
     def __str__(self):
         return self.Product
@@ -179,19 +178,20 @@ def path_money_making_investing(instance, filename):
 
 class money_making_investing(models.Model):
     Language = models.CharField(max_length=50,default="en")
-    Name = models.CharField(max_length=50,blank=True)
-    Entry_Date = models.DateField(blank=True)
-    Position = models.IntegerField(blank=True)
-    Exit_Date = models.DateField(blank=True,null=True)
-    ReCap = models.FileField(upload_to=path_money_making_investing)
-    Youtube = models.CharField(max_length=50,blank=True)
-    Podcast = models.CharField(max_length=50,blank=True)
+
     Product = models.CharField(max_length=50,blank=True, default="none")
     Market = models.CharField(max_length=50,blank=True, default="none")
+    Entry_Date = models.DateField(blank=True)
     Ticker = models.CharField(max_length=50,blank=True, default="none")
+    Name = models.CharField(max_length=50,blank=True)
+    Exit_Date = models.DateField(blank=True,null=True)
+    Position = models.IntegerField(blank=True)
     Outcome = models.CharField(max_length=50,blank=True, default="none")
     Initial_Inv = models.CharField(max_length=50,blank=True, default="none")
     ROI = models.CharField(max_length=50,blank=True, default="none")
+    ReCap = models.FileField(upload_to=path_money_making_investing)
+    Youtube = models.CharField(max_length=50,blank=True)
+    Podcast = models.CharField(max_length=50,blank=True)
 
     def __str__(self):
         return self.Name

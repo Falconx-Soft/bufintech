@@ -102,94 +102,61 @@
 	const marketMoverNav = document.getElementById("marketMoverNav");
 	const prospectingNav = document.getElementById("prospectingNav");
 
+
+	function closeBody(){
+		console.log("close")
+		
+		if ( document.getElementsByTagName('body')[0].classList.contains("mm-wrapper_opened")){
+			document.getElementsByTagName('body')[0].classList.remove("mm-wrapper_opened")
+			document.getElementsByTagName('body')[0].classList.remove("mm-wrapper_blocking")
+			document.getElementsByTagName('body')[0].classList.remove("mm-wrapper_background")
+			document.getElementsByTagName('body')[0].classList.remove("mm-wrapper_opening")
+			document.getElementById("menu").classList.remove("mm-menu_opened")
+		}
+	}
+	
+
+	function sideBarFun(){
+		console.log("Clicked");
+
+		document.getElementById("menu").classList.add("mm-menu_opened")
+		document.getElementsByTagName('body')[0].classList.add("mm-wrapper_opened")
+		document.getElementsByTagName('body')[0].classList.add("mm-wrapper_blocking")
+		document.getElementsByTagName('body')[0].classList.add("mm-wrapper_background")
+		document.getElementsByTagName('body')[0].classList.add("mm-wrapper_opening")
+
+	}
+
 	algoTradeNav.addEventListener("click", function(){
 		document.getElementById("algoTrader").click();
 		document.getElementById("menu").classList.remove("mm-menu_opened");
-	});
+		$(".mm-wrapper__blocker.mm-slideout").click();
+		console.log($(".mm-wrapper__blocker.mm-slideout"))
+		closeBody();
+		});
 
 	tradeIdeasNav.addEventListener("click", function(){
-		document.getElementById("tradeIdeas").click();
-		document.getElementById("menu").classList.remove("mm-menu_opened");
-	});
+			document.getElementById("tradeIdeas").click();
+			document.getElementById("menu").classList.remove("mm-menu_opened");
+			$(".mm-wrapper__blocker.mm-slideout").click();
+			console.log($(".mm-wrapper__blocker.mm-slideout"))
+			closeBody();
+		});
 
 	marketMoverNav.addEventListener("click", function(){
-		document.getElementById("marketMover").click();
-		document.getElementById("menu").classList.remove("mm-menu_opened");
-	});
+			document.getElementById("marketMover").click();
+			document.getElementById("menu").classList.remove("mm-menu_opened");
+			console.log($(".mm-wrapper__blocker.mm-slideout"))
+			closeBody();
+		});
 
 	prospectingNav.addEventListener("click", function(){
-		document.getElementById("prospecting").click();
-		document.getElementById("menu").classList.remove("mm-menu_opened");
-		
-	});
-	//mm-wrapper mm-wrapper_opened mm-wrapper_blocking mm-wrapper_background mm-wrapper_opening //mm-wrapper
-	//mm-menu mm-menu_offcanvas mm-menu_opened //mm-menu mm-menu_offcanvas
-
-	// const hideNav = document.getElementById("hideNav");
-	// hideNav.addEventListener("click", function(){
-	// 	console.log("Clicked Open");
-	// })
-
-	const slideout = document.querySelectorAll(".mm-slideout");
-	console.log(slideout[1])
-	slideout[1].addEventListener("click", function(){
-		console.log("Clicked Close");
-	})
-
-	// function sideBarFun(){
-	// 	console.log("Clicked");
-	// 	if(document.getElementById("menu").classList.contains("mm-menu_opened")){
-	// 		document.getElementById("menu").classList.remove("mm-menu_opened")	
-	// 	}else{
-	// 		document.getElementById("menu").classList.add("mm-menu_opened")
-	// 	}
-
-	// 	if(document.getElementsByTagName('body')[0].classList.contains("mm-wrapper_opened")){
-	// 		document.getElementsByTagName('body')[0].classList.remove("mm-wrapper_opened")
-	// 		document.getElementsByTagName('body')[0].classList.remove("mm-wrapper_blocking")
-	// 		document.getElementsByTagName('body')[0].classList.remove("mm-wrapper_background")
-	// 		document.getElementsByTagName('body')[0].classList.remove("mm-wrapper_opening")
-	// 	}else{
-	// 		document.getElementsByTagName('body')[0].classList.add("mm-wrapper_opened")
-	// 		document.getElementsByTagName('body')[0].classList.add("mm-wrapper_blocking")
-	// 		document.getElementsByTagName('body')[0].classList.add("mm-wrapper_background")
-	// 		document.getElementsByTagName('body')[0].classList.add("mm-wrapper_opening")
-	// 	}
-
-	// }
-
-	// function closeBody(){
-	// 	console.log("close")
-	// 	$(".mm-wrapper__blocker.mm-slideout").on("click", function(e){
-	// 	console.log("close click")
-	// 	if ( document.getElementsByTagName('body')[0].classList.contains("mm-wrapper_opened")){
-	// 		document.getElementsByTagName('body')[0].classList.remove("mm-wrapper_opened")
-	// 		document.getElementsByTagName('body')[0].classList.remove("mm-wrapper_blocking")
-	// 		document.getElementsByTagName('body')[0].classList.remove("mm-wrapper_background")
-	// 		document.getElementsByTagName('body')[0].classList.remove("mm-wrapper_opening")
-	// 		document.getElementById("menu").classList.remove("mm-menu_opened")
-	// 	}
-	// 	})
-	// }
-	
-
-	// function sideBarFun(open){
-	// 		console.log("Clicked", open);
-
-	// 	document.getElementById("menu").classList.add("mm-menu_opened")
-	// 	document.getElementsByTagName('body')[0].classList.add("mm-wrapper_opened")
-	// 	document.getElementsByTagName('body')[0].classList.add("mm-wrapper_blocking")
-	// 	document.getElementsByTagName('body')[0].classList.add("mm-wrapper_background")
-	// 	document.getElementsByTagName('body')[0].classList.add("mm-wrapper_opening")
-
-	// 		console.log("body click")
-	// 		setTimeout(function(e){
-	// 		document.getElementsByClassName("mm-wrapper__blocker")[0].addEventListener("click", closeBody() )
-
-	// 		},30)
-	
-
-	// 	}
+			document.getElementById("prospecting").click();
+			document.getElementById("menu").classList.remove("mm-menu_opened");
+			console.log($(".mm-wrapper__blocker.mm-slideout"))
+			closeBody();
+			
+		});
 </script>
 
 {% endblock content %}

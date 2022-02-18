@@ -4,8 +4,11 @@
 <link type="text/css" rel="stylesheet" href="{% static 'sidebar/demo.css' %}" />
 <link type="text/css" rel="stylesheet" href="{% static 'sidebar/mmenu.css' %}" />
 <div class="header">
-	<a class="bars d-block d-md-none" id="hideNav" href="#menu"><span></span></a>
-
+	{% if analytic_apps %}
+		<a class="bars d-block d-md-none" id="hideNav" href="#menu" onClick="sideBarFun()"><span></span></a>
+	{% else %}
+		<a class="bars d-block d-md-none" id="hideNav" href="#menu"><span></span></a>
+	{% endif %}
 	<div class="" >
 		<span class="float-left d-none d-md-inline">
 			<a class="myBtn a-effect" href="{% url request.resolver_match.url_name Language='en'  %}" style="text-decoration: none;">EN</a>

@@ -30,12 +30,12 @@ class LearningForm(ModelForm):
 class Money_making_tradingForm(ModelForm):
     class Meta:
         model = money_making_trading
-        fields = '__all__'
+        fields = ['Product','Class','Trade_Date','Identifier','Outcome','Initial_Inv','ROI','ReCap','Youtube','Podcast']
 
 class Money_making_investingForm(ModelForm):
     class Meta:
         model = money_making_investing
-        fields = '__all__'
+        fields = ['Product','Market','Entry_Date','Ticker','Name','Exit_Date','Position','Outcome','Initial_Inv','ROI','ReCap','Youtube','Podcast']
 
 class List_of_pagesForm(ModelForm):
     class Meta:

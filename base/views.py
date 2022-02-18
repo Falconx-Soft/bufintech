@@ -123,7 +123,7 @@ def money_making(request, Language):
         display_url = False
     setCurrentLanguage(request, Language)
     nav_items = ListPage.objects.filter(Language=request.session['current_language']).order_by('Priority').values_list("Menu_Name","url").distinct() 
-    sub_items = ListPage.objects.filter(Language=request.session['current_language'], url="money_making").order_by('-id').values_list("Child_Name").distinct()
+    sub_items = ListPage.objects.filter(Language=request.session['current_language'], url="money-making").order_by('-id').values_list("Child_Name").distinct()
     print("############################")
     print(nav_items)
     hidden = [0,1]
@@ -231,10 +231,11 @@ def analytic_apps(request, Language):
                                                     'market_mover_data':market_mover_data,
                                                     'company_prospecting_data':company_prospecting_data,
                                                     'nav_items':list(dict.fromkeys(nav_items)),
-                                                    'Language': Language
+                                                    'Language': Language,
+                                                    'analytic_apps':True
                                                    })
     except:
-        return render (request,'base/analytics_apps.html',{ 'display_url':display_url, 'message':"No data found!",'nav_items':list(dict.fromkeys(nav_items)),'Language':Language})
+        return render (request,'base/analytics_apps.html',{ 'display_url':display_url,'analytic_apps':True, 'message':"No data found!",'nav_items':list(dict.fromkeys(nav_items)),'Language':Language})
 
 def social_networks(request,Language):
     setCurrentLanguage(request, Language)
