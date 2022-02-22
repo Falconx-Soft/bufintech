@@ -158,8 +158,17 @@ class SocialNetworkAdmin(ImportExportModelAdmin,admin.ModelAdmin):
     list_display = ('Sentence', 'language')
     resource_class = SocialNetworkResource
 
+class NewsLetterResource(resources.ModelResource):
+
+    class Meta:
+        model = NewsLetter
+
+class NewsLetterAdmin(ImportExportModelAdmin,admin.ModelAdmin):
+    list_display = ('Sentence', 'language')
+    resource_class = NewsLetterResource
+
 admin.site.register(table, TableAdmin)
-admin.site.register(NewsLetter)
+admin.site.register(NewsLetter,NewsLetterAdmin)
 admin.site.register(market,MarketResource)
 admin.site.register(equity, EquityAdmin)
 admin.site.register(learning,LearningAdmin)

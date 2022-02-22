@@ -81,7 +81,7 @@ class analytical_apps_market_mover(models.Model):
         verbose_name = "Analytical Apps Market Mover"
         verbose_name_plural = "Analytical Apps Market Mover"
 
-      
+    
 
 def market_path(instance, filename):
     return '{0}/market-outlook/{1}/{2}'.format(instance.Language, instance.Date.strftime('%Y%m%d'), filename)
@@ -159,12 +159,16 @@ class money_making_trading(models.Model):
     Class = models.CharField(max_length=50,blank=True, default="none")
     Trade_Date = models.DateField(blank=True)
     Identifier = models.CharField(max_length=50,blank=True, default="none")
-    Outcome = models.CharField(max_length=50,blank=True)
-    Initial_Inv = models.CharField(max_length=50,blank=True, default="none")
+    Outcome = models.IntegerField(max_length=50,blank=True)
+    Initial_Inv = models.IntegerField(max_length=50,blank=True)
     ROI = models.CharField(max_length=50,blank=True, default="none")
     ReCap = models.FileField(upload_to=path_money_making_trading)
     Youtube = models.CharField(max_length=50,blank=True)
     Podcast = models.CharField(max_length=50,blank=True, default="none")
+
+    def save(self):
+        self.ROI = str(float(self.ROI)*100)
+        super().save()
     
     def __str__(self):
         return self.Product
@@ -186,12 +190,16 @@ class money_making_investing(models.Model):
     Name = models.CharField(max_length=50,blank=True)
     Exit_Date = models.DateField(blank=True,null=True)
     Position = models.IntegerField(blank=True)
-    Outcome = models.CharField(max_length=50,blank=True, default="none")
-    Initial_Inv = models.CharField(max_length=50,blank=True, default="none")
+    Outcome = models.IntegerField(max_length=50,blank=True)
+    Initial_Inv = models.IntegerField(max_length=50,blank=True)
     ROI = models.CharField(max_length=50,blank=True, default="none")
     ReCap = models.FileField(upload_to=path_money_making_investing)
     Youtube = models.CharField(max_length=50,blank=True)
     Podcast = models.CharField(max_length=50,blank=True)
+
+    def save(self):
+        self.ROI = str(float(self.ROI)*100)
+        super().save()
 
     def __str__(self):
         return self.Name

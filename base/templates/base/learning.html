@@ -70,11 +70,23 @@
                                         <a class="blurLinks" href="{% url 'payment' %}" onmouseover="hov(this)" onmouseout="hovOut(this)">https://www.itsatesingurl/test1/com/</a>
                                     </td>
                                 {% else %}
-                                    <td> <a  href="{{value}}">{{d.fields.Research}}</a></td>
+                                    <td> <a  href="{{value}}">{{value}}</a></td>
                                 {% endif %}
                             {% elif field == 'Date' %}
                                 <td> {{value|date:"m/d/Y" }} </td>
                             {% elif field == 'Language' %}
+                            {% elif field == 'Youtube' %}
+                                {% if value %}
+                                    <td> <a  href="{{value}}">{{value}}</a></td>
+                                {% else %}
+                                    <td>None</td>
+                                {% endif %}	
+                            {% elif field == 'Podcast' %}
+                                {% if value %}
+                                    <td>{{value}}</td>
+                                {% else %}
+                                    <td>None</td>
+                                {% endif %}	
                             {% else %}
                                 <td> {{value }} </td>								
                             {%endif%}
