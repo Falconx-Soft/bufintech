@@ -55,25 +55,23 @@
 			<span>Items</span>
 			<ul>
 				{%for item in nav_items%}
-				{% if item.1|current_url:request.path  %}
-				{% if item.0 == "Analytical Apps" %}
-				<!-- <li><a href="{% url item.1 Language=Language %}" style="color: green;">{{item.0}}</a></li> -->
-					<li>
-						<span>Analytical Apps</span>
-						<ul>
-							<li><a style="cursor: pointer;" id="algoTradeNav">Algo Trader</a></li>
-							<li><a style="cursor: pointer;" id="tradeIdeasNav">Trade Ideas</a></li>
-							<li><a style="cursor: pointer;" id="marketMoverNav">Market Mover</a></li>
-							<li><a style="cursor: pointer;" id="prospectingNav">Prospecting</a></li>
-						</ul>
-					</li>
-				{% else %}
-				<li><a href="{% url item.1 Language=Language %}" style="color: #1190cb;">{{item.0}}</a></li>
-				{% endif %}
-				{% else %}
-				<li><a href="{% url item.1 Language=Language %}">{{item.0}}</a></li>
-		
-				{% endif %}
+					{% if item.1 == "analytical-apps" %}
+						<li>
+							<span>Analytical Apps</span>
+							<ul>
+								<li><a href="{% url 'algo-trader' Language=Language %}" style="cursor: pointer;">Algo Trader</a></li>
+								<li><a href="{% url 'trade-ideas' Language=Language %}" style="cursor: pointer;">Trade Ideas</a></li>
+								<li><a href="{% url 'market-mover' Language=Language %}" style="cursor: pointer;">Market Mover</a></li>
+								<li><a href="{% url 'prospecting' Language=Language %}" style="cursor: pointer;">Prospecting</a></li>
+							</ul>
+						</li>
+					{% else %}
+						{% if item.1|current_url:request.path  %}
+							<li><a href="{% url item.1 Language=Language %}" style="color: #1190cb;">{{item.0}}</a></li>
+						{% else %}
+							<li><a href="{% url item.1 Language=Language %}">{{item.0}}</a></li>
+						{% endif %}
+					{% endif %}
 			  
 				{% endfor %}
 			</ul>
@@ -90,25 +88,23 @@
 			<span>Items</span>
 			<ul class="ul-flex">
 				{%for item in nav_items%}
-				{% if item.1|current_url:request.path  %}
-				{% if item.0 == "Analytical Apps" %}
-				<!-- <li><a href="{% url item.1 Language=Language %}" style="color: green;">{{item.0}}</a></li> -->
-					<li>
-						<span>Analytical Apps</span>
-						<ul class="ul-flex">
-							<li><a style="cursor: pointer;" id="algoTradeNav">Algo Trader</a></li>
-							<li><a style="cursor: pointer;" id="tradeIdeasNav">Trade Ideas</a></li>
-							<li><a style="cursor: pointer;" id="marketMoverNav">Market Mover</a></li>
-							<li><a style="cursor: pointer;" id="prospectingNav">Prospecting</a></li>
-						</ul>
-					</li>
-				{% else %}
-				<li><a href="{% url item.1 Language=Language %}" style="color: #1190cb;">{{item.0}}</a></li>
-				{% endif %}
-				{% else %}
-				<li><a href="{% url item.1 Language=Language %}">{{item.0}}</a></li>
-		
-				{% endif %}
+					{% if item.1 == "analytical-apps" %}
+						<li>
+							<span>Analytical Apps</span>
+							<ul>
+								<li><a href="{% url 'algo-trader' Language=Language %}" style="cursor: pointer;">Algo Trader</a></li>
+								<li><a href="{% url 'trade-ideas' Language=Language %}" style="cursor: pointer;">Trade Ideas</a></li>
+								<li><a href="{% url 'market-mover' Language=Language %}" style="cursor: pointer;">Market Mover</a></li>
+								<li><a href="{% url 'prospecting' Language=Language %}" style="cursor: pointer;">Prospecting</a></li>
+							</ul>
+						</li>
+					{% else %}
+						{% if item.1|current_url:request.path  %}
+							<li><a href="{% url item.1 Language=Language %}" style="color: #1190cb;">{{item.0}}</a></li>
+						{% else %}
+							<li><a href="{% url item.1 Language=Language %}">{{item.0}}</a></li>
+						{% endif %}
+					{% endif %}
 			  
 				{% endfor %}
 			</ul>

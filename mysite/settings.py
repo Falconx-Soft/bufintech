@@ -110,9 +110,7 @@ DATABASES = {
         'HOST': 'ls-84083da534b971c4586ee4498710d4f92844cd0b.cqjxvwosu26o.us-east-1.rds.amazonaws.com',
 
         'PORT': '5432',
-
     }
-
 }
 
 

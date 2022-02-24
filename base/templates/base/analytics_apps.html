@@ -5,23 +5,149 @@
 <div class="container" id="analytics_container">
 	<p id="pageName" style="text-align:center">Analytics App</p>
 	<div class="width">
+		{% if name %}
 		<ul class="nav nav-tabs" id="analytics_tabs">
 		  <li class="nav-item">
+			{% if name == "AlgoTrader" %}
+			<a class="nav-link active" id="algoTrader" data-toggle="tab"  href="#systematic_trading">Algo Trader</a>
+			{% else %}
 			<a class="nav-link" id="algoTrader" data-toggle="tab"  href="#systematic_trading">Algo Trader</a>
+			{% endif %}
 		  </li>
 		  <li class="nav-item">
+			{% if name == "TradeIdeas" %}
+			<a class="nav-link active" id="tradeIdeas" data-toggle="tab"  href="#stock_picker">Trade Ideas</a>
+			{% else %}
 			<a class="nav-link" id="tradeIdeas" data-toggle="tab"  href="#stock_picker">Trade Ideas</a>
+			{% endif %}
 		  </li>
 		  <li class="nav-item">
+			{% if name == "MarketMover" %}
+			<a class="nav-link active" id="marketMover" data-toggle="tab"  href="#market_mover">Market Mover</a>
+			{% else %}
 			<a class="nav-link" id="marketMover" data-toggle="tab"  href="#market_mover">Market Mover</a>
+			{% endif %}
 		  </li>		  
 		  <li class="nav-item">
+			{% if name == "Prospecting" %}
+			<a class="nav-link active" id="prospecting" data-toggle="tab"  href="#company_prospecting">Prospecting</a>
+			{% else %}
 			<a class="nav-link" id="prospecting" data-toggle="tab"  href="#company_prospecting">Prospecting</a>
+			{% endif %}
 		  </li>
 		</ul>
+		{% else %}
+			<ul class="nav nav-tabs" id="analytics_tabs">
+				<li class="nav-item">
+				<a class="nav-link" id="algoTrader" data-toggle="tab"  href="#systematic_trading">Algo Trader</a>
+				</li>
+				<li class="nav-item">
+				<a class="nav-link" id="tradeIdeas" data-toggle="tab"  href="#stock_picker">Trade Ideas</a>
+				</li>
+				<li class="nav-item">
+				<a class="nav-link" id="marketMover" data-toggle="tab"  href="#market_mover">Market Mover</a>
+				</li>		  
+				<li class="nav-item">
+				<a class="nav-link" id="prospecting" data-toggle="tab"  href="#company_prospecting">Prospecting</a>
+				</li>
+		  </ul>
+		{% endif %}
 		<div class="tab-content" align="center">
+
+			{% if name %}
+			{% if name == "AlgoTrader" %}
+				<div id="systematic_trading" class="tab-pane fade in active show">
+			{% else %}
+				<div id="systematic_trading" class="tab-pane fade">
+			{% endif %}
+					<br />
+					<table class="table table-bordered w-50">		
+						<tbody class="justify-content-center">     				
+								{% for instance in systematic_trading_data %}
+									<tr style="background-color:rgba(0,0,0,.05);">
+									{% for field, value in instance.fields.items %}
+										{% if field != 'language'  %}
+											<td>{{ value|linebreaks }}</td>
+										{% else %}
+											<td style="display:none">{{value}}</td>
+										{% endif %}
+									{% endfor %}
+									</tr>
+								{% endfor %}
+						</tbody>
+					</table>
+				</div>
+
+			{% if name == "TradeIdeas" %}
+				<div id="stock_picker" class="tab-pane fade in active show">
+			{% else %}
+				<div id="stock_picker" class="tab-pane fade">
+			{% endif %}
+				<br />
+				<table class="table table-bordered w-50">		
+					<tbody class="justify-content-center">     				
+							{% for instance in stock_picker_data %}
+								<tr style="background-color:rgba(0,0,0,.05);">
+								{% for field, value in instance.fields.items %}
+									{% if field != 'language'  %}
+										<td>{{ value|linebreaks }}</td>
+									{% else %}
+										<td style="display:none">{{value}}</td>
+									{% endif %}
+								{% endfor %}
+								</tr>
+							{% endfor %}
+					</tbody>
+				</table>			
+			</div>
+
+			{% if name == "MarketMover" %}
+			<div id="market_mover" class="tab-pane fade in active show">
+			{% else %}
+			<div id="market_mover" class="tab-pane fade">
+			{% endif %}				
+				<br />
+				<table class="table table-bordered w-50">		
+					<tbody class="justify-content-center">     				
+							{% for instance in market_mover_data %}
+								<tr style="background-color:rgba(0,0,0,.05);">
+								{% for field, value in instance.fields.items %}
+									{% if field != 'language'  %}
+										<td>{{ value|linebreaks }}</td>
+									{% else %}
+										<td style="display:none">{{value}}</td>
+									{% endif %}
+								{% endfor %}
+								</tr>
+							{% endfor %}
+					</tbody>
+				</table>			
+			</div>
+			{% if name == "Prospecting" %}
+			  <div id="company_prospecting" class="tab-pane fade in active show">
+			{% else %}
+				<div id="company_prospecting" class="tab-pane fade">
+			{% endif %}
+				<br />
+					<table class="table table-bordered w-50">		
+						<tbody class="justify-content-center">     				
+								{% for instance in company_prospecting_data %}
+									<tr style="background-color:rgba(0,0,0,.05);">
+									{% for field, value in instance.fields.items %}
+										{% if field != 'language'  %}
+											<td>{{ value|linebreaks }}</td>
+										{% else %}
+											<td style="display:none">{{value}}</td>
+										{% endif %}
+									{% endfor %}
+									</tr>
+								{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			{% else %}
 			<div id="systematic_trading" class="tab-pane fade in">
-			<br />
+				<br />
 				<table class="table table-bordered w-50">		
 					<tbody class="justify-content-center">     				
 							{% for instance in systematic_trading_data %}
@@ -38,8 +164,9 @@
 					</tbody>
 				</table>
 			</div>
+
 			<div id="stock_picker" class="tab-pane fade">			
-			<br />
+				<br />
 				<table class="table table-bordered w-50">		
 					<tbody class="justify-content-center">     				
 							{% for instance in stock_picker_data %}
@@ -57,7 +184,7 @@
 				</table>			
 			</div>
 			<div id="market_mover" class="tab-pane fade">			
-			<br />
+				<br />
 				<table class="table table-bordered w-50">		
 					<tbody class="justify-content-center">     				
 							{% for instance in market_mover_data %}
@@ -91,72 +218,12 @@
 								{% endfor %}
 						</tbody>
 					</table>
-				</div>			
+				</div>
+			{% endif %}
 		</div>
     </div>
 </div>
 
-<script>
-	const algoTradeNav = document.getElementById("algoTradeNav");
-	const tradeIdeasNav = document.getElementById("tradeIdeasNav");
-	const marketMoverNav = document.getElementById("marketMoverNav");
-	const prospectingNav = document.getElementById("prospectingNav");
 
-
-	function closeBody(){
-		console.log("close")
-		
-		if ( document.getElementsByTagName('body')[0].classList.contains("mm-wrapper_opened")){
-			document.getElementsByTagName('body')[0].classList.remove("mm-wrapper_opened")
-			document.getElementsByTagName('body')[0].classList.remove("mm-wrapper_blocking")
-			document.getElementsByTagName('body')[0].classList.remove("mm-wrapper_background")
-			document.getElementsByTagName('body')[0].classList.remove("mm-wrapper_opening")
-			document.getElementById("menu").classList.remove("mm-menu_opened")
-		}
-	}
-	
-
-	function sideBarFun(){
-		console.log("Clicked");
-
-		document.getElementById("menu").classList.add("mm-menu_opened")
-		document.getElementsByTagName('body')[0].classList.add("mm-wrapper_opened")
-		document.getElementsByTagName('body')[0].classList.add("mm-wrapper_blocking")
-		document.getElementsByTagName('body')[0].classList.add("mm-wrapper_background")
-		document.getElementsByTagName('body')[0].classList.add("mm-wrapper_opening")
-
-	}
-
-	algoTradeNav.addEventListener("click", function(){
-		document.getElementById("algoTrader").click();
-		document.getElementById("menu").classList.remove("mm-menu_opened");
-		$(".mm-wrapper__blocker.mm-slideout").click();
-		console.log($(".mm-wrapper__blocker.mm-slideout"))
-		closeBody();
-		});
-
-	tradeIdeasNav.addEventListener("click", function(){
-			document.getElementById("tradeIdeas").click();
-			document.getElementById("menu").classList.remove("mm-menu_opened");
-			$(".mm-wrapper__blocker.mm-slideout").click();
-			console.log($(".mm-wrapper__blocker.mm-slideout"))
-			closeBody();
-		});
-
-	marketMoverNav.addEventListener("click", function(){
-			document.getElementById("marketMover").click();
-			document.getElementById("menu").classList.remove("mm-menu_opened");
-			console.log($(".mm-wrapper__blocker.mm-slideout"))
-			closeBody();
-		});
-
-	prospectingNav.addEventListener("click", function(){
-			document.getElementById("prospecting").click();
-			document.getElementById("menu").classList.remove("mm-menu_opened");
-			console.log($(".mm-wrapper__blocker.mm-slideout"))
-			closeBody();
-			
-		});
-</script>
 
 {% endblock content %}
