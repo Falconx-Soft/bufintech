@@ -109,18 +109,18 @@ def path_equity(instance, filename):
 class equity(models.Model):
     Language = models.CharField(max_length=50)
 
-    Product = models.CharField(max_length=50,blank=True,default="none")
+    Product = models.CharField(max_length=100,blank=True,default="none")
     EQUITY_TYPES = [
         ('public', 'Public'),
         ('private', 'Private')
     ]
-    Market = models.CharField(max_length=10, choices=EQUITY_TYPES, default='public')
+    Market = models.CharField(max_length=100, choices=EQUITY_TYPES, default='public')
     Date = models.DateField()
-    Ticker = models.CharField(max_length=50,blank=True)
-    Description = models.CharField(max_length=50,blank=True,default="none")
+    Ticker = models.CharField(max_length=100,blank=True)
+    Description = models.CharField(max_length=100,blank=True,default="none")
     Research = models.FileField(upload_to=path_equity )
-    Youtube = models.CharField(max_length=50,blank=True)
-    Podcast = models.CharField(max_length=50,blank=True)
+    Youtube = models.CharField(max_length=100,blank=True)
+    Podcast = models.CharField(max_length=100,blank=True)
     # chk_field_name = models.FilePathField(path ="C:/Users/SHAN/Desktop/Working",null=True)
 
     def __str__(self):

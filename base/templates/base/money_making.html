@@ -77,10 +77,16 @@
 											{% endif %}	
 										{% elif field == 'Podcast' %}
 											{% if value %}
-												<td>{{value}}</td>
+												<td><a href="{{value}}">{{value}}</a></td>
 											{% else %}
 												<td>None</td>
 											{% endif %}	
+										{% elif field == 'ROI' %}
+											{% if value and value != 'none' %}
+												<td>{{value}}%</td>
+											{% else %}
+												<td>None</td>
+											{%endif%}	
 										{% else %}
 											<td> {{value }} </td>								
 										{%endif%}
@@ -155,10 +161,16 @@
 											{% endif %}	
 										{% elif field == 'Podcast' %}
 											{% if value %}
-												<td>{{value}}</td>
+												<td><a href="{{value}}">{{value}}</a></td>
 											{% else %}
 												<td>None</td>
-											{% endif %}	
+											{% endif %}
+										{% elif field == 'ROI' %}
+											{% if value and value != 'none' %}
+												<td>{{value}}%</td>
+											{% else %}
+												<td>None</td>
+											{%endif%}	
 										{% else %}
 											<td> {{value }} </td>								
 										{%endif%}
