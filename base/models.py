@@ -85,7 +85,7 @@ class analytical_apps_market_mover(models.Model):
 
 def market_path(instance, filename):
     return '{0}/market-outlook/{1}/{2}'.format(instance.Language, instance.Date.strftime('%Y%m%d'), filename)
-
+DATE_INPUT_FORMATS = ['%d-%m-%Y']
 class market(models.Model):
     Product = models.CharField(max_length=50,blank=True)
     Country = models.CharField(max_length=50,blank=True,null=True)

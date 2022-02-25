@@ -180,3 +180,5 @@ EMAIL_HOST_USER = 'kabocha608@gmail.com'
 EMAIL_HOST_PASSWORD = 'pqzeytgaklzhxzzq'
 
 CSRF_TRUSTED_ORIGINS = ['https://bufintech.com','https://www.bufintech.com']
+
+DATE_FORMAT = '%d-%m-%y'
