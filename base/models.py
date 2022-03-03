@@ -87,14 +87,14 @@ def market_path(instance, filename):
     return '{0}/market-outlook/{1}/{2}'.format(instance.Language, instance.Date.strftime('%Y%m%d'), filename)
 DATE_INPUT_FORMATS = ['%d-%m-%Y']
 class market(models.Model):
-    Product = models.CharField(max_length=50,blank=True)
-    Country = models.CharField(max_length=50,blank=True,null=True)
+    Product = models.CharField(max_length=500,blank=True)
+    Country = models.CharField(max_length=500,blank=True,null=True)
     Date = models.DateField()
     Description = models.CharField(max_length=500,blank=True)
     Research = models.FileField(upload_to=market_path)
-    YouTube = models.CharField(max_length=50,blank=True)
-    Podcast = models.CharField(max_length=50,blank=True)
-    Language = models.CharField(max_length=50)
+    YouTube = models.CharField(max_length=500,blank=True)
+    Podcast = models.CharField(max_length=500,blank=True)
+    Language = models.CharField(max_length=500)
 
     def __str__(self):
         return self.Product
@@ -192,13 +192,14 @@ class money_making_investing(models.Model):
     Position = models.IntegerField(blank=True)
     Outcome = models.IntegerField(max_length=50,blank=True)
     Initial_Inv = models.IntegerField(max_length=50,blank=True)
-    ROI = models.CharField(max_length=50,blank=True, default="none")
+    ROI = models.CharField(max_length=50, blank=True, null=True)
     ReCap = models.FileField(upload_to=path_money_making_investing)
     Youtube = models.CharField(max_length=50,blank=True)
     Podcast = models.CharField(max_length=50,blank=True)
 
     def save(self):
-        self.ROI = str(float(self.ROI)*100)
+        if self.ROI != None:
+            self.ROI = str(float(self.ROI)*100)
         super().save()
 
     def __str__(self):
