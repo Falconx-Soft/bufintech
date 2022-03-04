@@ -108,20 +108,20 @@ def path_equity(instance, filename):
     return '{0}/equity-research/{1}/{2}/{3}'.format(instance.Language, instance.Market, instance.Ticker.lower(), filename)
 
 class equity(models.Model):
-    Language = models.CharField(max_length=50)
+    Language = models.CharField(max_length=100)
 
-    Product = models.CharField(max_length=100,blank=True,default="none")
+    Product = models.CharField(max_length=1100,blank=True,default="none")
     EQUITY_TYPES = [
         ('public', 'Public'),
         ('private', 'Private')
     ]
-    Market = models.CharField(max_length=100, choices=EQUITY_TYPES, default='public')
+    Market = models.CharField(max_length=1100, choices=EQUITY_TYPES, default='public')
     Date = models.DateField()
-    Ticker = models.CharField(max_length=100,blank=True)
-    Description = models.CharField(max_length=100,blank=True,default="none")
+    Ticker = models.CharField(max_length=1100,blank=True)
+    Description = models.CharField(max_length=5100,blank=True,default="none")
     Research = models.FileField(upload_to=path_equity )
-    Youtube = models.CharField(max_length=100,blank=True)
-    Podcast = models.CharField(max_length=100,blank=True)
+    Youtube = models.CharField(max_length=1100,blank=True)
+    Podcast = models.CharField(max_length=1100,blank=True)
     # chk_field_name = models.FilePathField(path ="C:/Users/SHAN/Desktop/Working",null=True)
 
     def __str__(self):
@@ -190,16 +190,16 @@ class money_making_investing(models.Model):
     Name = models.CharField(max_length=50,blank=True)
     Exit_Date = models.DateField(blank=True,null=True)
     Position = models.IntegerField(blank=True)
-    Outcome = models.IntegerField(max_length=50,blank=True)
-    Initial_Inv = models.IntegerField(max_length=50,blank=True)
-    ROI = models.CharField(max_length=50, blank=True, null=True)
+    Outcome = models.IntegerField(blank=True)
+    Initial_Inv = models.IntegerField(blank=True)
+    ROI = models.FloatField(blank=True)
     ReCap = models.FileField(upload_to=path_money_making_investing)
     Youtube = models.CharField(max_length=50,blank=True)
     Podcast = models.CharField(max_length=50,blank=True)
 
     def save(self):
         if self.ROI != None:
-            self.ROI = str(float(self.ROI)*100)
+            self.ROI = float("{:.2f}".format(float(self.ROI)*100))
         super().save()
 
     def __str__(self):
