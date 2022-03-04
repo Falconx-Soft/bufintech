@@ -6,29 +6,24 @@
 	<p id="pageName" style="text-align:center">Equity Research</p>
 	<div class="width">
 		<div class="d-block d-md-flex">
-			<input style="height: 25px; font-size: 10px; padding: 4px;" type="text" placeholder="Search by Date ..." id="epublic_search_date" class="form-control my-2 my-md-0 col-12 col-md-2 datepicker mr-2">
+			
+			<select style="height: 25px; font-size: 10px; padding: 4px;" class="form-control col-12 col-md-2 mt-2 mt-md-0 mr-2" id="epublic_search_date" title="Search By Date">
+				<option value="">Search by Date</option>
+			</select>
 
 			<select style="height: 25px; font-size: 10px; padding: 4px;" class="form-control col-12 col-md-2 mt-2 mt-md-0 mr-2" id="epublic_search_month" title="Search By Month">
 				<option value="">Search by Month</option>
-				<option value="Jan">Jan</option>
-				<option value="Feb">Feb</option>
-				<option value="Mar">March</option>
-				<option value="Apr">April</option>
-				<option value="May">May</option>
-				<option value="June">June</option>
-				<option value="Jul">July</option>
-				<option value="Aug">Aug</option>
-				<option value="Sept">Sept</option>
-				<option value="Oct">Oct</option>
-				<option value="Nov">Nov</option>
-				<option value="Dec">Dec</option>
 			</select>
-			<input style="height: 25px; font-size: 10px; padding: 4px;" type="number" placeholder="Search by Year ..." id="epublic_search_year" class="form-control col-12 col-md-2 mt-2 mt-md-0 mr-2">
+			<select style="height: 25px; font-size: 10px; padding: 4px;" class="form-control col-12 col-md-2 mt-2 mt-md-0 mr-2" id="epublic_search_year" title="Search By Year">
+				<option value="">Search by Year</option>
+			</select>
+
 			<select style="height: 25px; font-size: 10px; padding: 4px;" class="form-control col-12 col-md-2 mt-2 mt-md-0 mr-2" id="epublic_search_market" title="Search By Market">
 				<option value="">Search by Market</option>
 				<option value="public">public</option>
 				<option value="private">private</option>
 			</select>
+
 			<select style="height: 25px; font-size: 10px; padding: 4px;" class="form-control col-12 col-md-2 mt-2 mt-md-0 mr-2" id="epublic_search_ticker" title="Search By Ticker">
 				<option value="">Search by Ticker</option>
 			{% for ticker in tickers %}
@@ -65,8 +60,6 @@
 									{% else %}
 										<td> <a  href="{{value}}">{{value}}</a></td>
 									{% endif %}
-								{% elif field == 'Date' %}
-									<td> {{value|date:"m/d/Y" }} </td>
 									{% elif field == 'Youtube' %}
 									{% if value %}
 										<td> <a  href="{{value}}">{{value}}</a></td>

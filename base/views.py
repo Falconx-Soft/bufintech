@@ -162,20 +162,9 @@ def learn(request, Language):
     obj = learning.objects.filter(Language=request.session['current_language'])
     data = serializers.serialize("python",learning.objects.filter(Language=request.session['current_language']) )
     categories = obj.values("Topic").distinct()
-    print("******************************")
-    print(categories)
-    return render (request,'base/learning.html',{'display_url':display_url, 'obj':obj,'table_form':LearningForm(),'data':data, 'hidden':hidden,"nav_items":list(dict.fromkeys(nav_items)),'Language':Language, 'categories':categories})   
+    classes = obj.values("Class").distinct()
 
-    # try:
-    #     obj = learning.objects.filter(Language=request.session['current_language'])
-    #     data = serializers.serialize("python",learning.objects.filter(Language=request.session['current_language']) )
-    #     categories = obj.values("via").distinct()
-    #     print("******************************")
-    #     print(obj)
-    #     print(data)
-    #     return render (request,'base/learning.html',{'display_url':display_url, 'obj':obj,'table_form':LearningForm(),'data':data, 'hidden':hidden,"nav_items":nav_items,'Language':Language, 'categories':categories})
-    # except Exception as e:
-    #     return render (request,'base/learning.html',{'display_url':display_url, 'message':"No data found!","nav_items":nav_items,'Language':Language})
+    return render (request,'base/learning.html',{'display_url':display_url, 'obj':obj,'table_form':LearningForm(),'data':data, 'hidden':hidden,"nav_items":list(dict.fromkeys(nav_items)),'Language':Language, 'categories':categories, 'classes':classes})
 
 def list_of_pages(request, Language):
     display_url = True

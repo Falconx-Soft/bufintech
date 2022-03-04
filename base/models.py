@@ -35,6 +35,12 @@ class aboutus(models.Model):
     class Meta:
         verbose_name = "About Us"
         verbose_name_plural = "About Us"
+    
+    def save(self):
+        self.Sentence = str(self.Sentence.encode(encoding='ISO-8859-1'))
+        self.Sentence2 = str(self.Sentence2.encode(encoding='ISO-8859-1'))
+        self.language = str(self.language.encode(encoding='ISO-8859-1'))
+        super().save()
 
 class analytical_apps_Algo_trader(models.Model):
     Sentence = models.TextField(blank=True)
@@ -85,7 +91,7 @@ class analytical_apps_market_mover(models.Model):
 
 def market_path(instance, filename):
     return '{0}/market-outlook/{1}/{2}'.format(instance.Language, instance.Date.strftime('%Y%m%d'), filename)
-DATE_INPUT_FORMATS = ['%d-%m-%Y']
+# DATE_INPUT_FORMATS = ['%d-%m-%Y']
 class market(models.Model):
     Product = models.CharField(max_length=500,blank=True)
     Country = models.CharField(max_length=500,blank=True,null=True)
@@ -182,7 +188,6 @@ def path_money_making_investing(instance, filename):
 
 class money_making_investing(models.Model):
     Language = models.CharField(max_length=50,default="en")
-
     Product = models.CharField(max_length=50,blank=True, default="none")
     Market = models.CharField(max_length=50,blank=True, default="none")
     Entry_Date = models.DateField(blank=True)
