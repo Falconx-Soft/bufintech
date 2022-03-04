@@ -36,10 +36,6 @@ class aboutus(models.Model):
         verbose_name = "About Us"
         verbose_name_plural = "About Us"
     
-    def save(self):
-        self.Sentence = str(self.Sentence.encode(encoding='ISO-8859-1'))
-        self.Sentence2 = str(self.Sentence2.encode(encoding='ISO-8859-1'))
-        super().save()
 
 class analytical_apps_Algo_trader(models.Model):
     Sentence = models.TextField(blank=True)
