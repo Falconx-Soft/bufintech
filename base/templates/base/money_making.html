@@ -79,7 +79,7 @@
 											{% endif %}	
 										{% elif field == 'ROI' %}
 											{% if value and value != 'none' %}
-												<td>{{value}}%</td>
+												<td>{{value|floatformat:2}}%</td>
 											{% else %}
 												<td>None</td>
 											{%endif%}	
@@ -160,7 +160,7 @@
 											{% endif %}
 										{% elif field == 'ROI' %}
 											{% if value and value != 'none' %}
-												<td>{{value}}%</td>
+												<td>{{value|floatformat:2}}%</td>
 											{% else %}
 												<td>None</td>
 											{%endif%}	

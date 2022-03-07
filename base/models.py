@@ -163,12 +163,12 @@ class money_making_trading(models.Model):
     Outcome = models.IntegerField(max_length=50,blank=True)
     Initial_Inv = models.IntegerField(max_length=50,blank=True)
     ROI = models.CharField(max_length=50,blank=True, default="none")
-    ReCap = models.FileField(upload_to=path_money_making_trading)
+    ReCap = models.URLField()
     Youtube = models.CharField(max_length=50,blank=True)
     Podcast = models.CharField(max_length=50,blank=True, default="none")
 
     def save(self):
-        self.ROI = str(float(self.ROI)*100)
+        self.ROI = float(round(format(float(self.ROI)*100), 2))
         super().save()
     
     def __str__(self):
@@ -193,13 +193,13 @@ class money_making_investing(models.Model):
     Outcome = models.IntegerField(blank=True)
     Initial_Inv = models.IntegerField(blank=True)
     ROI = models.FloatField(blank=True)
-    ReCap = models.FileField(upload_to=path_money_making_investing)
+    ReCap = models.URLField()
     Youtube = models.CharField(max_length=50,blank=True)
     Podcast = models.CharField(max_length=50,blank=True)
 
     def save(self):
         if self.ROI != None:
-            self.ROI = float("{:.2f}".format(float(self.ROI)*100))
+            self.ROI = float(round(format(float(self.ROI)*100), 2))
         super().save()
 
     def __str__(self):
