@@ -227,7 +227,7 @@ class ListPage(models.Model):
 
 class SocialMedia(models.Model):
     link = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='SocialMedia/')
+    image = models.URLField()
     name = models.CharField(max_length=100)
     height = models.IntegerField(default=70)
     width = models.IntegerField(default=70)

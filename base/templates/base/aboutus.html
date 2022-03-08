@@ -22,7 +22,7 @@
 	<ul>
 	{% for social in SocialMedia %}
 	<a href="{{social.link}}" style="padding-right:10px;">
-		<image src="{{social.image.url}}" width={{social.width}} height={{social.height}} style="margin-top:5px; width: 50px; height:50px" alt="{{social.name}}"/>
+		<image src="{{social.image}}" width={{social.width}} height={{social.height}} style="margin-top:5px; width: 50px; height:50px" alt="{{social.name}}"/>
 	</a>
 	{% endfor %}
 </div>
