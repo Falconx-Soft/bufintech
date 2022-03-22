@@ -93,18 +93,18 @@ def Sign_Up(request):
 	return render(request,'User/SignUp.html', context)
 
 def verificationMain(email, auth_token,request):
-    subject = 'Please verify your account'
-    message = f'Hi please click on the link to verify your account {request.build_absolute_uri()}verify/{auth_token}'
-    email_from = settings.EMAIL_HOST_USER
-    recipient_list = [email]
-    send_mail(subject,message,email_from, recipient_list)
+	subject = 'Please verify your account'
+	message = f'Hi please click on the link to verify your account {request.build_absolute_uri()}verify/{auth_token}'
+	email_from = settings.EMAIL_HOST_USER
+	recipient_list = [email]
+	send_mail(subject,message,email_from, recipient_list)
 
 def verify(request, auth_token):
-    accountsCheck_obj = accountsCheck.objects.get(auth_token = auth_token)
-    if accountsCheck:
-        accountsCheck_obj.is_verified = True
-        accountsCheck_obj.save()
-        return redirect('login')
+	accountsCheck_obj = accountsCheck.objects.get(auth_token = auth_token)
+	if accountsCheck:
+		accountsCheck_obj.is_verified = True
+		accountsCheck_obj.save()
+		return redirect('login')
 
 def logoutUser(request):
 	logout(request)
@@ -157,6 +157,8 @@ def Profile(request):
 @login_required(login_url='login')
 def Payment(request):
 	total_amount = 10
+	monthlyPayment = paymentMethod.objects.get(payment_type="monthly")
+	yearlyPayment = paymentMethod.objects.get(payment_type="yearly")
 	customer = ''
 	try:
 
@@ -185,34 +187,42 @@ def Payment(request):
 	if(isinstance(customer, Api_key) is True):
 		print('instance exists')
 		return redirect('redirect_index')
-	context = {}
-	return render(request,'User/payment.html', context=context)
+	context = {
+		'monthlyPayment':monthlyPayment,
+		'yearlyPayment':yearlyPayment
+	}
+	return render(request,'User/payment.html', context)
 
 
 @csrf_exempt
 def completePayment(request):
 	print('Request\n', request.GET)
-	paymentMethod = request.POST.get('payment_method')
+	paymentMethodTmp = request.POST.get('payment_method')
 	monthly = request.POST.get('monthly')
 	yearly = request.POST.get('yearly')
+
+	monthlyPayment = paymentMethod.objects.get(payment_type="monthly")
+	yearlyPayment = paymentMethod.objects.get(payment_type="yearly")
+	oneTimePaymentobj = oneTimePayment.objects.all()
+
 	print('\n', paymentMethod, monthly,yearly)
 	plans_products_list_ID=settings.PRODUCT_LIST_IDS
 	if monthly == 'true':
-		plan = plans_products_list_ID[0]
+		plan = monthlyPayment.method
 	elif yearly == 'true':
-		plan = plans_products_list_ID[1]
+		plan = yearlyPayment.method
 		print('yearly')
 	else:
-		plan = plans_products_list_ID[0]
+		plan = monthlyPayment.method
 	try:
 		customer = stripe.Customer.create(
-				payment_method=stripe.PaymentMethod.retrieve(paymentMethod),
+				payment_method=stripe.PaymentMethod.retrieve(paymentMethodTmp),
 				email=request.user.email,
 				description='About Payment Plan',
 
 
 				invoice_settings={
-							'default_payment_method': paymentMethod
+							'default_payment_method': paymentMethodTmp
 					}
 		)
 		subscription_pay = stripe.Subscription.create(
@@ -225,9 +235,23 @@ def completePayment(request):
 			],
 		)
 		
+		try:
+			Intent = stripe.PaymentIntent.create(amount=oneTimePaymentobj[0].amount*100, #in 
+							currency="usd",
+							payment_method=paymentMethodTmp,
+							description = "one time payment",  #text 
+							customer= customer.id
+							)
+			stripe.PaymentIntent.confirm(
+							Intent,
+							payment_method=paymentMethodTmp,
+							)
+		except Exception as error:
+			print(error,"***************stripe error")
+
 		Api_key.objects.create(
 						user=request.user,
-						paymentMenthod=paymentMethod, 
+						paymentMenthod=paymentMethodTmp, 
 						customer_Id=customer.id,
 						subscription_ID=subscription_pay.id
 					)

@@ -23,3 +23,17 @@ class accountsCheck(models.Model):
 
     def __str__(self):
         return self.user.username
+
+class paymentMethod(models.Model):
+    payment_type = models.CharField(max_length=100)
+    method = models.CharField(max_length=10000)
+    amount = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.payment_type
+
+class oneTimePayment(models.Model):
+    amount = models.IntegerField(default=0)
+
+    def __str__(self):
+        return str(self.amount)

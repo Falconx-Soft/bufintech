@@ -46,3 +46,8 @@ class social_networkForm(ModelForm):
     class Meta:
         model = social_network
         fields = '__all__'
+
+class news_letterForm(ModelForm):
+    class Meta:
+        model = news_letter
+        fields = ['Date','Description','Newsletter','Youtube','Podcast']

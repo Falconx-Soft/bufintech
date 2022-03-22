@@ -34,6 +34,7 @@ def index(request, Language):
     data = serializers.serialize("python",table.objects.filter(language=request.session['current_language']) )
     context['data'] = data
     context['NewsLetterText'] = NewsLetter.objects.filter(language=request.session['current_language']).values('Sentence')
+    context['video_url'] = home_video.objects.all()[0]
     print(context['NewsLetterText'])
     if request.method == "POST":
         name = request.POST['name']
@@ -166,6 +167,26 @@ def learn(request, Language):
 
     return render (request,'base/learning.html',{'display_url':display_url, 'obj':obj,'table_form':LearningForm(),'data':data, 'hidden':hidden,"nav_items":list(dict.fromkeys(nav_items)),'Language':Language, 'categories':categories, 'classes':classes})
 
+def news_letter_fun(request, Language):
+    display_url = True
+    try:
+        user_payment = Api_key.objects.get(user = request.user)
+    except:
+        user_payment = None
+    if user_payment != None:
+        pass
+        # return redirect('redirect_index')
+    else:
+        display_url = False
+    hidden = [0,1]
+    setCurrentLanguage(request, Language)
+    nav_items = ListPage.objects.filter(Language=request.session['current_language']).order_by('Priority').values_list("Menu_Name","url").distinct() 
+
+    obj = news_letter.objects.filter(Language=request.session['current_language'])
+    data = serializers.serialize("python",news_letter.objects.filter(Language=request.session['current_language']) )
+
+    return render (request,'base/newsletter.html',{'display_url':display_url, 'obj':obj,'table_form':news_letterForm(),'data':data, 'hidden':hidden,"nav_items":list(dict.fromkeys(nav_items)),'Language':Language})
+
 def list_of_pages(request, Language):
     display_url = True
     try:
@@ -213,12 +234,15 @@ def analytic_apps(request, Language):
         obj2 = analytical_apps_prospecting.objects.filter(language = request.session['current_language'])
         company_prospecting_data = serializers.serialize("python",analytical_apps_prospecting.objects.filter(language= request.session['current_language']) )
 
+        trade_journal_data = serializers.serialize("python",analytical_apps_trade_journal.objects.filter(language= request.session['current_language']) )
+
         return render (request,'base/analytics_apps.html',{
                                                     'display_url':display_url,
                                                     'systematic_trading_data':systematic_trading_data,
                                                     'stock_picker_data':stock_picker_data,
                                                     'market_mover_data':market_mover_data,
                                                     'company_prospecting_data':company_prospecting_data,
+                                                    'trade_journal_data':trade_journal_data,
                                                     'nav_items':list(dict.fromkeys(nav_items)),
                                                     'Language': Language,
                                                     'analytic_apps':True
@@ -263,12 +287,15 @@ def algo_trader(request,Language):
         obj2 = analytical_apps_prospecting.objects.filter(language = request.session['current_language'])
         company_prospecting_data = serializers.serialize("python",analytical_apps_prospecting.objects.filter(language= request.session['current_language']) )
 
+        trade_journal_data = serializers.serialize("python",analytical_apps_trade_journal.objects.filter(language= request.session['current_language']) )
+
         return render (request,'base/analytics_apps.html',{
                                                     'display_url':display_url,
                                                     'systematic_trading_data':systematic_trading_data,
                                                     'stock_picker_data':stock_picker_data,
                                                     'market_mover_data':market_mover_data,
                                                     'company_prospecting_data':company_prospecting_data,
+                                                    'trade_journal_data':trade_journal_data,
                                                     'nav_items':list(dict.fromkeys(nav_items)),
                                                     'Language': Language,
                                                     'analytic_apps':True,
@@ -303,12 +330,15 @@ def trade_ideas(request,Language):
         obj2 = analytical_apps_prospecting.objects.filter(language = request.session['current_language'])
         company_prospecting_data = serializers.serialize("python",analytical_apps_prospecting.objects.filter(language= request.session['current_language']) )
 
+        trade_journal_data = serializers.serialize("python",analytical_apps_trade_journal.objects.filter(language= request.session['current_language']) )
+
         return render (request,'base/analytics_apps.html',{
                                                     'display_url':display_url,
                                                     'systematic_trading_data':systematic_trading_data,
                                                     'stock_picker_data':stock_picker_data,
                                                     'market_mover_data':market_mover_data,
                                                     'company_prospecting_data':company_prospecting_data,
+                                                    'trade_journal_data': trade_journal_data,
                                                     'nav_items':list(dict.fromkeys(nav_items)),
                                                     'Language': Language,
                                                     'analytic_apps':True,
@@ -343,12 +373,15 @@ def market_mover(request,Language):
         obj2 = analytical_apps_prospecting.objects.filter(language = request.session['current_language'])
         company_prospecting_data = serializers.serialize("python",analytical_apps_prospecting.objects.filter(language= request.session['current_language']) )
 
+        trade_journal_data = serializers.serialize("python",analytical_apps_trade_journal.objects.filter(language= request.session['current_language']) )
+
         return render (request,'base/analytics_apps.html',{
                                                     'display_url':display_url,
                                                     'systematic_trading_data':systematic_trading_data,
                                                     'stock_picker_data':stock_picker_data,
                                                     'market_mover_data':market_mover_data,
                                                     'company_prospecting_data':company_prospecting_data,
+                                                    'trade_journal_data': trade_journal_data,
                                                     'nav_items':list(dict.fromkeys(nav_items)),
                                                     'Language': Language,
                                                     'analytic_apps':True,
@@ -383,12 +416,15 @@ def prospecting(request,Language):
         obj2 = analytical_apps_prospecting.objects.filter(language = request.session['current_language'])
         company_prospecting_data = serializers.serialize("python",analytical_apps_prospecting.objects.filter(language= request.session['current_language']) )
 
+        trade_journal_data = serializers.serialize("python",analytical_apps_trade_journal.objects.filter(language= request.session['current_language']) )
+
         return render (request,'base/analytics_apps.html',{
                                                     'display_url':display_url,
                                                     'systematic_trading_data':systematic_trading_data,
                                                     'stock_picker_data':stock_picker_data,
                                                     'market_mover_data':market_mover_data,
                                                     'company_prospecting_data':company_prospecting_data,
+                                                    'trade_journal_data': trade_journal_data,
                                                     'nav_items':list(dict.fromkeys(nav_items)),
                                                     'Language': Language,
                                                     'analytic_apps':True,
@@ -396,3 +432,47 @@ def prospecting(request,Language):
                                                 })
     except:
         return render (request,'base/analytics_apps.html',{ 'display_url':display_url,'analytic_apps':True, 'message':"No data found!",'nav_items':list(dict.fromkeys(nav_items)),'Language':Language,'name':"Prospecting"})
+
+
+def trade_journal(request,Language):
+    display_url = True
+    try:
+        user_payment = Api_key.objects.get(user = request.user)
+    except:
+        user_payment = None
+    if user_payment != None:
+        pass
+        # return redirect('redirect_index')
+    else:
+        display_url = False
+    setCurrentLanguage(request, Language)
+    nav_items = ListPage.objects.filter(Language=request.session['current_language']).order_by('Priority').values_list("Menu_Name","url").distinct()    
+    try:
+        obj = analytical_apps_Algo_trader.objects.filter(language = request.session['current_language'])
+        systematic_trading_data = serializers.serialize("python",analytical_apps_Algo_trader.objects.filter(language= request.session['current_language']) )
+
+        obj1 = analytical_apps_trade_ideas.objects.filter(language = request.session['current_language'])
+        stock_picker_data = serializers.serialize("python",analytical_apps_trade_ideas.objects.filter(language= request.session['current_language']) )
+
+        obj2 = analytical_apps_market_mover.objects.filter(language = request.session['current_language'])
+        market_mover_data = serializers.serialize("python",analytical_apps_market_mover.objects.filter(language= request.session['current_language']) )
+
+        obj2 = analytical_apps_prospecting.objects.filter(language = request.session['current_language'])
+        company_prospecting_data = serializers.serialize("python",analytical_apps_prospecting.objects.filter(language= request.session['current_language']) )
+
+        trade_journal_data = serializers.serialize("python",analytical_apps_trade_journal.objects.filter(language= request.session['current_language']) )
+
+        return render (request,'base/analytics_apps.html',{
+                                                    'display_url':display_url,
+                                                    'systematic_trading_data':systematic_trading_data,
+                                                    'stock_picker_data':stock_picker_data,
+                                                    'market_mover_data':market_mover_data,
+                                                    'company_prospecting_data':company_prospecting_data,
+                                                    'trade_journal_data': trade_journal_data,
+                                                    'nav_items':list(dict.fromkeys(nav_items)),
+                                                    'Language': Language,
+                                                    'analytic_apps':True,
+                                                    'name':"TradeJournal"
+                                                })
+    except:
+        return render (request,'base/analytics_apps.html',{ 'display_url':display_url,'analytic_apps':True, 'message':"No data found!",'nav_items':list(dict.fromkeys(nav_items)),'Language':Language,'name':"TradeJournal"})

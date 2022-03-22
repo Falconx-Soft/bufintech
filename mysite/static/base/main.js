@@ -297,8 +297,53 @@ $(document).ready(function(){
       temp3 += '<option value="' + d + '">' + d + '</option>'
     });
     investing_search_ticker.innerHTML = temp3;
+  }else if(window.location.pathname.includes("news-letter")){
+
+    const newsletter_search_year = document.getElementById("newsletter_search_year");
+    let chkYear = []
+    let temp = '<option value=>Search by Year</option>';
+    table.column(0).data().unique().sort().each(function (d, j) {
+      let y_hold = d.split(" ");
+      y_hold2 = y_hold[2]
+      YearName = y_hold2
+      if(!chkYear.includes(YearName)){
+        temp += '<option value="' + YearName + '">' + YearName + '</option>'
+        chkYear.push(YearName);
+      }
+    });
+    newsletter_search_year.innerHTML = temp; 
 
 
+    const newsletter_search_month = document.getElementById("newsletter_search_month");
+    let chkMonth = []
+    let temp2 = '<option value=>Search by Month</option>';
+    table.column(0).data().unique().sort().each(function (d, j) {
+      let hold = d.split(" ");
+      hold2 = hold[0]
+      hold2 = hold2.replace(".", "")
+      monthName = hold2
+      if(!chkMonth.includes(monthName)){
+        temp2 += '<option value="' + monthName + '">' + monthName + '</option>'
+        chkMonth.push(monthName);
+      }
+    });
+    newsletter_search_month.innerHTML = temp2;
+    
+    const newsletter_search_date = document.getElementById("newsletter_search_date");
+    let chkDate = []
+    let temp4 = '<option value=>Search by Date</option>';
+    table.column(0).data().unique().sort().each(function (d, j) {
+      let d_hold = d.split(" ");
+      d_hold2 = d_hold[1]
+      d_hold2 = d_hold2.replace(",", "")
+      DateNumber = d_hold2
+      if(!chkDate.includes(DateNumber)){
+        temp4 += '<option value="' + DateNumber + '">' + DateNumber + '</option>'
+        chkDate.push(DateNumber);
+      }
+    });
+    chkDate.sort()
+    newsletter_search_date.innerHTML = temp4;
 
   }
 
@@ -345,6 +390,27 @@ $(document).ready(function(){
       console.log(mon+" "+day+" "+year);
       return mon+" "+day+" "+year
     }
+
+    $('#newsletter_search_year').on('change', function(){
+      table
+        .columns( 0 )
+        .search( this.value )
+        .draw();
+    });
+
+    $('#newsletter_search_month').on('change', function(){
+      table
+        .columns( 0 )
+        .search( this.value )
+        .draw();
+    });
+
+    $('#newsletter_search_date').on('change', function(){
+      table
+        .columns( 0 )
+        .search( this.value )
+        .draw();
+    });
 
     // #market_search is a <input type="text"> element
     $('#market_search').on( 'change', function () {

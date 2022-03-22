@@ -44,6 +44,15 @@ class AnalyticsAppsCompanyProspecting(resources.ModelResource):
 class AnalyticsAppsCompanyProspectingAdmin(ImportExportModelAdmin,admin.ModelAdmin):
     list_display = ('Sentence', 'language')
     resource_class = AnalyticsAppsCompanyProspecting
+
+
+class AnalyticalAppsTradeJournal(resources.ModelResource):
+    class Meta:
+        model = analytical_apps_trade_journal
+
+class AnalyticalAppsTradeJournalAdmin(ImportExportModelAdmin,admin.ModelAdmin):
+    list_display = ('Sentence', 'language')
+    resource_class = AnalyticalAppsTradeJournal
     
     
 #Analytics Apps Stock Picker
@@ -158,6 +167,20 @@ class SocialNetworkAdmin(ImportExportModelAdmin,admin.ModelAdmin):
     list_display = ('Sentence', 'language')
     resource_class = SocialNetworkResource
 
+class newsletter(resources.ModelResource):
+
+    class Meta:
+        model = news_letter
+
+class newsletterAdmin(ImportExportModelAdmin,admin.ModelAdmin):
+    list_display = ('Language', 'Date', 'Description', 'Newsletter', 'Youtube', 'Podcast')
+    resource_class = newsletter
+
+# class home_video_admin(admin.ModelAdmin):
+#     list_display = ('videoURL',)
+#     class Meta:
+#         model = home_video
+
 class NewsLetterResource(resources.ModelResource):
 
     class Meta:
@@ -182,6 +205,9 @@ admin.site.register(analytical_apps_market_mover, AnalyticsAppsMarketMoverAdmin)
 admin.site.register(analytical_apps_trade_ideas, AnalyticsAppsStockPickerAdmin)
 admin.site.register(analytical_apps_Algo_trader, AnalyticsAppsSystematicTradAdmin)
 admin.site.register(analytical_apps_prospecting, AnalyticsAppsCompanyProspectingAdmin)
+admin.site.register(analytical_apps_trade_journal, AnalyticalAppsTradeJournalAdmin)
 admin.site.register(social_network, SocialNetworkAdmin)
+admin.site.register(news_letter, newsletterAdmin)
+admin.site.register(home_video)
 
 

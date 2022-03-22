@@ -82,6 +82,17 @@ class analytical_apps_market_mover(models.Model):
         verbose_name = "Analytical Apps Market Mover"
         verbose_name_plural = "Analytical Apps Market Mover"
 
+class analytical_apps_trade_journal(models.Model):
+    Sentence = models.TextField(blank=True)
+    language = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.language
+
+    class Meta:
+        verbose_name = "Analytical Apps Trade Journal"
+        verbose_name_plural = "Analytical Apps Trade Journal"
+
     
 
 def market_path(instance, filename):
@@ -130,6 +141,23 @@ class equity(models.Model):
     class Meta:
         verbose_name = "Equity Research"
         verbose_name_plural = "Equity Research"
+
+class news_letter(models.Model):
+    Language = models.CharField(max_length=100)
+
+    Date = models.DateField()
+    Description = models.CharField(max_length=5100,blank=True,default="none")
+    Newsletter = models.CharField(max_length=1100,blank=True)
+    Youtube = models.CharField(max_length=1100,blank=True)
+    Podcast = models.CharField(max_length=1100,blank=True)
+    # chk_field_name = models.FilePathField(path ="C:/Users/SHAN/Desktop/Working",null=True)
+
+    def __str__(self):
+        return self.Description
+
+    class Meta:
+        verbose_name = "Newsletter"
+        verbose_name_plural = "Newsletter"
 
 def path_learning(instance, filename):
     return '{0}/how-to/make-green-money-via/{1}'.format(instance.Language,filename)
@@ -248,8 +276,8 @@ class NewsLetter(models.Model):
 
 
     class Meta:
-        verbose_name = "NewsLetter"
-        verbose_name_plural = "NewsLetter"
+        verbose_name = "Contact Us"
+        verbose_name_plural = "Contact Us"
 
 
 class social_network(models.Model):
@@ -262,3 +290,13 @@ class social_network(models.Model):
     class Meta:
         verbose_name = "Social Network"
         verbose_name_plural = "Social Network"
+
+class home_video(models.Model):
+    videoURL = models.CharField(max_length=1000)
+
+    def __str__(self):
+        return self.videoURL
+
+    class Meta:
+        verbose_name = "Home Video"
+        verbose_name_plural = "Home Video"

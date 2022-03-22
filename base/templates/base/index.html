@@ -6,6 +6,13 @@
     .fade{
         opacity: 0.5 !important;
     }
+
+    .videoDiv{
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
 </style>
 <div class="container">
     {% comment %} <input id="myInput" type="text" placeholder="Search.." class="input_1"> {% endcomment %}
@@ -22,6 +29,10 @@
 		</div>
 	{% endif %}	
     <p style="text-align: center;">BuFinTech is the Future of Research and Analytics Platform</p>
+    <div class="videoDiv">
+        <iframe width="420" height="345" src="{{video_url}}">
+        </iframe>
+    </div>
     <table id="example" class="table table-striped table-bordered display" style="width: 100%; overflow-y: auto;display: block;">
         <thead>
             <tr>
@@ -68,7 +79,7 @@
         <input type="text" placeholder="Name" name="name" >
         <input type="email" placeholder="Email" name="email" required>
         <input type="text" placeholder="Phone" name="phone" >
-        <button type="submit" class="btn btn-outline-primary">Subscribe</button>
+        <button type="submit" class="btn btn-outline-primary">Contact Us</button>
     </form>
 </div>
 
