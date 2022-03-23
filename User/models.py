@@ -28,6 +28,7 @@ class paymentMethod(models.Model):
     payment_type = models.CharField(max_length=100)
     method = models.CharField(max_length=10000)
     amount = models.IntegerField(default=0)
+    description = models.CharField(max_length=10000,blank=True,null=True)
 
     def __str__(self):
         return self.payment_type

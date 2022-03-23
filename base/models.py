@@ -21,8 +21,8 @@ class NewsLetterSubscribers(models.Model):
         return self.email
 
     class Meta:
-        verbose_name = "NewsLetter Subscribers"
-        verbose_name_plural = "NewsLetter Subscribers"
+        verbose_name = "Contacts"
+        verbose_name_plural = "Contacts"
 
 class aboutus(models.Model):
     Sentence = models.TextField(blank=True)

@@ -7,7 +7,7 @@ admin.site.register(accountsCheck)
 
 
 class paymentMethodAdmin(admin.ModelAdmin):
-	list_display = ('payment_type','method','amount')
+	list_display = ('payment_type','method','amount','description')
 admin.site.register(paymentMethod,paymentMethodAdmin)
 
 
