@@ -159,6 +159,7 @@ def Payment(request):
 	total_amount = 10
 	monthlyPayment = paymentMethod.objects.get(payment_type="monthly")
 	yearlyPayment = paymentMethod.objects.get(payment_type="yearly")
+	oneTimePaymentAmonut = oneTimePayment.objects.all()[0].amount
 	customer = ''
 	try:
 
@@ -184,12 +185,13 @@ def Payment(request):
 	except Exception as e:
 		print('api key issue')
 		
-	if(isinstance(customer, Api_key) is True):
-		print('instance exists')
-		return redirect('redirect_index')
+	# if(isinstance(customer, Api_key) is True):
+	# 	print('instance exists')
+	# 	return redirect('redirect_index')
 	context = {
 		'monthlyPayment':monthlyPayment,
-		'yearlyPayment':yearlyPayment
+		'yearlyPayment':yearlyPayment,
+		'oneTimePaymentAmonut':oneTimePaymentAmonut
 	}
 	return render(request,'User/payment.html', context)
 
