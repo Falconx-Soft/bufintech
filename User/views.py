@@ -217,6 +217,15 @@ def completePayment(request):
 	else:
 		plan = monthlyPayment.method
 	try:
+		num_results = Api_key.objects.filter(user=request.user).count()
+
+		if num_results > 0:
+			prev_data = Api_key.objects.get(user=request.user)
+			stripe.Subscription.delete(
+				prev_data.subscription_ID,
+				)
+			prev_data.delete()
+			print("Data deleted*********************")
 		customer = stripe.Customer.create(
 				payment_method=stripe.PaymentMethod.retrieve(paymentMethodTmp),
 				email=request.user.email,

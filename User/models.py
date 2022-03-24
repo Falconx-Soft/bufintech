@@ -15,6 +15,10 @@ class Api_key(models.Model):
     def __str__(self):
         return self.user.username
 
+    class Meta:
+        verbose_name = "Payment Credentials"
+        verbose_name_plural = "Payment Credentials"
+
 class accountsCheck(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     auth_token = models.CharField(max_length=100)
@@ -24,6 +28,10 @@ class accountsCheck(models.Model):
     def __str__(self):
         return self.user.username
 
+    class Meta:
+        verbose_name = "User Token"
+        verbose_name_plural = "User Token"
+
 class paymentMethod(models.Model):
     payment_type = models.CharField(max_length=100)
     method = models.CharField(max_length=10000)
@@ -32,9 +40,18 @@ class paymentMethod(models.Model):
 
     def __str__(self):
         return self.payment_type
+    
+    class Meta:
+        verbose_name = "Subscription Type"
+        verbose_name_plural = "Subscription Type"
+    
 
 class oneTimePayment(models.Model):
     amount = models.IntegerField(default=0)
 
     def __str__(self):
         return str(self.amount)
+
+    class Meta:
+        verbose_name = "One Time Payment"
+        verbose_name_plural = "One Time Payment"

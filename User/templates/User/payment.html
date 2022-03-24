@@ -56,7 +56,7 @@
       <hr class="border-gray-800  border-width-one border-color-lightest-grey my-1 my-lg-2"  style="border-color: #f1f4f8;"/>
     </div>
     <div class="card-body overflow-auto  scroll py-2" style="  text-align: center;  min-height: 130px;">
-      <h3>{{yearlyPayment.amount}}$/Year + {{oneTimePaymentAmonut}}$ registration fee</h3> 
+      <h3>{{yearlyPayment.amount}}$/year + {{oneTimePaymentAmonut}}$ registration fee</h3> 
       <p style="margin-top: 20px;">{{yearlyPayment.description}}</p>
       <a >
             <button onclick="$('#card').show(); $('#monthly').prop('checked', false); $('#yearly').prop('checked', true);" class="btn btn-outline-primary"  data-toggle="modal" data-target="#exampleModalPayment" style="margin-bottom: 20px;">
@@ -206,10 +206,7 @@
                 headers: {
                   'Idempotent-Replayed': true
                 },
-          
-          
                 body : fd,
-          
               }).then(function(result) {
                   console.log('result', result.status)
                   if (result.status == 200){
