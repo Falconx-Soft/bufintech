@@ -16,8 +16,8 @@ class Api_key(models.Model):
         return self.user.username
 
     class Meta:
-        verbose_name = "Payment Credentials"
-        verbose_name_plural = "Payment Credentials"
+        verbose_name = "User Info"
+        verbose_name_plural = "User Info"
 
 class accountsCheck(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
