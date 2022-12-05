@@ -476,3 +476,24 @@ def trade_journal(request,Language):
                                                 })
     except:
         return render (request,'base/analytics_apps.html',{ 'display_url':display_url,'analytic_apps':True, 'message':"No data found!",'nav_items':list(dict.fromkeys(nav_items)),'Language':Language,'name':"TradeJournal"})
+
+
+def get_cfa(request,Language):
+    display_url = True
+    try:
+        user_payment = Api_key.objects.get(user = request.user)
+    except:
+        user_payment = None
+    if user_payment != None:
+        setCurrentLanguage(request, Language)
+        nav_items = ListPage.objects.filter(Language=request.session['current_language']).order_by('Priority').values_list("Menu_Name","url").distinct() 
+
+        context = {
+            'Language': Language,
+            'nav_items':list(dict.fromkeys(nav_items)),
+        }
+
+        return render(request,'base/CFA/cfa.html',context)
+    else:
+        return redirect('index',Language="en")
+    

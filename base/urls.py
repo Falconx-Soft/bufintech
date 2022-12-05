@@ -22,4 +22,6 @@ urlpatterns = [
     re_path(r'^(?P<Language>[a-z]{2})/prospecting$', views.prospecting, name='prospecting'),
 
     re_path(r'^(?P<Language>[a-z]{2})/trade-journal$', views.trade_journal, name='trade-journal'),
+
+    re_path(r'^(?P<Language>[a-z]{2})/cfa$', views.get_cfa, name='cfa'),
 ]
